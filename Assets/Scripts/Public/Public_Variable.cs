@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Public_Variable : BaseMonoBehaviour
 {
+    // 델리게이트 및 이벤트 정의
+    public delegate void TimeIncreaseEventHandler(int hoursIncreased);
+    public static event TimeIncreaseEventHandler OnTimeIncreased;
+
     // ============================================[↓역참조 구역↓]=================================================
 
     private IOverallManager _overallManager;
@@ -22,55 +26,120 @@ public class Public_Variable : BaseMonoBehaviour
 
     // ============================================[↓공용 변수 구역↓]=================================================
 
+    // 1. 시간 수치
+    private int currentHour = 0;
+    public int CurrentHour
+    {
+        get { return currentHour; }
+        set { currentHour = Mathf.Clamp(value, 0, 24); }
+    }
 
-    // 게임 설정과 관련된 변수
-    public int initialPlayerHealth = 100;
-    public float playerMoveSpeed = 5.0f;
-    public Color playerDefaultColor = Color.white;
+    // 누적 시간 수치
+    private int accumulatedHours = 0;
+    public int AccumulatedHours
+    {
+        get { return accumulatedHours; }
+        set
+        {
+            int hoursIncreased = value - accumulatedHours;
+            accumulatedHours = value;
 
-    // 리소스 관리를 위한 변수
-    public GameObject[] enemyPrefabs;
-    public AudioClip[] soundEffects;
+            // 누적 시간이 증가할 때 이벤트 발생
+            OnTimeIncreased?.Invoke(hoursIncreased);
+        }
+    }
 
-    // 게임 상태와 관련된 변수
-    public bool isGamePaused = false;
-    public int currentScore = 0;
+    // 2. float 스태미나 수치 0~100
+    private float stamina = 100.0f;
+    public float Stamina
+    {
+        get { return stamina; }
+        set { stamina = Mathf.Clamp(value, 0f, 120f); }
+    }
 
-    // 플레이어 정보와 상태를 저장하는 변수
-    public string playerName = "Player1";
-    public Vector3 playerStartPosition = new Vector3(0, 0, 0);
-    public bool isPlayerAlive = true;
+    // 3. float 배부름 fullness 수치 0~100
+    private float fullness = 100.0f;
+    public float Fullness
+    {
+        get { return fullness; }
+        set
+        {
+            fullness = Mathf.Clamp(value, 0f, 100f);
+        }
+    }
+    // 취침 시 스태미나 회복량 계산
+    public void RecoverStaminaAfterSleep()
+    {
+        if (fullness >= 100)
+            Stamina = 120.0f;
+        else if (fullness >= 75)
+            Stamina = 100.0f;
+        else
+            Stamina = (fullness >= 70) ? 90.0f :
+                        (fullness >= 65) ? 80.0f :
+                        (fullness >= 60) ? 70.0f :
+                        (fullness >= 55) ? 60.0f :
+                        (fullness >= 50) ? 50.0f :
+                        (fullness >= 45) ? 40.0f :
+                        (fullness >= 40) ? 30.0f :
+                        (fullness >= 35) ? 20.0f :
+                        (fullness >= 30) ? 10.0f : 0.0f;
+    }
 
-    // 아이템과 인벤토리 관련 변수
-    public int playerGold = 0;
-    public List<GameObject> playerInventory = new List<GameObject>();
-    public int maxInventorySize = 20;
+    // 4. 레베카의 오염도 수치 0~100
+    private float contamination = 0.0f;
+    public float Contamination
+    {
+        get { return contamination; }
+        set { contamination = Mathf.Clamp(value, 0f, 100f); }
+    }
 
+    // 5. 바깥 탐사 시 체력 수치
+    private float hearts = 3;
+    private float maxHearts = 3; 
 
-    // 화면 및 UI 설정 변수
-    public bool showHUD = true;
-    public Color uiThemeColor = Color.blue;
-    public int screenResolutionWidth = 1920;
-    public int screenResolutionHeight = 1080;
+    public float Hearts
+    {
+        get { return hearts; }
+        set { hearts = Mathf.Max(value, 0); }
+    }
 
-    // 레벨 및 경험치 변수
-    public int playerLevel = 1;
-    public int experiencePoints = 0;
-    public int experienceToNextLevel = 100;
+    public float MaxHearts
+    {
+        get { return maxHearts; }
+        set { maxHearts = Mathf.Max(value, 1); }
+    }
 
-    // 다양한 게임 모드와 관련된 변수
-    public bool isTutorialMode = false;
-    public bool isMultiplayer = false;
-    public int numberOfPlayers = 1;
+    // 게임 오버 체크
+    public bool IsGameOver()
+    {
+        return Hearts <= 0;
+    }
 
-    // 시간과 이벤트 관련 변수
-    public float gameTimeElapsed = 0.0f;
-    public bool isNightTime = false;
+    // 공격 받을 시 하트 감소
+    public void DecreaseHeartsOnAttack()
+    {
+        Hearts = Mathf.Max(hearts - 1, 0);
+    }
 
-    // 기타 게임 설정 변수
-    public bool useSound = true;
-    public int difficultyLevel = 2;
-    public bool enableDebugMode = false;
+    // 하트 초기화
+    public void ResetHearts()
+    {
+        Hearts = maxHearts;
+    }
 
+    private void Start()
+    {
+        // 이벤트 핸들러 등록
+        OnTimeIncreased += HandleTimeIncrease;
+    }
+
+    private void HandleTimeIncrease(int hoursIncreased)
+    {
+        // 배부름 감소
+        Fullness -= 1.5f * hoursIncreased;
+    }
     // ============================================[↑공용 변수 구역↑]=================================================
 }
+
+

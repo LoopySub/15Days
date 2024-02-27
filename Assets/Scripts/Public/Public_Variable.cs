@@ -26,7 +26,7 @@ public class Public_Variable : BaseMonoBehaviour
 
     // ============================================[↓공용 변수 구역↓]=================================================
 
-    // 1. 시간 수치
+    // 1. 시간 수치 - 현재시간
     private int currentHour = 0;
     public int CurrentHour
     {
@@ -34,7 +34,7 @@ public class Public_Variable : BaseMonoBehaviour
         set { currentHour = Mathf.Clamp(value, 0, 24); }
     }
 
-    // 누적 시간 수치
+    // 1. 시간 수치 - 누적 시간
     private int accumulatedHours = 0;
     public int AccumulatedHours
     {
@@ -49,7 +49,7 @@ public class Public_Variable : BaseMonoBehaviour
         }
     }
 
-    // 2. float 스태미나 수치 0~100
+    // 2. 스태미나 수치
     private float stamina = 100.0f;
     public float Stamina
     {
@@ -57,7 +57,7 @@ public class Public_Variable : BaseMonoBehaviour
         set { stamina = Mathf.Clamp(value, 0f, 120f); }
     }
 
-    // 3. float 배부름 fullness 수치 0~100
+    // 3. 배부름 수치
     private float fullness = 100.0f;
     public float Fullness
     {
@@ -67,7 +67,7 @@ public class Public_Variable : BaseMonoBehaviour
             fullness = Mathf.Clamp(value, 0f, 100f);
         }
     }
-    // 취침 시 스태미나 회복량 계산
+    // 취침 시 배부름에 따른 스태미나 회복량 계산
     public void RecoverStaminaAfterSleep()
     {
         if (fullness >= 100)

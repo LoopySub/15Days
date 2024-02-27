@@ -6,7 +6,7 @@ public interface IOverallManager
 {
 
 }
-public class OverallManager : BaseMonoBehaviour, IOverallManager
+public class OverallManager : BaseMonoBehaviour, IOverallManager //전체 총괄 통합 매니저 스크립트
 {
     // ============================================[↓싱글톤 구역↓]=================================================
 
@@ -77,8 +77,18 @@ public class OverallManager : BaseMonoBehaviour, IOverallManager
     [SerializeField]
     private UiManager _UiManager;
 
+    [SerializeField]
+    private GameDataManager _GameDataManager;
+
     // ============================================[↑직렬화 구역↑]=================================================
-    // =======================================[↓게임 데이터 메소드 구역↓]==========================================
-    // =======================================[↑게임 데이터 메소드 구역↑]==========================================
+    // ==========================================[↓데이터 참조 구역↓]==============================================
+    public Public_Variable PublicVariable
+    {
+        get { return _PublicVariable; }
+    }
+    
+
+
+    // ==========================================[↑데이터 참조 구역↑]==============================================
 }
 

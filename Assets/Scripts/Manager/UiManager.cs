@@ -8,7 +8,7 @@ public class UiManager : MonoBehaviour
 
     private IOverallManager _overallManager;
 
-    public IOverallManager OverallManager
+    public IOverallManager _OverallManager
     {
         get { return _overallManager; }
     }

@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 using static UnityEditor.Progress;
 
@@ -30,7 +32,7 @@ public class Inventory : MonoBehaviour
     public TextMeshProUGUI selectedItemStatValue;
     public GameObject useButton;
     public GameObject equipButton;
-    public GameObject unequipButton;
+    public GameObject unEquipButton;
 
 
     private int curEquipIndex;
@@ -66,7 +68,13 @@ public class Inventory : MonoBehaviour
         ClearSelectedItemWindow();
     }
 
-    
+    public void OnInventoryButton(InputAction.CallbackContext callbackContext)  // inventory키는 법 action 지정필요
+    {
+        if(callbackContext.phase == InputActionPhase.Started)
+        {
+            Toggle();
+        }
+    }
 
 
     public void Toggle()
@@ -74,10 +82,13 @@ public class Inventory : MonoBehaviour
         if (InventoryWindow.activeInHierarchy)
         {
             InventoryWindow.SetActive(false);
+            onCloseInventory.Invoke();
+            //커서가 락될경우에 필요한 코드작성
         }
         else
         {
             InventoryWindow.SetActive(true);
+            onOpenInventory.Invoke();
         }
     }
 
@@ -157,13 +168,27 @@ public class Inventory : MonoBehaviour
         selectedItemStatValue.text = string.Empty;
 
 
-       // for(int i = 0; i < selectedItem.item.c)
+         //for(int i = 0; i < selectedItem.item.consumable)
+
+        useButton.SetActive(selectedItem.item.type == ItemType.Consumable);
+        equipButton.SetActive(selectedItem.item.type == ItemType.Equipable && !uiSlot[index].equipped);
+        unEquipButton.SetActive(selectedItem.item.type == ItemType.Equipable && uiSlot[index].equipped);
 
     }
 
     private void ClearSelectedItemWindow()
     {
-        throw new NotImplementedException();
+        selectedItem = null;
+
+        selectedItemName.text = string.Empty;
+        selectedItemDescription.text = string.Empty; ;
+
+        selectedItemStatName.text = string.Empty;
+        selectedItemStatValue.text = string.Empty;
+
+        useButton.SetActive(false);
+        equipButton.SetActive(false);
+        unEquipButton.SetActive(false);
     }
 
     //====================================== 버튼

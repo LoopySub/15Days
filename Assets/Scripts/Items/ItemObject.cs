@@ -13,7 +13,7 @@ public class ItemObject : MonoBehaviour,IInteractable
 
     public void OnInteract()
     {
-       
+        Inventory.instance.AddItem(item); //  E 눌렀을떄 인벤토리로 복사
         Destroy(gameObject);
     }
 

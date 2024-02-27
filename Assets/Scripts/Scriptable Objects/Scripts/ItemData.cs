@@ -30,7 +30,7 @@ public class ItemData : ScriptableObject
     public string description;   // 아이템 설명
     public ItemType type;        // 아이템 타입(단서,장비,소비)
     public Sprite icon;             
-    public GameObject dropPrefab;  
+     
 
     [Header("Stacking")]
     public bool canStack;        // 아이템이 쌓일수있는지? Food와 aidKit는 가능

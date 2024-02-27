@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Public_Variable : BaseMonoBehaviour
+public class Public_Variable : BaseMonoBehaviour // 게임에서 공용으로 사용되는 변수들과 관련 이벤트가 있는 스크립트
 {
+    // ==========================================[↓사전 초기화 구역↓]==============================================
     // 델리게이트 및 이벤트 정의
     public delegate void TimeIncreaseEventHandler(int hoursIncreased);
     public static event TimeIncreaseEventHandler OnTimeIncreased;
+
+    // ==========================================[↑사전 초기화 구역↑]==============================================
 
     // ============================================[↓역참조 구역↓]=================================================
 
     private IOverallManager _overallManager;
 
-    public IOverallManager OverallManager
+    public IOverallManager _OverallManager
     {
         get { return _overallManager; }
     }
@@ -26,7 +29,8 @@ public class Public_Variable : BaseMonoBehaviour
 
     // ============================================[↓공용 변수 구역↓]=================================================
 
-    // 1. 시간 수치
+    // 1. 시간 수치 - 현재시간
+    [SerializeField]
     private int currentHour = 0;
     public int CurrentHour
     {
@@ -34,7 +38,8 @@ public class Public_Variable : BaseMonoBehaviour
         set { currentHour = Mathf.Clamp(value, 0, 24); }
     }
 
-    // 누적 시간 수치
+    // 1. 시간 수치 - 누적 시간
+    [SerializeField]
     private int accumulatedHours = 0;
     public int AccumulatedHours
     {
@@ -49,7 +54,8 @@ public class Public_Variable : BaseMonoBehaviour
         }
     }
 
-    // 2. float 스태미나 수치 0~100
+    // 2. 스태미나 수치
+    [SerializeField]
     private float stamina = 100.0f;
     public float Stamina
     {
@@ -57,7 +63,8 @@ public class Public_Variable : BaseMonoBehaviour
         set { stamina = Mathf.Clamp(value, 0f, 120f); }
     }
 
-    // 3. float 배부름 fullness 수치 0~100
+    // 3. 배부름 수치
+    [SerializeField]
     private float fullness = 100.0f;
     public float Fullness
     {
@@ -67,26 +74,9 @@ public class Public_Variable : BaseMonoBehaviour
             fullness = Mathf.Clamp(value, 0f, 100f);
         }
     }
-    // 취침 시 스태미나 회복량 계산
-    public void RecoverStaminaAfterSleep()
-    {
-        if (fullness >= 100)
-            Stamina = 120.0f;
-        else if (fullness >= 75)
-            Stamina = 100.0f;
-        else
-            Stamina = (fullness >= 70) ? 90.0f :
-                        (fullness >= 65) ? 80.0f :
-                        (fullness >= 60) ? 70.0f :
-                        (fullness >= 55) ? 60.0f :
-                        (fullness >= 50) ? 50.0f :
-                        (fullness >= 45) ? 40.0f :
-                        (fullness >= 40) ? 30.0f :
-                        (fullness >= 35) ? 20.0f :
-                        (fullness >= 30) ? 10.0f : 0.0f;
-    }
 
     // 4. 레베카의 오염도 수치 0~100
+    [SerializeField]
     private float contamination = 0.0f;
     public float Contamination
     {
@@ -95,7 +85,9 @@ public class Public_Variable : BaseMonoBehaviour
     }
 
     // 5. 바깥 탐사 시 체력 수치
+    [SerializeField]
     private float hearts = 3;
+    [SerializeField]
     private float maxHearts = 3; 
 
     public float Hearts
@@ -110,24 +102,8 @@ public class Public_Variable : BaseMonoBehaviour
         set { maxHearts = Mathf.Max(value, 1); }
     }
 
-    // 게임 오버 체크
-    public bool IsGameOver()
-    {
-        return Hearts <= 0;
-    }
-
-    // 공격 받을 시 하트 감소
-    public void DecreaseHeartsOnAttack()
-    {
-        Hearts = Mathf.Max(hearts - 1, 0);
-    }
-
-    // 하트 초기화
-    public void ResetHearts()
-    {
-        Hearts = maxHearts;
-    }
-
+    // ============================================[↑공용 변수 구역↑]=================================================
+    // ==============================================[↓메서드 구역↓]==================================================
     private void Start()
     {
         // 이벤트 핸들러 등록
@@ -139,7 +115,12 @@ public class Public_Variable : BaseMonoBehaviour
         // 배부름 감소
         Fullness -= 1.5f * hoursIncreased;
     }
-    // ============================================[↑공용 변수 구역↑]=================================================
+    // 게임 오버 체크
+    public bool IsGameOver()
+    {
+        return Hearts <= 0;
+    }
+    // ==============================================[↑메서드 구역↑]==================================================
 }
 
 

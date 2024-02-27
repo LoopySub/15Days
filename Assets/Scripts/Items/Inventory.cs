@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
 using TMPro;
 using UnityEngine;
@@ -168,7 +169,11 @@ public class Inventory : MonoBehaviour
         selectedItemStatValue.text = string.Empty;
 
 
-         //for(int i = 0; i < selectedItem.item.consumable)
+         for(int i = 0; i < selectedItem.item.consumables.Length; i++) // ¼·Ãë ÇÒ‹š
+        {
+            selectedItemStatName.text += selectedItem.item.consumables[i].type.ToString() + "\n";
+            selectedItemStatValue.text += selectedItem.item.consumables[i].value.ToString() +"\n";
+        }
 
         useButton.SetActive(selectedItem.item.type == ItemType.Consumable);
         equipButton.SetActive(selectedItem.item.type == ItemType.Equipable && !uiSlot[index].equipped);
@@ -195,7 +200,18 @@ public class Inventory : MonoBehaviour
 
     public void OnUseButton()
     {
-
+        if(selectedItem.item.type == ItemType.Consumable)
+        {
+            for (int i = 0; i < selectedItem.item.consumables.Length; i++) // ¼·Ãë ÇÒ‹š
+            {
+                switch(selectedItem.item.consumables[i].type)
+                {
+                   // case ConsumableType.Health:
+                     //   OverallManager.Instance.PublicVariable.stamina(selectedItem.item.consumables[i].value); break;
+                }
+            }
+        }
+        RemoveSelectedItem();
     }
 
     public void OnEquipButton()
@@ -211,6 +227,24 @@ public class Inventory : MonoBehaviour
     public void OnUnEquipButton()
     {
 
+    }
+
+    private void RemoveSelectedItem()
+    {
+        selectedItem.quantity--;
+
+        if (selectedItem.quantity <= 0)
+        {
+            if (uiSlot[selectedItemIndex].equipped)
+            {
+                UnEquip(selectedItemIndex);
+            }
+
+            selectedItem.item = null;
+            ClearSelectedItemWindow();
+        }
+
+        UPdateUI();
     }
 
     public void RemoveItem(ItemData item)

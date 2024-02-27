@@ -15,7 +15,9 @@ public enum ConsumableType
     Health  // FIrst aid kit 로 치료 (딸)
 }
 
-[System.Serializable]
+
+
+[System.Serializable]  // 섭취시 증가할때
 public class ItemDataConsumable
 {
     public ConsumableType type;

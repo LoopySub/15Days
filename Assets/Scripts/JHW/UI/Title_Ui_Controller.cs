@@ -127,7 +127,7 @@ public class Title_Ui_Controller : BaseMonoBehaviour
         switch (isTargeted)
         {
             case 0:
-                UnityEngine.SceneManagement.SceneManager.LoadScene("");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Prologue Scene");
                 break;
             case 2:
                 // Quit the game

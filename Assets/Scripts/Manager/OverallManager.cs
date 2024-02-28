@@ -86,7 +86,22 @@ public class OverallManager : BaseMonoBehaviour, IOverallManager //ÀüÃ¼ ÃÑ°ı ÅëÇ
     {
         get { return _PublicVariable; }
     }
-    
+    public GameDataManager GameDataManager
+    {
+        get { return _GameDataManager; }
+    }
+    public Public_Enum PublicEnum 
+    { 
+        get { return _PublicEnum; } 
+    }
+    public Public_Utility PublicUtility
+    {
+        get { return _PublicUtility; }
+    }
+    public UiManager UiManager
+    {
+        get { return _UiManager; } 
+    }
 
 
     // ==========================================[¡èµ¥ÀÌÅÍ ÂüÁ¶ ±¸¿ª¡è]==============================================

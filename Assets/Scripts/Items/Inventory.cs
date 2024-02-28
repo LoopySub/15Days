@@ -38,7 +38,7 @@ public class Inventory : MonoBehaviour
 
     private int curEquipIndex;
 
-    private PlayerInputController controller;  
+    
     
 
     [Header("Events")]
@@ -49,7 +49,7 @@ public class Inventory : MonoBehaviour
     void Awake()
     {
         instance = this;
-        controller = GetComponent<PlayerInputController>();
+        
        
     }
 
@@ -69,7 +69,7 @@ public class Inventory : MonoBehaviour
         ClearSelectedItemWindow();
     }
 
-    
+ 
 
 
     public void Toggle()

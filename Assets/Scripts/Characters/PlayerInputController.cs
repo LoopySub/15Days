@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Progress;
 
 public class PlayerInputController : TopDownCharacterController
 {
+    InteractionManager interact;
     private Camera _camera;
     private void Awake()
     {
@@ -40,16 +43,10 @@ public class PlayerInputController : TopDownCharacterController
         }
     }
 
-    public void OnInteract(InputValue value)
-    {
-        if (value.isPressed)
-        {
-            Inventory.instance.Toggle();
-        }
-    }
-       
-    
-    
+   
+
+
+
 
     public void OnFire(InputValue value)
     {

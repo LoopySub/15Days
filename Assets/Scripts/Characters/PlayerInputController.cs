@@ -6,16 +6,17 @@ using UnityEngine.InputSystem;
 public class PlayerInputController : TopDownCharacterController
 {
     private Camera _camera;
-    private void Awake()
-    {
-        _camera = Camera.main;
-    }
 
-    //protected override void Awake()
+    //private void Awake()
     //{
-    //    base.Awake(); 
     //    _camera = Camera.main;
     //}
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _camera = Camera.main;
+    }
 
 
     public void OnMove(InputValue value)

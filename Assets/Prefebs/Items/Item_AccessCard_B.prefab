@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7072291036696992581}
   - component: {fileID: 2192814938178411679}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AccessCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5898665453775708567}
   - component: {fileID: 4433532557626315230}
   - component: {fileID: 88871371076817273}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Item_AccessCard_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 20
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -145,7 +145,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 5
 --- !u!61 &4433532557626315230
 BoxCollider2D:
   m_ObjectHideFlags: 0

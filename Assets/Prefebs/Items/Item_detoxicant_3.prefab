@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 433623950507395417}
   - component: {fileID: 1264668544022374600}
   - component: {fileID: 4566514368665793602}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Item_detoxicant_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 20
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -106,7 +106,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 5
 --- !u!114 &4566514368665793602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,7 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8937411105431152393}
   - component: {fileID: 7498021474245301759}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: detoxicant_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

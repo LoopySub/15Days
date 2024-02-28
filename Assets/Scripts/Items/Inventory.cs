@@ -38,8 +38,8 @@ public class Inventory : MonoBehaviour
 
     private int curEquipIndex;
 
-    //private PlayerController controller;  아마다른 스크립트일것임
-    //priavte PlayerConditions condition;  컨티션 스크립트
+    private PlayerInputController controller;  
+    
 
     [Header("Events")]
     public UnityEvent onOpenInventory;
@@ -49,8 +49,8 @@ public class Inventory : MonoBehaviour
     void Awake()
     {
         instance = this;
-        //controller = GetComponent<@>();
-       // condition = GetComponent<@>();
+        controller = GetComponent<PlayerInputController>();
+       
     }
 
     private void Start()
@@ -69,13 +69,7 @@ public class Inventory : MonoBehaviour
         ClearSelectedItemWindow();
     }
 
-    public void OnInventoryButton(InputAction.CallbackContext callbackContext)  // inventory키는 법 action 지정필요
-    {
-        if(callbackContext.phase == InputActionPhase.Started)
-        {
-            Toggle();
-        }
-    }
+    
 
 
     public void Toggle()

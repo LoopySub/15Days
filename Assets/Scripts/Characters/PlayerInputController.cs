@@ -24,13 +24,32 @@ public class PlayerInputController : TopDownCharacterController
         Vector2 newAim = value.Get<Vector2>();
         Vector2 worldPos = _camera.ScreenToWorldPoint(newAim);
         newAim = (worldPos - (Vector2)transform.position).normalized;
-
+        
         if (newAim.magnitude >= .9f)
         // Vector 값을 실수로 변환
         {
             CallLookEvent(newAim);
         }
     }
+
+    public void OnInventory(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            Inventory.instance.Toggle();
+        }
+    }
+
+    public void OnInteract(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            Inventory.instance.Toggle();
+        }
+    }
+       
+    
+    
 
     public void OnFire(InputValue value)
     {

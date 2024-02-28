@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1271904458901612858}
   - component: {fileID: 7360402541083462665}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: first_aid kit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 988711790495456364}
   - component: {fileID: 4353064768648578962}
   - component: {fileID: 7112319337012296554}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Item_FirstAidKit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 20
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -145,7 +145,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 5
 --- !u!61 &4353064768648578962
 BoxCollider2D:
   m_ObjectHideFlags: 0

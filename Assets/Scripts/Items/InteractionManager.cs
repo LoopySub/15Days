@@ -50,20 +50,20 @@ public class InteractionManager : MonoBehaviour
     }
 
 
-    public void OnInteractInput(InputAction.CallbackContext callbackContext)
-    {
-        if (callbackContext.phase == InputActionPhase.Started && curInteractable != null)
-        {
-            curInteractable.OnInteract();
-            curInteractGameobject = null;
-            curInteractable = null;
-            promptText.gameObject.SetActive(false);
-        }
-    }
+    //public void OnInteractInput(InputAction.CallbackContext callbackContext)
+    //{
+    //    if (callbackContext.phase == InputActionPhase.Started && curInteractable != null)
+    //    {
+    //        curInteractable.OnInteract();
+    //        curInteractGameobject = null;
+    //        curInteractable = null;
+    //        promptText.gameObject.SetActive(false);
+    //    }
+    //}
 
     public void OnInteractInput(InputValue value)
     {
-        if (value.isPressed )
+        if (value.isPressed)
         {
             curInteractable.OnInteract();
             curInteractGameobject = null;

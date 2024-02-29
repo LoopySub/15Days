@@ -34,9 +34,8 @@ public class Public_Enum : BaseMonoBehaviour
     public enum GameState
     {
         Playing,
-        Dialog,
-        UI_Popup,
-        Cutscene
+        Interface_On,
+        Cutscene,
     }
 
     public enum RebeccaStatus

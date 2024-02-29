@@ -80,6 +80,12 @@ public class OverallManager : BaseMonoBehaviour, IOverallManager //ÀüÃ¼ ÃÑ°ı ÅëÇ
     [SerializeField]
     private GameDataManager _GameDataManager;
 
+    [SerializeField]
+    private PlayerManager _PlayerManager;
+
+    [SerializeField]
+    private SceneTransition _SceneTransition;
+
     // ============================================[¡èÁ÷·ÄÈ­ ±¸¿ª¡è]=================================================
     // ==========================================[¡éµ¥ÀÌÅÍ ÂüÁ¶ ±¸¿ª¡é]==============================================
     public Public_Variable PublicVariable
@@ -101,6 +107,15 @@ public class OverallManager : BaseMonoBehaviour, IOverallManager //ÀüÃ¼ ÃÑ°ı ÅëÇ
     public UiManager UiManager
     {
         get { return _UiManager; } 
+    }
+
+    public PlayerManager PlayerManager
+    {
+        get { return _PlayerManager; }
+    }
+    public SceneTransition SceneTransition
+    {
+        get { return _SceneTransition; }
     }
 
 

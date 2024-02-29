@@ -11,6 +11,12 @@ public class PrologueController : MonoBehaviour
 
     private int click_Text = 0;
 
+    private void Start()
+    {
+        OverallManager.Instance.PublicVariable.GameState = Public_Enum.GameState.Cutscene;
+        Prologue_Text.DOText("...", 1).SetUpdate(true);
+    }
+
     void Update()
     {
         // 클릭이나 Z키 입력 시 click_Text 증가
@@ -28,77 +34,80 @@ public class PrologueController : MonoBehaviour
         {
             case 1:
                 Prologue_Text.text = null;
-                Prologue_Text.DOText("...", 1);
+                Prologue_Text.DOText(".....", 1).SetUpdate(true);
                 break;
             case 2:
                 Prologue_Text.text = null;
-                Prologue_Text.DOText("좀비 아포칼립스가 일어난 지 17일..", 3);
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "좀비 아포칼립스가 시작된 지 17일..", 3);
                 break;
             case 3:
                 Prologue_Text.text = null;
-                Prologue_Text.DOText("슬슬 식량이 다 떨어져 간다. " +
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "슬슬 식량이 다 떨어져 간다. " +
                     "이대로는 언제까지 버틸 수 있을지...", 3);
                 break;
             case 4:
                 Prologue_Text.text = null;
-                Prologue_Text.DOText("지직..! " +
-                    "지지직..", 3);
+                OverallManager.Instance.UiManager.HideDialog();
+                Prologue_Text.DOText("지직..! " + "지지직..", 3).SetUpdate(true);
                 break;
             case 5:
                 Prologue_Text.text = null;
-                Prologue_Text.DOText("음..?", 1);
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "음..?", 1);
                 break;
             case 6:
                 Prologue_Text.text = null;
-                Prologue_Text.DOText("XX 생존자 캠프에서 안내 드립니다..", 3);
+                OverallManager.Instance.UiManager.HideDialog();
+                Prologue_Text.DOText("XX 생존자 캠프에서 안내 드립니다..", 3).SetUpdate(true);
                 
                 break;
             case 7:
                 Prologue_Text.text = null;
-                Prologue_Text.DOText("15일 뒤에 □□시에 구조대가 파견될 예정입니다.", 3);
+                Prologue_Text.DOText("15일 뒤에 □□시에 구조대가 파견될 예정입니다.", 3).SetUpdate(true);
                 
                 break;
             case 8:
                 Prologue_Text.text = null;
-                Prologue_Text.DOText("그러므로 □□시의 생존자 여러분은 15일 뒤...", 3);
+                Prologue_Text.DOText("그러므로 □□시의 생존자 여러분은 15일 뒤...", 3).SetUpdate(true);
                 
                 break;
             case 9:
                 Prologue_Text.text = null;
-                Prologue_Text.DOText("지직.. 지지직..!", 3);
+                Prologue_Text.DOText("지직.. 지지직..!", 3).SetUpdate(true);
                
                 break;
             case 10:
                 Prologue_Text.text = null;
-                Prologue_Text.DOText("달칵,", 1);
-                
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Rebecca, "레베카", "달칵. ...", 2);
+
                 break;
             case 11:
                 Prologue_Text.text = null;
-                Prologue_Text.DOText("오 우리 딸, 돌아 왔구나! 들었니? 곧 구조대가 온다고..!", 3);
-                
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "오 우리 딸, 돌아 왔구나! 들었니? 곧 구조대가 온다고..!", 3);
                 break;
             case 12:
                 Prologue_Text.text = null;
-                Prologue_Text.DOText("아..빠..", 2);
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Rebecca, "레베카", "아..빠..", 2);
                 break;
             case 13:
                 Prologue_Text.text = null;
-                Prologue_Text.DOText("쿵..        " +
-                    "털썩!", 1);
+                OverallManager.Instance.UiManager.HideDialog();
+                Prologue_Text.DOText("쿵..    " +
+                    "털썩!", 1).SetUpdate(true); ;
                 break;
             case 14:
                 Prologue_Text.text = null;
-                Prologue_Text.DOText("레베카..? 정신 차려!!", 3);
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "레베카..? 너 그 이빨 자국은..", 3);
                 break;
             case 15:
                 Prologue_Text.text = null;
-                Prologue_Text.DOText("레베카, " +
-                    "레베카!!", 3);
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "레베카,  정신 차려!!" +
+                    "  레베카, 레베카!!", 1);
                 break;
             case 16:
                 Prologue_Text.text = null;
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Game_Livingroom Scene");
+                OverallManager.Instance.UiManager.HideDialog();
+                OverallManager.Instance.PublicVariable.GameState = Public_Enum.GameState.Playing;
+                OverallManager.Instance.SceneTransition.TransitToNextScene("Game_Livingroom Scene");
                 break;
             /*
             case 17:

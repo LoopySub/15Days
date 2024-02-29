@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using static Public_Enum;
 
-public class DialogUI : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
-    /* private static DialogUI _instance;
+    private static PlayerManager _instance;
 
     private void Awake()
     {
@@ -20,8 +20,8 @@ public class DialogUI : MonoBehaviour
 
         // 이 오브젝트를 파괴되지 않도록 설정
         DontDestroyOnLoad(gameObject);
-    } */
-     
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,5 +32,19 @@ public class DialogUI : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void playerSetActive(GameState gameState)
+    {
+            if (gameState == GameState.Cutscene)
+            {
+                // Cutscene 상태인 경우
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                // 그 외의 경우
+                gameObject.SetActive(true);
+            }
     }
 }

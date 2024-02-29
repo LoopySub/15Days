@@ -15,7 +15,7 @@ public class PortalInfo : BaseMonoBehaviour
             Debug.Log("다음 맵 이동");
             // 플레이어와 충돌한 경우
             OverallManager.Instance.PublicVariable.NextCoordinate = NextCoordinate; //플레이어의 다음 맵 위치 전달
-            UnityEngine.SceneManagement.SceneManager.LoadScene(NextMap);
+            OverallManager.Instance.SceneTransition.TransitToNextScene(NextMap);
         }
     }
 }

@@ -28,6 +28,7 @@ public class UiManager : MonoBehaviour
     [SerializeField]
     private Sprite IconSprite_Rebecca;
 
+    private GameState past_state;
 
     // ============================================[↑사전 초기화 구역↑]=================================================
     // ============================================[↓역참조 구역↓]=================================================
@@ -47,11 +48,17 @@ public class UiManager : MonoBehaviour
     // ============================================[↑역참조 구역↑]=================================================
     // ==============================================[↓메서드 구역↓]==================================================
     // DialogUI를 활성화하는 메서드
-    public void ShowDialog(Icon_type icon, string name, string massage)
+    public void ShowDialog(Icon_type icon, string name, string massage, float speed)
     {
-        if (DialogUI != null)
-        {
-            IconImage.sprite = null;
+            if (DialogUI != null)
+            {
+                if (OverallManager.Instance.PublicVariable.GameState != GameState.Cutscene)
+                {
+                    OverallManager.Instance.PublicVariable.GameState = Public_Enum.GameState.Interface_On;
+                }
+            }
+        OverallManager.Instance.PublicVariable.IsDialog = true;
+        IconImage.sprite = null;
             NameText.text = null;
             MassageText.text = null;
 
@@ -70,8 +77,7 @@ public class UiManager : MonoBehaviour
 
             DialogUI.SetActive(true);
             NameText.text = name;
-            MassageText.DOText(massage, 3);
-        }
+            MassageText.DOText(massage, speed).SetUpdate(true);
     }
 
     // DialogUI를 비활성화하는 메서드
@@ -80,6 +86,11 @@ public class UiManager : MonoBehaviour
         if (DialogUI != null)
         {
             DialogUI.SetActive(false);
+        OverallManager.Instance.PublicVariable.IsDialog = false;
+        if (OverallManager.Instance.PublicVariable.GameState != GameState.Cutscene && OverallManager.Instance.PublicVariable.IsUIPopup ==false) 
+            { 
+                    OverallManager.Instance.PublicVariable.GameState = Public_Enum.GameState.Playing;
+            }
         }
     }
 

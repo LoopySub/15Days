@@ -161,7 +161,38 @@ public class Public_Variable : BaseMonoBehaviour // 게임에서 공용으로 사용되는 �
     }
 
     //플레이어 맵 이동 시 좌표 정보
-    public Vector3 NextCoordinate;
+    private Vector3 nextCoordinate;
+    public Vector3 NextCoordinate
+    {
+        get { return nextCoordinate; }
+        set { nextCoordinate = value;}
+    }
+
+    //게임 상태값
+    private GameState gameState;
+    public GameState GameState 
+    { 
+        get { return gameState; } 
+        set 
+        {                         //게임 상태 값에 따라 플레이어 캐릭터가 보이고 안보이고 및 게임 시간 정지 / 재생
+            gameState = value;
+            OverallManager.Instance.PlayerManager.playerSetActive(gameState);
+            GameStateHandler();
+        }
+    }
+
+    private bool isUIPopup;
+    public bool IsUIPopup
+    {
+        get { return isUIPopup; }
+        set { isUIPopup = value; }
+    }
+    private bool isDialog;
+    public bool IsDialog
+    {
+        get { return isDialog; }
+        set { isUIPopup = value; }
+    }
 
     // ============================================[↑공용 변수 구역↑]=================================================
     // ==============================================[↓메서드 구역↓]==================================================
@@ -201,6 +232,20 @@ public class Public_Variable : BaseMonoBehaviour // 게임에서 공용으로 사용되는 �
             rebeccaStatus = RebeccaStatus.AlmostZombie;
         else
             rebeccaStatus = RebeccaStatus.Zombie;
+    }
+
+    private void GameStateHandler()
+    {
+        if (GameState == GameState.Playing)
+        {
+            // Playing 상태일 경우
+            Time.timeScale = 1f; // 정상 속도로 작동
+        }
+        else
+        {
+            // Dialog, UI_Popup, Cutscene 상태일 경우
+            Time.timeScale = 0f; // 시간을 정지
+        }
     }
     // ==============================================[↑메서드 구역↑]==================================================
 }

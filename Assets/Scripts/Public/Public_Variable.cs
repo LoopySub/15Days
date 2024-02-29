@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Public_Enum;
 
 public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º¯¼öµé°ú °ü·Ã ÀÌº¥Æ®°¡ ÀÖ´Â ½ºÅ©¸³Æ®
 {
@@ -28,6 +29,7 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
     // ============================================[¡è¿ªÂüÁ¶ ±¸¿ª¡è]=================================================
 
     // ============================================[¡é°ø¿ë º¯¼ö ±¸¿ª¡é]=================================================
+    //¿©±â¿¡ °ÔÀÓ ÀüÃ¼¿¡ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º¯¼öµéÀ» Á¤ÀÇÇÕ´Ï´Ù.
 
     // 1. ½Ã°£ ¼öÄ¡ - ÇöÀç½Ã°£
     [SerializeField]
@@ -35,7 +37,19 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
     public int CurrentHour
     {
         get { return currentHour; }
-        set { currentHour = Mathf.Clamp(value, 0, 24); }
+        set { 
+                if ((value) >= 24)
+                {
+                    Sleep_and_wake_up();
+                    AccumulatedHours += (32 - value);
+                    currentHour = 8;
+                }
+                else
+                {
+                    AccumulatedHours += (value - currentHour);
+                    currentHour = value;
+                }
+            }
     }
 
     // 1. ½Ã°£ ¼öÄ¡ - ´©Àû ½Ã°£
@@ -54,13 +68,25 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
         }
     }
 
+    // 1. ½Ã°£ ¼öÄ¡ - ³¯(day)
+    [SerializeField]
+    private int day = 0;
+    public int Day
+    {
+        get { return day; }
+        set
+        {
+            day = value;
+        }
+    }
+
     // 2. ½ºÅÂ¹Ì³ª ¼öÄ¡
     [SerializeField]
     private float stamina = 100.0f;
     public float Stamina
     {
         get { return stamina; }
-        set { stamina = Mathf.Clamp(value, 0f, 120f); }
+        set { stamina = Mathf.Clamp(value, -10f, 120f); }
     }
 
     // 3. ¹èºÎ¸§ ¼öÄ¡
@@ -72,6 +98,10 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
         set
         {
             fullness = Mathf.Clamp(value, 0f, 100f);
+            if (fullness <= 0f)
+            {
+                OverallManager.Instance.GameDataManager.Ending(Ending_type.Starvation);
+            }
         }
     }
 
@@ -81,7 +111,19 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
     public float Contamination
     {
         get { return contamination; }
-        set { contamination = Mathf.Clamp(value, 0f, 100f); }
+        set 
+        { 
+            contamination = Mathf.Clamp(value, 0f, 100f);
+            // »óÅÂ ¾÷µ¥ÀÌÆ®
+            UpdateRebeccaStatus();
+        }
+    }
+
+    // 4. ·¹º£Ä«ÀÇ ¿À¿°µµ¿¡ µû¸¥ »óÅÂ°ª
+    private RebeccaStatus rebeccaStatus = RebeccaStatus.Cold;
+    public RebeccaStatus RebeccaStatus
+    {
+        get { return rebeccaStatus; }
     }
 
     // 5. ¹Ù±ù Å½»ç ½Ã Ã¼·Â ¼öÄ¡
@@ -93,17 +135,70 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
     public float Hearts
     {
         get { return hearts; }
-        set { hearts = Mathf.Max(value, 0); }
+        set 
+        { 
+            hearts = Mathf.Max(value, 0);
+            if (hearts == 0)
+            {
+                OverallManager.Instance.GameDataManager.Ending(Ending_type.GameOver);
+            }
+        }
     }
 
+    // 5. ÃÖ´ë Ã¼·Â
     public float MaxHearts
     {
         get { return maxHearts; }
         set { maxHearts = Mathf.Max(value, 1); }
     }
 
+    // ÇöÀç »óÅÂ°¡ ¹Ù±ùÀÎÁö ¾ÈÀÎÁö
+    private bool am_I_outside =false;
+    public bool Am_I_outside
+    {
+        get { return am_I_outside; }
+        set { am_I_outside = value; }
+    }
+
+    //ÇÃ·¹ÀÌ¾î ¸Ê ÀÌµ¿ ½Ã ÁÂÇ¥ Á¤º¸
+    private Vector3 nextCoordinate;
+    public Vector3 NextCoordinate
+    {
+        get { return nextCoordinate; }
+        set { nextCoordinate = value;}
+    }
+
+    //°ÔÀÓ »óÅÂ°ª
+    private GameState gameState;
+    public GameState GameState 
+    { 
+        get { return gameState; } 
+        set 
+        {                         //°ÔÀÓ »óÅÂ °ª¿¡ µû¶ó ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ°¡ º¸ÀÌ°í ¾Èº¸ÀÌ°í ¹× °ÔÀÓ ½Ã°£ Á¤Áö / Àç»ý
+            gameState = value;
+            OverallManager.Instance.PlayerManager.playerSetActive(gameState);
+            GameStateHandler();
+        }
+    }
+
+    private bool isUIPopup;
+    public bool IsUIPopup
+    {
+        get { return isUIPopup; }
+        set { isUIPopup = value; }
+    }
+    private bool isDialog;
+    public bool IsDialog
+    {
+        get { return isDialog; }
+        set { isUIPopup = value; }
+    }
+
     // ============================================[¡è°ø¿ë º¯¼ö ±¸¿ª¡è]=================================================
     // ==============================================[¡é¸Þ¼­µå ±¸¿ª¡é]==================================================
+    //¿©±â¿¡´Â ¼öÄ¡ º¯È­¿¡ µû¸¥ Æ®¸®°Å ¹× Æ®¸®°Å °ü·Ã ¸Þ¼­µå¸¸ ÀÛ¼ºÇÕ´Ï´Ù.
+
+
     private void Start()
     {
         // ÀÌº¥Æ® ÇÚµé·¯ µî·Ï
@@ -115,10 +210,42 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
         // ¹èºÎ¸§ °¨¼Ò
         Fullness -= 1.5f * hoursIncreased;
     }
-    // °ÔÀÓ ¿À¹ö Ã¼Å©
-    public bool IsGameOver()
+    private void Sleep_and_wake_up() //ÃëÄ§ ½Ã ÇÏÆ®, ½ºÅÂ¹Ì³ª, ¿À¿°µµ º¯È­. ³¯Â¥ º¯°æ
     {
-        return Hearts <= 0;
+        OverallManager.Instance.GameDataManager.ResetHearts();
+        OverallManager.Instance.GameDataManager.RecoverStaminaAfterSleep();
+        OverallManager.Instance.GameDataManager.Contamination_Increases();
+        Day = (AccumulatedHours / 24) +1;
+    }
+    // Contamination °ª¿¡ µû¶ó Rebecca »óÅÂ ¾÷µ¥ÀÌÆ®
+    private void UpdateRebeccaStatus()
+    {
+        if (contamination < 50)
+            rebeccaStatus = RebeccaStatus.Cold;
+        else if (contamination < 70)
+            rebeccaStatus = RebeccaStatus.Unstable;
+        else if (contamination < 80)
+            rebeccaStatus = RebeccaStatus.Violent;
+        else if (contamination < 90)
+            rebeccaStatus = RebeccaStatus.ZombieLike;
+        else if (contamination < 100)
+            rebeccaStatus = RebeccaStatus.AlmostZombie;
+        else
+            rebeccaStatus = RebeccaStatus.Zombie;
+    }
+
+    private void GameStateHandler()
+    {
+        if (GameState == GameState.Playing)
+        {
+            // Playing »óÅÂÀÏ °æ¿ì
+            Time.timeScale = 1f; // Á¤»ó ¼Óµµ·Î ÀÛµ¿
+        }
+        else
+        {
+            // Dialog, UI_Popup, Cutscene »óÅÂÀÏ °æ¿ì
+            Time.timeScale = 0f; // ½Ã°£À» Á¤Áö
+        }
     }
     // ==============================================[¡è¸Þ¼­µå ±¸¿ª¡è]==================================================
 }

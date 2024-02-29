@@ -31,24 +31,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Inventory",
-                    "type": "Button",
-                    "id": "fb572d86-c85e-4de9-9ceb-af8253bd85da",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "InteractInput",
-                    "type": "Button",
-                    "id": "75475e56-9ee5-49fe-bb90-299ef47b76f7",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -121,33 +103,11 @@
                 {
                     "name": "",
                     "id": "f6f53d54-b455-4e22-ba63-ef3e7b96e597",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "759df8c3-a217-4a5e-9d39-c711c2cef30b",
-                    "path": "<Keyboard>/tab",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Inventory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fbdd587b-c2c9-4d10-94d2-2b615592b550",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "InteractInput",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

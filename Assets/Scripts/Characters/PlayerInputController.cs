@@ -6,10 +6,18 @@ using UnityEngine.InputSystem;
 public class PlayerInputController : TopDownCharacterController
 {
     private Camera _camera;
-    private void Awake()
+
+    //private void Awake()
+    //{
+    //    _camera = Camera.main;
+    //}
+
+    protected override void Awake()
     {
+        base.Awake();
         _camera = Camera.main;
     }
+
 
     public void OnMove(InputValue value)
     {
@@ -34,6 +42,7 @@ public class PlayerInputController : TopDownCharacterController
 
     public void OnFire(InputValue value)
     {
-        Debug.Log("OnFire" + value.ToString());
+       // Debug.Log("OnFire" + value.ToString());
+        IsAttacking = value.isPressed;
     }
 }

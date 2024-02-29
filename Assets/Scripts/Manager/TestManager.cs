@@ -81,6 +81,14 @@ public class TestManager : BaseMonoBehaviour
             // 8을 입력하면 씬 초기화
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "Jone", "텍스트가 차례대로 나와요 우왕 신기 치피치피차파차파두비부디다바다바 라라라랄라 라라라라라 랄라", 3);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            OverallManager.Instance.UiManager.HideDialog();
+        }
         // 9와 0은 미정
     }
 

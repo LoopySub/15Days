@@ -21,10 +21,6 @@ public class SceneChange : MonoBehaviour
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene("LivingroomScene");
             }
-            else if (gameObject.tag == "LaboratoryTrigger")
-            {
-                UnityEngine.SceneManagement.SceneManager.LoadScene("LaboratoryScene");
-            }
         }
     }
 

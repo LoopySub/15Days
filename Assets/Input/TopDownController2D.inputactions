@@ -121,7 +121,7 @@
                 {
                     "name": "",
                     "id": "f6f53d54-b455-4e22-ba63-ef3e7b96e597",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",

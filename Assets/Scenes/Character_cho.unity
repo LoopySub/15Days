@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 385037882}
   - component: {fileID: 385037883}
   - component: {fileID: 385037884}
+  - component: {fileID: 385037885}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -465,6 +466,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed833add83fbf04693533739d79ba94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &385037885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385037873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f8a3237fa55ed4693c8092f9ddd669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthChangeDelay: 0.5
 --- !u!1 &390788046
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +602,9 @@ GameObject:
   - component: {fileID: 414437799}
   - component: {fileID: 414437798}
   - component: {fileID: 414437797}
-  m_Layer: 0
+  - component: {fileID: 414437804}
+  - component: {fileID: 414437805}
+  m_Layer: 6
   m_Name: Zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -635,7 +651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 597d135c63aa44e4786920a7cbfd88f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followRange: 5
+  followRange: 20
   targetTag: Player
   characterRenderer: {fileID: 1711372997}
 --- !u!114 &414437799
@@ -775,6 +791,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.45, y: 1.03}
   m_EdgeRadius: 0
+--- !u!114 &414437804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414437795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f8a3237fa55ed4693c8092f9ddd669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthChangeDelay: 0.5
+--- !u!114 &414437805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414437795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04b53cd540e797d48890bf9868aff04d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &475332731
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,7 +879,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47608027e1e4b1349875e1b190837baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _impactParticleSystem: {fileID: 0}
 --- !u!4 &723682136
 Transform:
   m_ObjectHideFlags: 0
@@ -1020,7 +1060,7 @@ GameObject:
   - component: {fileID: 1711372996}
   - component: {fileID: 1711372997}
   - component: {fileID: 1711372998}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

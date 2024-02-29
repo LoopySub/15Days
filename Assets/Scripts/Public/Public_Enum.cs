@@ -30,38 +30,39 @@ public class Public_Enum : BaseMonoBehaviour
         Running,
         Jumping
     }
-
-    public enum GameState
+    public enum DifficultyLevel     //난이도 레벨
     {
-        Playing,
-        Interface_On,
-        Cutscene,
-    }
-
-    public enum RebeccaStatus
-    {
-        Cold,         // 1~50: 감기 기운 상태
-        Unstable,     // 51~70: 조금 불안정한 상태
-        Violent,      // 71~80: 폭력적인 행동을 하는 상태. 30% 확률로 존을 공격함
-        ZombieLike,           // 81~90: 좀비와 유사한 상태. 50% 확률로 존을 공격함
-        AlmostZombie,         // 90~99: 거의 좀비와 구분할 수 없는 상태. 100% 확률로 존을 공격함
-        Zombie // 100: 좀비화 완료. 돌이킬 수 없음
-    }
-
-    public enum Ending_type
-    {
-        GameOver,
-        Infection,
-        Starvation,
+        Easy,
         Normal,
-        True
+        Hard
     }
-
-    public enum Icon_type
+    public enum QuestType       // 퀘스트 유형
     {
-        Jone,
-        Rebecca
+        Main,
+        Side,
+        Daily
     }
+    public enum ItemType         // 아이템 유형
+    {
+        Weapon,
+        Armor,
+        Consumable,
+        QuestItem
+    }
+    public enum UIState        // UI 상태
+    {
+        MainMenu,
+        InGame,
+        PauseMenu,
+        GameOver
 
+    }
+    public enum PlatformType        // 플랫폼 유형
+    {
+        PC,
+        Console,
+        Mobile
+
+    }
     // ============================================[↑공용 Enum 구역↑]=================================================
 }

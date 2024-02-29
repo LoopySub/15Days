@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.UI;
 using static UnityEditor.Progress;
 
 //플레이어에게 인벤토리 시트 추가해야함!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! UISlot옮겨두기
@@ -22,6 +23,7 @@ public class Inventory : MonoBehaviour
     public ItemSlot[] slots;
 
     public GameObject InventoryWindow;
+    public Slider _hpBar;
     
 
     [Header("Selected Item")]
@@ -78,7 +80,7 @@ public class Inventory : MonoBehaviour
         {
             InventoryWindow.SetActive(false);
             onCloseInventory.Invoke();
-            //커서가 락될경우에 필요한 코드작성
+            // 공격이 안나가게 해야함
         }
         else
         {
@@ -194,14 +196,25 @@ public class Inventory : MonoBehaviour
 
     public void OnUseButton()
     {
+
+        
         if(selectedItem.item.type == ItemType.Consumable)
         {
+            
             for (int i = 0; i < selectedItem.item.consumables.Length; i++) // 섭취 할떄
             {
                 switch(selectedItem.item.consumables[i].type)
                 {
-                   // case ConsumableType.Health:
-                     //   OverallManager.Instance.PublicVariable.stamina(selectedItem.item.consumables[i].value); break;
+                    
+                    case ConsumableType.Hunger:
+
+                        _hpBar.value += selectedItem.item.consumables[i].value;
+
+
+                        break;
+                    //case ConsumableType.Health;
+                    //    아이의 hpslider.value;
+                    //    break;
                 }
             }
         }

@@ -9,7 +9,19 @@ public class SceneChange : MonoBehaviour
     {
         if (coll.gameObject.tag == "Player")
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("DaughterScene");
+            if (gameObject.tag == "DaughterTrigger")
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("DaughterScene");
+            }
+            else if (gameObject.tag == "MapTrigger")
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("MapScene");
+            }
+            else if (gameObject.tag == "LivingroomTrigger")
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("LivingroomScene");
+            }
         }
     }
+
 }

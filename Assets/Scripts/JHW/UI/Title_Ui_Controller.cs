@@ -31,7 +31,7 @@ public class Title_Ui_Controller : BaseMonoBehaviour
     {
         // 이벤트 구독
         OnIsTargetedChanged += HandleIsTargetedChanged;
-        _isTargeted = 0;
+        _isTargeted = 4;
     }
 
     // Update is called once per frame

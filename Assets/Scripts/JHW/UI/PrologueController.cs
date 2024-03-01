@@ -107,6 +107,7 @@ public class PrologueController : MonoBehaviour
                 Prologue_Text.text = null;
                 OverallManager.Instance.UiManager.HideDialog();
                 OverallManager.Instance.PublicVariable.GameState = Public_Enum.GameState.Playing;
+                OverallManager.Instance.PublicVariable.Am_I_outside = false;
                 OverallManager.Instance.SceneTransition.TransitToNextScene("Game_Livingroom Scene");
                 break;
             /*

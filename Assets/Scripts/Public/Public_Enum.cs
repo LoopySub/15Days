@@ -59,6 +59,7 @@ public class Public_Enum : BaseMonoBehaviour
 
     public enum Icon_type
     {
+        Null,
         Jone,
         Rebecca
     }

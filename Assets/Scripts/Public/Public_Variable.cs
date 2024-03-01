@@ -153,6 +153,7 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
     }
 
     // ÇöÀç »óÅÂ°¡ ¹Ù±ùÀÎÁö ¾ÈÀÎÁö
+    [SerializeField]
     private bool am_I_outside =false;
     public bool Am_I_outside
     {
@@ -161,6 +162,7 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
     }
 
     //ÇÃ·¹ÀÌ¾î ¸Ê ÀÌµ¿ ½Ã ÁÂÇ¥ Á¤º¸
+    [SerializeField]
     private Vector3 nextCoordinate;
     public Vector3 NextCoordinate
     {
@@ -169,6 +171,7 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
     }
 
     //°ÔÀÓ »óÅÂ°ª
+    [SerializeField]
     private GameState gameState;
     public GameState GameState 
     { 
@@ -181,19 +184,42 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
         }
     }
 
+    //UI ¶°ÀÖ´ÂÁö Ã¼Å©
+    [SerializeField]
     private bool isUIPopup;
     public bool IsUIPopup
     {
         get { return isUIPopup; }
         set { isUIPopup = value; }
     }
+
+    //´ëÈ­Ã¢ ¶°ÀÖ´ÂÁö Ã¼Å©
+    [SerializeField]
     private bool isDialog;
     public bool IsDialog
     {
         get { return isDialog; }
-        set { isUIPopup = value; }
+        set { isDialog = value; }
     }
 
+    [SerializeField]
+    private bool isChoiceBoxUI;
+    public bool IsChoiceBoxUI
+    {
+        get { return isChoiceBoxUI; }
+        set { isChoiceBoxUI = value; }
+    }
+
+    [SerializeField]
+    private bool isChoice;
+    public bool IsChoice
+    {
+        get { return isChoice; }
+        set { 
+            isChoice = value;
+            OverallManager.Instance.UiManager.HandleIsTargetedChanged();
+            }
+    }
     // ============================================[¡è°ø¿ë º¯¼ö ±¸¿ª¡è]=================================================
     // ==============================================[¡é¸Þ¼­µå ±¸¿ª¡é]==================================================
     //¿©±â¿¡´Â ¼öÄ¡ º¯È­¿¡ µû¸¥ Æ®¸®°Å ¹× Æ®¸®°Å °ü·Ã ¸Þ¼­µå¸¸ ÀÛ¼ºÇÕ´Ï´Ù.

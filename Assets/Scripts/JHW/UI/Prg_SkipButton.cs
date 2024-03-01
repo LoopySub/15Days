@@ -17,6 +17,7 @@ public class Prg_SkipButton : MonoBehaviour
     {
         OverallManager.Instance.UiManager.HideDialog();
         OverallManager.Instance.PublicVariable.GameState = Public_Enum.GameState.Playing;
+        OverallManager.Instance.PublicVariable.Am_I_outside = false;
         OverallManager.Instance.SceneTransition.TransitToNextScene("Game_Livingroom Scene");
     }
 }

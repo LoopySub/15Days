@@ -57,6 +57,14 @@ public class CameraController : BaseMonoBehaviour
         // 씬이 로드된 후에 호출되는 콜백
         // 이동할 좌표를 OverallManager.Instance.returnMoveMapInfo()로 설정
         Vector3 position = OverallManager.Instance.PublicVariable.NextCoordinate;
+        if (OverallManager.Instance.PublicVariable.Am_I_outside == true)
+        {
+            Camera.main.orthographicSize = 2.5f;
+        }
+        else
+        {
+            Camera.main.orthographicSize = 5.0f;
+        }
         position.z = -1;
         transform.position = position;
     }

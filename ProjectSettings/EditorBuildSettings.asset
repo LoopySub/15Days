@@ -15,6 +15,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Game Scene/Game_Livingroom Scene.unity
     guid: 2f0530a7a84c14d48901a93667b32979
   - enabled: 1
+    path: Assets/Scenes/Game Scene/Game_DaughterScene.unity
+    guid: 413f89b3b920b504885e7ffc786078d5
+  - enabled: 1
+    path: Assets/Scenes/Game Scene/Game_MapScene.unity
+    guid: 0ed08f3009d8b3142be7982f1ef83678
+  - enabled: 1
+    path: Assets/Scenes/Game Scene/Game_LaboratoryScene.unity
+    guid: c91b313a3c036b04dbcb5be6765240da
+  - enabled: 1
     path: Assets/Scenes/livingroomScene.unity
     guid: 8f21c5cbbf79c984abd29c70d45dd25c
   - enabled: 1

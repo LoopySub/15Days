@@ -8,6 +8,8 @@ TagManager:
   - MapTrigger
   - LivingroomTrigger
   - LaboratoryTrigger
+  - Laborat1Scene
+  - ShopScene
   layers:
   - Default
   - TransparentFX

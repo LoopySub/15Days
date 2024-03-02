@@ -25,6 +25,14 @@ public class SceneChange : MonoBehaviour
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene("LaboratoryScene");
             }
+            else if (gameObject.tag == "Laborat1Scene")
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Laborat1Scene");
+            }
+            else if (gameObject.tag == "ShopScene")
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("ShopScene");
+            }
         }
     }
 

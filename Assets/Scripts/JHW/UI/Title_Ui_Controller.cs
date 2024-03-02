@@ -130,7 +130,6 @@ public class Title_Ui_Controller : BaseMonoBehaviour
                 UnityEngine.SceneManagement.SceneManager.LoadScene("Prologue Scene");
                 break;
             case 2:
-                // Quit the game
                 Application.Quit();
                 break;
             // case 1: // isTargeted = 1은 미구현

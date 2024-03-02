@@ -40,16 +40,39 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
         set { 
                 if ((value) >= 24)
                 {
+                    if(am_I_outside == true)
+                {
+                    OverallManager.Instance.GameDataManager.Ending(Ending_type.OverNight);
+                    return;
+                }
                     Sleep_and_wake_up();
-                    AccumulatedHours += (32 - value);
+                    AccumulatedHours += ((value -24)+7);
                     currentHour = 8;
                 }
                 else
                 {
                     AccumulatedHours += (value - currentHour);
                     currentHour = value;
+                   
+                }
+            if (Am_I_outside == true)
+            {
+                if (currentHour >= 19 && currentHour < 23)
+                {
+                    OverallManager.Instance.UiManager.NightLightOn();
+                }
+                else if (currentHour >= 23)
+                {
+                    OverallManager.Instance.UiManager.DeepNightLightOn();
+                }
+                else
+                {
+                    OverallManager.Instance.UiManager.MorningLightOn();
                 }
             }
+
+            OverallManager.Instance.UiManager.textRenewal();
+        }
     }
 
     // 1. ½Ã°£ ¼öÄ¡ - ´©Àû ½Ã°£
@@ -70,13 +93,14 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
 
     // 1. ½Ã°£ ¼öÄ¡ - ³¯(day)
     [SerializeField]
-    private int day = 0;
+    private int day;
     public int Day
     {
         get { return day; }
         set
         {
             day = value;
+            OverallManager.Instance.UiManager.textRenewal();
         }
     }
 
@@ -86,7 +110,11 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
     public float Stamina
     {
         get { return stamina; }
-        set { stamina = Mathf.Clamp(value, -10f, 120f); }
+        set 
+        { 
+            stamina = Mathf.Clamp(value, -10f, 120f);
+            OverallManager.Instance.UiManager.textRenewal();
+        }
     }
 
     // 3. ¹èºÎ¸§ ¼öÄ¡
@@ -98,7 +126,7 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
         set
         {
             fullness = Mathf.Clamp(value, 0f, 100f);
-            if (fullness <= 0f)
+            if (fullness <= 30f)
             {
                 OverallManager.Instance.GameDataManager.Ending(Ending_type.Starvation);
             }
@@ -158,7 +186,19 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
     public bool Am_I_outside
     {
         get { return am_I_outside; }
-        set { am_I_outside = value; }
+        set 
+        { 
+            am_I_outside = value;
+            if (am_I_outside == false)
+            {
+                OverallManager.Instance.UiManager.ShowStaminaBar();
+                OverallManager.Instance.UiManager.MorningLightOn();
+            }
+            else
+            {
+                OverallManager.Instance.UiManager.ShowHpBar();
+            }
+        }
     }
 
     //ÇÃ·¹ÀÌ¾î ¸Ê ÀÌµ¿ ½Ã ÁÂÇ¥ Á¤º¸
@@ -220,6 +260,24 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
             OverallManager.Instance.UiManager.HandleIsTargetedChanged();
             }
     }
+
+    [SerializeField]
+    private bool isRest;
+    public bool IsRest
+    {
+        get { return isRest; }
+        set { isRest = value;}
+    }
+
+    [SerializeField]
+    private Ending_type ending_Type = Ending_type.None;
+    public Ending_type Ending_Type
+    {
+        get { return ending_Type; }
+        set { ending_Type = value; }
+    }
+
+
     // ============================================[¡è°ø¿ë º¯¼ö ±¸¿ª¡è]=================================================
     // ==============================================[¡é¸Þ¼­µå ±¸¿ª¡é]==================================================
     //¿©±â¿¡´Â ¼öÄ¡ º¯È­¿¡ µû¸¥ Æ®¸®°Å ¹× Æ®¸®°Å °ü·Ã ¸Þ¼­µå¸¸ ÀÛ¼ºÇÕ´Ï´Ù.
@@ -238,10 +296,20 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
     }
     private void Sleep_and_wake_up() //ÃëÄ§ ½Ã ÇÏÆ®, ½ºÅÂ¹Ì³ª, ¿À¿°µµ º¯È­. ³¯Â¥ º¯°æ
     {
-        OverallManager.Instance.GameDataManager.ResetHearts();
-        OverallManager.Instance.GameDataManager.RecoverStaminaAfterSleep();
-        OverallManager.Instance.GameDataManager.Contamination_Increases();
-        Day = (AccumulatedHours / 24) +1;
+
+            OverallManager.Instance.GameDataManager.ResetHearts();
+            OverallManager.Instance.GameDataManager.RecoverStaminaAfterSleep();
+            OverallManager.Instance.GameDataManager.Contamination_Increases();
+
+            Day = (AccumulatedHours / 24) + 2;
+            OverallManager.Instance.UiManager.DayChangeTextOn(true);
+        if (Ending_Type != Ending_type.None)
+        {
+            OverallManager.Instance.PublicVariable.NextCoordinate = new Vector3(5.48f, -1.36f, 0); //ÇÃ·¹ÀÌ¾îÀÇ ´ÙÀ½ ¸Ê À§Ä¡ Àü´Þ
+            Time.timeScale = 0.5f;
+
+            OverallManager.Instance.SceneTransition.TransitToNextScene("Game_Livingroom Scene");
+        }
     }
     // Contamination °ª¿¡ µû¶ó Rebecca »óÅÂ ¾÷µ¥ÀÌÆ®
     private void UpdateRebeccaStatus()
@@ -262,14 +330,18 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
 
     private void GameStateHandler()
     {
+        if(GameState == GameState.Cutscene)
+        {
+            OverallManager.Instance.UiManager.HideStateUI();
+        }
+
         if (GameState == GameState.Playing)
         {
             // Playing »óÅÂÀÏ °æ¿ì
             Time.timeScale = 1f; // Á¤»ó ¼Óµµ·Î ÀÛµ¿
         }
-        else
+        else if (GameState == GameState.Interface_On)
         {
-            // Dialog, UI_Popup, Cutscene »óÅÂÀÏ °æ¿ì
             Time.timeScale = 0f; // ½Ã°£À» Á¤Áö
         }
     }

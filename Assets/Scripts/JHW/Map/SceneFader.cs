@@ -1,14 +1,16 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI; // UI 관련 네임스페이스 추가
 using UnityEngine.SceneManagement;
 
 public class SceneFader : MonoBehaviour
 {
-    public Texture2D fadeOutTexture; // 검은색 텍스처를 사용하여 화면을 덮어요
-    public float fadeSpeed = 0.8f;    // 페이드 아웃 속도. 높은 값일수록 빠르다.
+    public Texture2D fadeOutTexture; // 화면을 덮을 검은색 텍스처
+    public float fadeSpeed = 0.8f;    // 페이드 아웃 속도. 높은 값일수록 빠르다 
+    public Text textToFade; // 페이드 인/아웃 시킬 Text 요소
 
-    private int drawDepth = -1000;     // 텍스처가 렌더링될 깊이. 다른 UI보다 뒤에 렌더링되어야 함.
-    private float alpha = 0f;        // 초기 알파 값은 1로 설정하여 텍스처가 완전히 불투명하게 시작한다.
+    private int drawDepth = -1000;     // 텍스처가 렌더링될 깊이. 다른 UI보다 뒤에 렌더링하기.
+    private float alpha = 0f;        // 초기 알파 값은 1로 설정하여 텍스처가 완전히 불투명하게 시작.
     private int fadeDirection = -1;    // -1: 페이드 아웃, 1: 페이드 인
 
     void OnGUI()
@@ -23,6 +25,14 @@ public class SceneFader : MonoBehaviour
         GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, alpha);
         GUI.depth = drawDepth;
         GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), fadeOutTexture);
+
+        /*
+        // Text 요소의 투명도 업데이트
+        if (textToFade != null)
+        {
+            textToFade.color = new Color(textToFade.color.r, textToFade.color.g, textToFade.color.b, alpha);
+        }
+        */
     }
 
     // 페이드 아웃 시작

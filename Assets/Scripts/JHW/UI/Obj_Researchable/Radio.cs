@@ -1,36 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class Wall_Clock : Researchable
+public class Radio : Researchable
 {
 
     public override void Action()
     {
-        if (OverallManager.Instance.PublicVariable.IsChoiceBoxUI ==false) 
-        { 
+        if (OverallManager.Instance.PublicVariable.IsChoiceBoxUI == false)
+        {
             click_Text++;
             // click_Text 값에 따라 다른 동작 수행
             switch (click_Text)
             {
                 case 1:
-                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "시계", "시간을 확인할까요?", 1);
-                    OverallManager.Instance.UiManager.ShowChoiceBox();
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "라디오", "정보를 수집해 볼까요?", 1);
                     break;
                 case 2:
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "라디오", "정보를 수집합니다. 3시간 / 스태미나 30 사용", 1);
+                    OverallManager.Instance.UiManager.ShowChoiceBox();
+                    break;
+                case 3:
                     if (OverallManager.Instance.PublicVariable.IsChoice == true)
                     {
-                        OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "지금 시간은..", 1);
+                        if(OverallManager.Instance.PublicVariable.Stamina < 30)
+                        {
+                            OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "", "스태미나가 부족합니다.", 1);
+                            click_Text = 3;
+                            break;
+
+                        }
+                        else if(OverallManager.Instance.PublicVariable.CurrentHour >=22)
+                        {
+                            OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "밤이 너무 늦었어.", 1);
+                        }
+                        else
+                        {
+                            OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "라디오", "생존자 캠프 라디오.. 지직.. 지지직..", 1);
+                            click_Text = 4;
+                        }
                     }
                     else
                     {
-                        OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "아니, 됐다.", 1);
+                        OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "..다음에 하자.", 1);
                         click_Text = 3;
                     }
-                    break;
-                case 3:
-                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", OverallManager.Instance.PublicVariable.CurrentHour.ToString() + "시다!", 1);
                     break;
                 case 4:
                     OverallManager.Instance.UiManager.HideDialog();
@@ -38,12 +52,20 @@ public class Wall_Clock : Researchable
                     click_Text = 0;
                     break;
                 case 5:
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "라디오", "오늘의 소식은...", 1);
                     break;
                 case 6:
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "라디오", "지직- 지지직..!", 1);
                     break;
                 case 7:
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "전파가 잘 안잡히네...", 1);
                     break;
                 case 8:
+                    OverallManager.Instance.UiManager.HideDialog();
+                    OverallManager.Instance.PublicVariable.Stamina -= 30;
+                    OverallManager.Instance.PublicVariable.CurrentHour += 3;
+                    resetSelectRch();
+                    click_Text = 0;
                     break;
                 case 9:
                     break;

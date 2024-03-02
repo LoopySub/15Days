@@ -18,6 +18,9 @@ public class Prg_SkipButton : MonoBehaviour
         OverallManager.Instance.UiManager.HideDialog();
         OverallManager.Instance.PublicVariable.GameState = Public_Enum.GameState.Playing;
         OverallManager.Instance.PublicVariable.Am_I_outside = false;
+        OverallManager.Instance.PublicVariable.CurrentHour = 8;
+        OverallManager.Instance.PublicVariable.Day = 1;
+        OverallManager.Instance.UiManager.DayChangeTextOn(true);
         OverallManager.Instance.SceneTransition.TransitToNextScene("Game_Livingroom Scene");
     }
 }

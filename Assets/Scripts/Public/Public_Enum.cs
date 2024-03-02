@@ -50,6 +50,8 @@ public class Public_Enum : BaseMonoBehaviour
 
     public enum Ending_type
     {
+        None,
+        OverNight,
         GameOver,
         Infection,
         Starvation,

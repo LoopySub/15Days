@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static Public_Enum;
 
 public class HealthSystem : MonoBehaviour
 {
@@ -65,7 +66,8 @@ public class HealthSystem : MonoBehaviour
 
         if (CurrentHealth <= 0f)
         {
-            CallDeath();
+            OverallManager.Instance.GameDataManager.Ending(Ending_type.GameOver);
+            //CallDeath();
         }
 
         return true;

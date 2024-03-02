@@ -1,39 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class Wall_Clock : Researchable
+public class OutDoor : Researchable
 {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            OverallManager.Instance.PlayerManager.SelectResearchable = this;
+            Action();
+        }
+    }
 
     public override void Action()
     {
-        if (OverallManager.Instance.PublicVariable.IsChoiceBoxUI ==false) 
-        { 
+        if (OverallManager.Instance.PublicVariable.IsChoiceBoxUI == false)
+        {
             click_Text++;
             // click_Text 값에 따라 다른 동작 수행
             switch (click_Text)
             {
                 case 1:
-                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "시계", "시간을 확인할까요?", 1);
-                    OverallManager.Instance.UiManager.ShowChoiceBox();
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "현관문", "밖을 탐사할까요?", 1);
                     break;
                 case 2:
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "현관문", "밖으로 나갑니다. 스태미나 50 사용 / 맵 이동시 마다 3시간 경과", 1);
+                    OverallManager.Instance.UiManager.ShowChoiceBox();
+                    break;
+                case 3:
                     if (OverallManager.Instance.PublicVariable.IsChoice == true)
                     {
-                        OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "지금 시간은..", 1);
+                        if (OverallManager.Instance.PublicVariable.Stamina < 50)
+                        {
+                            OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "", "스태미나가 부족합니다.", 1);
+                            click_Text = 3;
+                            break;
+
+                        }
+                        else if (OverallManager.Instance.PublicVariable.CurrentHour >= 21)
+                        {
+                            OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "이 시간에 나가는 건 위험해.", 1);
+                        }
+                        else
+                        {
+                            OverallManager.Instance.UiManager.HideDialog();
+                            resetSelectRch();
+                            OverallManager.Instance.PublicVariable.Stamina -= 50;
+                            click_Text = 0;
+                            OverallManager.Instance.PlayerManager.transform.position = new Vector3(-8.44f, -2.46f, 0);
+                        }
                     }
                     else
                     {
-                        OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "아니, 됐다.", 1);
-                        click_Text = 3;
+                        OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "그만 두자.", 1);
                     }
-                    break;
-                case 3:
-                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", OverallManager.Instance.PublicVariable.CurrentHour.ToString() + "시다!", 1);
                     break;
                 case 4:
                     OverallManager.Instance.UiManager.HideDialog();
+                    OverallManager.Instance.PlayerManager.transform.position = new Vector3(-6.52f, OverallManager.Instance.PlayerManager.transform.position.y, 0);
                     resetSelectRch();
                     click_Text = 0;
                     break;
@@ -44,6 +69,9 @@ public class Wall_Clock : Researchable
                 case 7:
                     break;
                 case 8:
+                    OverallManager.Instance.UiManager.HideDialog();
+                    resetSelectRch();
+                    click_Text = 0;
                     break;
                 case 9:
                     break;

@@ -9,6 +9,8 @@ public class PlayerManager : MonoBehaviour
 {
     private static PlayerManager _instance;
 
+    public Researchable SelectResearchable;
+
     private void Awake()
     {
         // 이미 인스턴스가 있는지 확인하고, 있다면 자신을 파괴
@@ -33,9 +35,21 @@ public class PlayerManager : MonoBehaviour
     {
         // 씬이 로드된 후에 호출되는 콜백
         transform.position = OverallManager.Instance.PublicVariable.NextCoordinate;
+        OverallManager.Instance.UiManager.textRenewal();
+        Invoke("DayChangeTextOff", 0.5f);
+        Invoke("IsRestOff", 0.5f);
+
+        if(OverallManager.Instance.PublicVariable.IsRest == true)
+        {
+            OverallManager.Instance.UiManager.HideDialog();
+            OverallManager.Instance.PublicVariable.IsRest = false;
+        }
+
         if (OverallManager.Instance.PublicVariable.Am_I_outside == true)
         {
             transform.localScale = new Vector3(0.7f, 0.7f, 1.0f);
+            OverallManager.Instance.PublicVariable.CurrentHour += 3;
+
         }
         else
         {
@@ -63,36 +77,61 @@ public class PlayerManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            CheckForResearchableObject();
-        }
-    }
-
-    // 플레이어가 바라보는 방향으로부터 0.5 거리 떨어진 곳에 researchable 오브젝트가 있는지 체크하는 메서드
-    void CheckForResearchableObject()
-    {
-        float distance = 0.5f; // 원하는 거리
-
-        // 플레이어의 현재 위치와 바라보는 방향을 가져옴
-        Vector2 playerPosition = transform.position;
-        Vector2 playerDirection = transform.right;
-
-        // 플레이어가 바라보는 방향으로 0.5만큼 떨어진 지점 계산
-        Vector2 raycastOrigin = playerPosition + playerDirection * distance;
-
-        // 레이캐스트를 이용하여 해당 위치에 Collider가 있는지 확인
-        RaycastHit2D hit = Physics2D.Raycast(raycastOrigin, playerDirection);
-
-        // Collider가 있고, researchable 컴포넌트를 갖고 있는지 확인
-        if (hit.collider != null)
-        {
-            Researchable researchableObject = hit.collider.GetComponent<Researchable>();
-
-            if (researchableObject != null)
+            if (SelectResearchable != null)
             {
-                // researchable 오브젝트를 찾았을 때 실행할 동작 추가
-                researchableObject.Action();
+                if (OverallManager.Instance.PublicVariable.IsDialog == true)
+                {
+                    SelectResearchable.Action();
+                }
+            }
+            else
+            {
+                CheckForResearchableObject();
             }
         }
     }
 
+    void DayChangeTextOff()
+    {
+        OverallManager.Instance.UiManager.DayChangeTextOn(false);
+        Time.timeScale = 1.0f;
+    }
+
+    void IsRestOff()
+    {
+        OverallManager.Instance.PublicVariable.IsRest = false;
+        Time.timeScale = 1.0f;
+    }
+
+    void CheckForResearchableObject()
+    {
+        float maxDistance = 0.5f; // 원하는 거리
+
+        // 플레이어의 현재 위치 가져옴
+        Vector2 playerPosition = transform.position;
+
+        // 마우스 위치를 월드 좌표로 변환
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // 플레이어에서 마우스로 향하는 방향 계산
+        Vector2 playerToMouseDirection = (mousePosition - playerPosition).normalized;
+
+        // 플레이어에서 마우스 방향으로 최대 거리까지의 좌표 계산
+        Vector2 targetPosition = playerPosition + playerToMouseDirection * maxDistance;
+
+        // 해당 위치에 Collider가 있는지 확인
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(targetPosition, 0.1f); // 원형 영역 검사
+
+        // Researchable 컴포넌트를 갖고 있는지 확인
+        foreach (var collider in colliders)
+        {
+            SelectResearchable = collider.GetComponent<Researchable>();
+            if (SelectResearchable != null)
+            {
+                // Researchable 오브젝트를 찾았을 때 실행할 동작 추가
+                SelectResearchable.Action();
+                break; // 만약 여러 오브젝트 중 하나만 실행하려면 break 추가
+            }
+        }
+    }
 }

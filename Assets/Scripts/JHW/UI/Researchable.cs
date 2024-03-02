@@ -7,25 +7,27 @@ public class Researchable : MonoBehaviour
     public int click_Text = 0;
     public void Update()
     {
-        if (OverallManager.Instance.PublicVariable.IsDialog == true)
+        if (OverallManager.Instance.PlayerManager.SelectResearchable == this)
         {
-            if (OverallManager.Instance.PublicVariable.IsChoiceBoxUI == true)
+            if (OverallManager.Instance.PublicVariable.IsDialog == true)
             {
-                //엔터키나 왼쪽클릭 감지
-                if (Input.GetMouseButtonDown(0))
+                if (OverallManager.Instance.PublicVariable.IsChoiceBoxUI == true)
                 {
-                    //마우스가 이미지 위에 있을 경우
-                    if (OverallManager.Instance.UiManager.IsMouseOverAnyImage())
+                    //엔터키나 왼쪽클릭 감지
+                    if (Input.GetMouseButtonDown(0))
                     {
-                        OverallManager.Instance.UiManager.HideChoiceBox();
-                        Action();
+                        //마우스가 이미지 위에 있을 경우
+                        if (OverallManager.Instance.UiManager.IsMouseOverAnyImage())
+                        {
+                            OverallManager.Instance.UiManager.HideChoiceBox();
+                            Action();
+                        }
                     }
+                    //키보드 방향키 입력 감지
+                    OverallManager.Instance.UiManager.HandleKeyboardInput();
                 }
-                //키보드 방향키 입력 감지
-                OverallManager.Instance.UiManager.HandleKeyboardInput();
-            }
-            else
-            {
+                else
+                {
                     if (Input.GetMouseButtonDown(0))
                     {
                         //마우스가 이미지 위에 있을 경우
@@ -34,9 +36,14 @@ public class Researchable : MonoBehaviour
                             Action();
                         }
                     }
+                }
             }
         }
+    }
 
+    public void resetSelectRch()
+    {
+        OverallManager.Instance.PlayerManager.SelectResearchable = null;
     }
 
 

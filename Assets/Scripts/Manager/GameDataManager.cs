@@ -42,6 +42,11 @@ public class GameDataManager : BaseMonoBehaviour    // 게임 데이터를 직접적으로 
                         (OverallManager.Instance.PublicVariable.Fullness >= 40) ? 30.0f :
                         (OverallManager.Instance.PublicVariable.Fullness >= 35) ? 20.0f :
                         (OverallManager.Instance.PublicVariable.Fullness >= 30) ? 10.0f : 0.0f;
+
+        if (OverallManager.Instance.PublicVariable.IsRest == true)
+        {
+            OverallManager.Instance.PublicVariable.Stamina += 20;
+        }
     }
 
     // 공격 받을 시 하트 감소
@@ -203,6 +208,14 @@ public class GameDataManager : BaseMonoBehaviour    // 게임 데이터를 직접적으로 
     //엔딩 씬 이동 메서드
     public void Ending(Ending_type end)
     {
+        if(OverallManager.Instance.PublicVariable.GameState != GameState.Cutscene)
+        {
+        OverallManager.Instance.PublicVariable.Ending_Type = end;
+        OverallManager.Instance.PublicVariable.GameState = GameState.Cutscene;
+        OverallManager.Instance.PublicVariable.NextCoordinate = new Vector3 (0,0, 0);
+        OverallManager.Instance.SceneTransition.TransitToNextScene("Ending Scene");
+        }
+        /*
         if(end == Ending_type.GameOver)
         {
 
@@ -223,10 +236,11 @@ public class GameDataManager : BaseMonoBehaviour    // 게임 데이터를 직접적으로 
         {
 
         }
-        else
+        else if(end == Ending_type.OverNight)
         {
 
         }
+        */
     }
 
 

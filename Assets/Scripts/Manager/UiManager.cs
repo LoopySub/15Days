@@ -13,6 +13,21 @@ public class UiManager : MonoBehaviour
     [SerializeField]
     private GameObject DialogUI;
 
+    [SerializeField] 
+    private GameObject InDoorUI;
+
+    [SerializeField]
+    private GameObject StaminaBar;
+
+    [SerializeField] 
+    private GameObject HPbar;
+
+    [SerializeField]
+    private GameObject NightLight;
+
+    [SerializeField]
+    private Image NightLightImage;
+
     [SerializeField]
     private Text MassageText;
 
@@ -39,6 +54,25 @@ public class UiManager : MonoBehaviour
 
     [SerializeField]
     private Sprite IconSprite_Rebecca;
+
+    [SerializeField]
+    private Text StaminaText;
+
+    [SerializeField]
+    private Text FullnessText;
+
+    [SerializeField]
+    private Text TimeText;
+
+    [SerializeField]
+    private Text DayText;
+
+    [SerializeField]
+    private GameObject D_DayUI;
+
+    [SerializeField]
+    private Text D_DayText;
+
 
     private GameState past_state;
 
@@ -209,11 +243,58 @@ public class UiManager : MonoBehaviour
         return IsMouseOver(YexBox) || IsMouseOver(NoBox);
     }
 
+    public void textRenewal()
+    {
+        StaminaText.text = ("스태미나: " + OverallManager.Instance.PublicVariable.Stamina.ToString() + "/100");
+        FullnessText.text = ("배부름: " + OverallManager.Instance.PublicVariable.Fullness.ToString() + "/100");
+        TimeText.text = ("시간: " + OverallManager.Instance.PublicVariable.CurrentHour.ToString("00") + ":00");
+        DayText.text = ("Day-" + OverallManager.Instance.PublicVariable.Day.ToString());
+    }
+
+    public void ShowStaminaBar()
+    {
+        InDoorUI.SetActive(true);
+        HPbar.SetActive(false);
+        StaminaBar.SetActive(true) ;
+    }
+
+    public void ShowHpBar()
+    {
+        HPbar.SetActive(true);
+        StaminaBar.SetActive(false);
+    }
+
+    public void HideStateUI()
+    {
+        InDoorUI.SetActive(false);
+        StaminaBar.SetActive(false);
+        HPbar.SetActive(false);
+    }
+
+    public void NightLightOn()
+    {
+        SetImageTransparency(NightLightImage, 200);
+    }
+
+    public void DeepNightLightOn()
+    {
+        SetImageTransparency(NightLightImage, 240);
+    }
+
+    public void MorningLightOn()
+    {
+        SetImageTransparency(NightLightImage, 0);
+    }
+
+    public void DayChangeTextOn(bool on_off)
+    {
+        D_DayText.text = ("Day " + OverallManager.Instance.PublicVariable.Day.ToString());
+        D_DayUI.SetActive(on_off);
+    }
+
 
     // ==============================================[↑메서드 구역↑]==================================================
     // ==============================================[↓참조 구역↓]==================================================
     public Image zButtonBox { get { return ZButtonBox; } }
-
-
     // ==============================================[↑참조 구역↑]==================================================
 }

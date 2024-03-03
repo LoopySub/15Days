@@ -17,6 +17,15 @@ public class UiManager : MonoBehaviour
     private GameObject InDoorUI;
 
     [SerializeField]
+    private GameObject RebeccaUI;
+
+    [SerializeField]
+    private Text ContainText;
+
+    [SerializeField] 
+    private Text Rebecca_StateText;
+
+    [SerializeField]
     private GameObject StaminaBar;
 
     [SerializeField] 
@@ -72,6 +81,9 @@ public class UiManager : MonoBehaviour
 
     [SerializeField]
     private Text D_DayText;
+
+    [SerializeField]
+    private Researchable Morning_Monologue;
 
 
     private GameState past_state;
@@ -292,9 +304,57 @@ public class UiManager : MonoBehaviour
         D_DayUI.SetActive(on_off);
     }
 
+    public void ShowRebeccaUI(bool IsEnter)
+    {
+        RebeccaUI.SetActive(IsEnter); 
+    }
+
+    public void ContainHide()
+    {
+        Rebecca_StateText.text = "상태: ???";
+
+        ContainText.text = "감염도: ??/100";
+    }
+
+    public void ContainRenewal()
+    {
+        string stateText = "";
+        if (OverallManager.Instance.PublicVariable.RebeccaStatus == RebeccaStatus.Cold)
+        {
+            stateText = "감기 증세";
+        }
+        else if(OverallManager.Instance.PublicVariable.RebeccaStatus == RebeccaStatus.Unstable)
+        {
+            stateText = "불안정";
+        }
+        else if (OverallManager.Instance.PublicVariable.RebeccaStatus == RebeccaStatus.Violent)
+        {
+            stateText = "폭력 성향";
+        }
+        else if (OverallManager.Instance.PublicVariable.RebeccaStatus == RebeccaStatus.ZombieLike)
+        {
+            stateText = "미쳐감";
+        }
+        else if (OverallManager.Instance.PublicVariable.RebeccaStatus == RebeccaStatus.AlmostZombie)
+        {
+            stateText = "거의 좀비";
+        }
+        else if (OverallManager.Instance.PublicVariable.RebeccaStatus == RebeccaStatus.Zombie)
+        {
+            stateText = "좀비";
+        }
+        Rebecca_StateText.text = "상태: " + stateText;
+
+        ContainText.text = "감염도: " + OverallManager.Instance.PublicVariable.Contamination.ToString() + "/100";
+    }
+
+
+
 
     // ==============================================[↑메서드 구역↑]==================================================
     // ==============================================[↓참조 구역↓]==================================================
     public Image zButtonBox { get { return ZButtonBox; } }
+
+    public Researchable morning_monologue {  get { return Morning_Monologue; } }
     // ==============================================[↑참조 구역↑]==================================================
 }

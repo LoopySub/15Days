@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Public_Enum;
 
 public class Bed : Researchable
 {
@@ -25,7 +26,7 @@ public class Bed : Researchable
                     case 3:
                         if (OverallManager.Instance.PublicVariable.IsChoice == true)
                         {
-                            if (OverallManager.Instance.PublicVariable.Fullness < 40)
+                            if (OverallManager.Instance.PublicVariable.Fullness < 20)
                             {
                                 OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "배고파서 쉬어도 소용 없겠어.", 1);
                                 click_Text = 4;
@@ -43,7 +44,8 @@ public class Bed : Researchable
                         }
                         else
                         {
-                            OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "..쉴 시간은 없어.", 1);
+                            OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "..그럼 푹 쉴까?", 1);
+                            click_Text = 7;
                         }
                         break;
                     case 4:
@@ -52,7 +54,7 @@ public class Bed : Researchable
                         click_Text = 0;
                         break;
                     case 5:
-                        OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "침대", "스태미나를 회복할 수 없어도 쉬시겠습니까?", 1);
+                        OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "침대", "스태미나를 조금밖에 회복할 수 없어도 쉬시겠습니까?", 1);
                         OverallManager.Instance.UiManager.ShowChoiceBox();
                         break;
                     case 6:
@@ -63,9 +65,14 @@ public class Bed : Researchable
                             OverallManager.Instance.PublicVariable.NextCoordinate = OverallManager.Instance.PlayerManager.transform.position; //플레이어의 다음 맵 위치 전달
                             click_Text = 0;
                             resetSelectRch();
+                            OverallManager.Instance.PublicVariable.Stamina += 5;
                             OverallManager.Instance.PublicVariable.CurrentHour += 2;
-                            Time.timeScale = 0.7f;
-                            OverallManager.Instance.SceneTransition.TransitToNextScene("Game_Livingroom Scene");
+                            
+                            if (OverallManager.Instance.PublicVariable.Ending_Type == Ending_type.None)
+                            {
+                                Time.timeScale = 0.7f;
+                                OverallManager.Instance.SceneTransition.TransitToNextScene("Game_Livingroom Scene");
+                            }
                         }
                         else
                         {
@@ -78,10 +85,35 @@ public class Bed : Researchable
                         click_Text = 0;
                         break;
                     case 8:
+                        OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "침대", "내일 아침까지 쉽니다. / 하루를 스킵합니다.", 1);
+                        OverallManager.Instance.UiManager.ShowChoiceBox();
                         break;
                     case 9:
+                        if (OverallManager.Instance.PublicVariable.IsChoice == true)
+                        {
+                            OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "...zZZ", 0.5f);
+                            OverallManager.Instance.PublicVariable.IsRest = true;
+                            OverallManager.Instance.PublicVariable.NextCoordinate = OverallManager.Instance.PlayerManager.transform.position; //플레이어의 다음 맵 위치 전달
+                            click_Text = 0;
+                            resetSelectRch();
+                            OverallManager.Instance.PublicVariable.Stamina += 10;
+                            OverallManager.Instance.PublicVariable.CurrentHour = (24);
+                            
+                            if (OverallManager.Instance.PublicVariable.Ending_Type == Ending_type.None)
+                            {
+                                Time.timeScale = 0.7f;
+                                OverallManager.Instance.SceneTransition.TransitToNextScene("Game_Livingroom Scene");
+                            }
+                        }
+                        else
+                        {
+                            OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "..그만 두자.", 1);
+                        }
                         break;
                     case 10:
+                        OverallManager.Instance.UiManager.HideDialog();
+                        resetSelectRch();
+                        click_Text = 0;
                         break;
                     case 11:
                         break;

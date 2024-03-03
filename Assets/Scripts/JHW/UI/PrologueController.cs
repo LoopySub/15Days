@@ -110,7 +110,9 @@ public class PrologueController : MonoBehaviour
                 OverallManager.Instance.PublicVariable.Am_I_outside = false;
                 OverallManager.Instance.PublicVariable.CurrentHour = 8;
                 OverallManager.Instance.PublicVariable.Day = 1;
+                OverallManager.Instance.PublicVariable.Contamination = 60;
                 OverallManager.Instance.UiManager.DayChangeTextOn(true);
+                OverallManager.Instance.UiManager.ContainHide();
                 OverallManager.Instance.SceneTransition.TransitToNextScene("Game_Livingroom Scene");
                 break;
             /*

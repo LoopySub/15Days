@@ -67,26 +67,24 @@ public class EndingController : MonoBehaviour
             case 4:
                 Ending_Text.text = null;
                 Ending_Text.DOText("뿐만 아니라, 곳곳에 방치되어 있는 무수한 시체들도 움직이기 시작한다.", 1).SetUpdate(true);
-                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "크아아아아악-!!", 3);
                 break;
             case 5:
-                Ending_Text.text = null;
-                OverallManager.Instance.UiManager.HideDialog();
-                Ending_Text.DOText("그리고 한낱 민간인인 존이 그 가장 위험한 시간에 싸돌아 다닌 결과는 당연했다.", 3).SetUpdate(true);
-                
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "크아아아아악-!!", 3);
                 break;
             case 6:
                 Ending_Text.text = null;
-                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "레.. 베카....", 1);
+                OverallManager.Instance.UiManager.HideDialog();
+                Ending_Text.DOText("그리고 한낱 민간인인 존이 그 가장 위험한 시간에 싸돌아 다닌 결과는 당연했다.", 3).SetUpdate(true);
                 break;
             case 7:
                 Ending_Text.text = null;
-                OverallManager.Instance.UiManager.HideDialog();
-                Ending_Text.DOText("ENDING 1: OVER NIGHT", 3).SetUpdate(true);
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "레.. 베카....", 1);
                 break;
             case 8:
+                Ending_Text.text = null;
+                OverallManager.Instance.UiManager.HideDialog();
+                Ending_Text.DOText("ENDING 1: OVER NIGHT", 3).SetUpdate(true);
                 End = true;
-                Application.Quit();
                 break;
             case 9:
                 Ending_Text.text = null;
@@ -112,7 +110,7 @@ public class EndingController : MonoBehaviour
                 break;
             case 14:
                 Ending_Text.text = null;
-                Ending_Text.DOText("딸아이를 구하고 싶었던 아버지의 삶은, 그렇게 거기서 끝났다.", 3).SetUpdate(true);
+                Ending_Text.DOText("딸아이를 구하고 싶었던 아버지의 삶은, 그렇게 거기서 끝이 났다.", 3).SetUpdate(true);
                 break;
             case 15:
                 Ending_Text.text = null;
@@ -150,7 +148,7 @@ public class EndingController : MonoBehaviour
                 break;
             case 24:
                 OverallManager.Instance.UiManager.HideDialog();
-                Ending_Text.DOText("구조대가 도착했을 때, 그곳에 있는 건 남자의 시신을 뜯어먹고 있는 소녀 좀비 한 마리 뿐이었다.", 3);
+                Ending_Text.DOText("구조대가 도착했을 때, 그 집에 있는 건 반쯤 썩은 남자의 시신을 뜯어먹고 있는 소녀 좀비 한 마리 뿐이었다.", 3);
                 break;
             case 25:
                 Ending_Text.text = null;
@@ -162,7 +160,7 @@ public class EndingController : MonoBehaviour
                 break;
             case 27:
                 Ending_Text.text = null;
-                Ending_Text.DOText("Day-15", 3);
+                Ending_Text.DOText("Day-15", 1);
                 break;
             case 28:
                 Ending_Text.text = null;
@@ -170,7 +168,7 @@ public class EndingController : MonoBehaviour
                 break;
             case 29:
                 Ending_Text.text = null;
-                Ending_Text.DOText("군인들이 존의 집 현관문을 두드린다.", 3);
+                Ending_Text.DOText("군인들이 존의 집 현관문을 두드린다.", 1);
                 break;
             case 30:
                 Ending_Text.text = null;
@@ -191,13 +189,13 @@ public class EndingController : MonoBehaviour
                 OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "군인", "무사한 생존자가 있었군요. 다행입니다.", 1);
                 break;
             case 35:
-                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Rebecca, "레베카", "아..빠.. 콜록콜록, 무슨 일이야..?", 2);
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Rebecca, "레베카", "아..빠.. 콜록콜록, 무슨 일이야..?", 1);
                 break;
             case 36:
                 OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "군인", "음..?", 1);
                 break;
             case 37:
-                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "아, 이 아이는 제 딸입니다.. ..?!", 1);
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "아, 이 아이는 제 딸입니다.. 괜찮아요!", 1);
                 break;
             case 38:
                 OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "군인", "철컥,", 1);
@@ -209,7 +207,7 @@ public class EndingController : MonoBehaviour
                 break;
             case 40:
                 Ending_Text.text = null;
-                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Rebecca, "레베카", "아.. 끄륵.. ...", 2);
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Rebecca, "레베카", "아.. 끄륵.. ...", 1);
                 break;
             case 41:
                 OverallManager.Instance.UiManager.HideDialog();
@@ -223,7 +221,7 @@ public class EndingController : MonoBehaviour
                 OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "군인", "정부 방침 상, 감염자는 전부 발견 즉시 사살입니다.", 1);
                 break;
             case 44:
-                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Rebecca, "레베카", "아.. 빠....", 2);
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Rebecca, "레베카", "아.. 빠....", 1);
                 break;
             case 45:
                 OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "레베카, 안돼, 정신 차려, 이럴 수는.. 안돼, 안돼!!!", 1);
@@ -236,7 +234,7 @@ public class EndingController : MonoBehaviour
                 break;
             case 48:
                 OverallManager.Instance.UiManager.HideDialog();
-                Ending_Text.DOText("차갑게 식은 시신과, 딸을 잃은 아버지의 절규만이 그 자리에 있었다.", 3);
+                Ending_Text.DOText("차갑게 식은 시신과, 딸을 잃은 아버지의 절규만이 그 자리에 남아 있었다.", 3);
                 break;
             case 49:
                 Ending_Text.text = null;
@@ -287,29 +285,34 @@ public class EndingController : MonoBehaviour
                 OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "군인들", "거기 생존자 계십니까?", 1);
                 break;
             case 62:
+                Ending_Text.text = null;
                 OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "레베카, 들었니? 구조대가 왔어!", 1);
                 break;
             case 63:
+                Ending_Text.text = null;
                 OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "지금 나갑니다!", 1);
                 break;
             case 64:
+                Ending_Text.text = null;
                 OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "군인", "무사한 생존자가 있었군요. 다행입니다.", 1);
                 break;
             case 65:
-                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Rebecca, "레베카", "드디어..!", 2);
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Rebecca, "레베카", "드디어..!", 1);
                 break;
             case 66:
-                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "군인", "두 분, 맞으십니까? 모두 건강해보이십니다.", 1);
+                Ending_Text.text = null;
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "군인", "두 분, 맞으십니까? 음.. 두 분 다 건강에 문제는 없는 것 같군요.", 1);
                 break;
             case 67:
+                Ending_Text.text = null;
                 OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "군인", "그럼 저희와 함께 가시죠. 생존자 캠프는 여러분을 환영합니다.", 1);
                 break;
             case 68:
                 OverallManager.Instance.UiManager.HideDialog();
-                Ending_Text.DOText("존과 완치된 레베카는 구조대의 보호를 받아 무사히 생존자 캠프에 합류할 수 있었다.", 3);
+                Ending_Text.DOText("존과 완치된 레베카는 구조대의 보호를 받아 무사히 생존자 캠프에 합류할 수 있었다.", 1);
                 break;
             case 69:
-                Ending_Text.DOText("아직 미래는 불안하지만, 그래도 그들의 앞날에는 행복이 기다리고 있을 것이다.", 3);
+                Ending_Text.DOText("아직 미래는 불안하지만, 그래도 그들의 앞날에는 행복이 기다리고 있을 것이다.", 1);
                 break;
             case 70:
                 Ending_Text.text = null;

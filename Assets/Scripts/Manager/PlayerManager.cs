@@ -38,6 +38,8 @@ public class PlayerManager : MonoBehaviour
         OverallManager.Instance.UiManager.textRenewal();
         Invoke("DayChangeTextOff", 0.5f);
         Invoke("IsRestOff", 0.5f);
+        
+
 
         if(OverallManager.Instance.PublicVariable.IsRest == true)
         {
@@ -55,6 +57,22 @@ public class PlayerManager : MonoBehaviour
         {
             transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }
+
+        if(OverallManager.Instance.PublicVariable.Ending_Type ==Ending_type.None && OverallManager.Instance.PublicVariable.CurrentHour == 8 && OverallManager.Instance.PublicVariable.Am_I_outside ==false && OverallManager.Instance.PublicVariable.IsDM ==false)
+        {
+            Invoke("Morning_Monologue", 0.6f);
+        }
+    }
+
+    void Morning_Monologue()
+    {
+        if (SelectResearchable == null)
+        {
+            OverallManager.Instance.PublicVariable.IsDM = true;
+            SelectResearchable = OverallManager.Instance.UiManager.morning_monologue;
+            SelectResearchable.Click_Text_Reset();
+            SelectResearchable.Action();
+        }
     }
 
 
@@ -71,6 +89,8 @@ public class PlayerManager : MonoBehaviour
                 gameObject.SetActive(true);
             }
     }
+
+
 
     // 플레이어가 'Z' 키를 눌렀을 때 호출되는 메서드
     void Update()
@@ -101,6 +121,11 @@ public class PlayerManager : MonoBehaviour
     {
         OverallManager.Instance.PublicVariable.IsRest = false;
         Time.timeScale = 1.0f;
+    }
+
+    public void ResetRch()
+    {
+        SelectResearchable = null;
     }
 
     void CheckForResearchableObject()

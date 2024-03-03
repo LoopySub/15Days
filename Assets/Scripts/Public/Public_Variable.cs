@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Public_Enum;
 
@@ -37,24 +39,32 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
     public int CurrentHour
     {
         get { return currentHour; }
-        set { 
-                if ((value) >= 24)
-                {
-                    if(am_I_outside == true)
+        set {
+            if ((value) >= 24)
+            {
+                if (am_I_outside == true)
                 {
                     OverallManager.Instance.GameDataManager.Ending(Ending_type.OverNight);
                     return;
                 }
-                    Sleep_and_wake_up();
-                    AccumulatedHours += ((value -24)+7);
+                Sleep_and_wake_up();
+                if (value == 24)
+                {
+                    AccumulatedHours += (value - currentHour + 8);
                     currentHour = 8;
                 }
                 else
                 {
-                    AccumulatedHours += (value - currentHour);
-                    currentHour = value;
-                   
+                    AccumulatedHours += ((value - 24) + 8);
+                    currentHour = 8;
                 }
+            }
+            else
+            {
+                AccumulatedHours += (value - currentHour);
+                currentHour = value;
+
+            }
             if (Am_I_outside == true)
             {
                 if (currentHour >= 19 && currentHour < 23)
@@ -110,8 +120,8 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
     public float Stamina
     {
         get { return stamina; }
-        set 
-        { 
+        set
+        {
             stamina = Mathf.Clamp(value, -10f, 120f);
             OverallManager.Instance.UiManager.textRenewal();
         }
@@ -126,8 +136,9 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
         set
         {
             fullness = Mathf.Clamp(value, 0f, 100f);
-            if (fullness <= 30f)
+            if (fullness <= 0f)
             {
+
                 OverallManager.Instance.GameDataManager.Ending(Ending_type.Starvation);
             }
         }
@@ -139,8 +150,8 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
     public float Contamination
     {
         get { return contamination; }
-        set 
-        { 
+        set
+        {
             contamination = Mathf.Clamp(value, 0f, 100f);
             // »óÅÂ ¾÷µ¥ÀÌÆ®
             UpdateRebeccaStatus();
@@ -158,13 +169,13 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
     [SerializeField]
     private float hearts = 3;
     [SerializeField]
-    private float maxHearts = 3; 
+    private float maxHearts = 3;
 
     public float Hearts
     {
         get { return hearts; }
-        set 
-        { 
+        set
+        {
             hearts = Mathf.Max(value, 0);
             if (hearts == 0)
             {
@@ -182,21 +193,23 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
 
     // ÇöÀç »óÅÂ°¡ ¹Ù±ùÀÎÁö ¾ÈÀÎÁö
     [SerializeField]
-    private bool am_I_outside =false;
+    private bool am_I_outside = false;
     public bool Am_I_outside
     {
         get { return am_I_outside; }
-        set 
-        { 
+        set
+        {
             am_I_outside = value;
             if (am_I_outside == false)
             {
                 OverallManager.Instance.UiManager.ShowStaminaBar();
                 OverallManager.Instance.UiManager.MorningLightOn();
+                OverallManager.Instance.UiManager.ShowRebeccaUI(true);
             }
             else
             {
                 OverallManager.Instance.UiManager.ShowHpBar();
+                OverallManager.Instance.UiManager.ShowRebeccaUI(false);
             }
         }
     }
@@ -207,16 +220,16 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
     public Vector3 NextCoordinate
     {
         get { return nextCoordinate; }
-        set { nextCoordinate = value;}
+        set { nextCoordinate = value; }
     }
 
     //°ÔÀÓ »óÅÂ°ª
     [SerializeField]
     private GameState gameState;
-    public GameState GameState 
-    { 
-        get { return gameState; } 
-        set 
+    public GameState GameState
+    {
+        get { return gameState; }
+        set
         {                         //°ÔÀÓ »óÅÂ °ª¿¡ µû¶ó ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ°¡ º¸ÀÌ°í ¾Èº¸ÀÌ°í ¹× °ÔÀÓ ½Ã°£ Á¤Áö / Àç»ý
             gameState = value;
             OverallManager.Instance.PlayerManager.playerSetActive(gameState);
@@ -242,6 +255,7 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
         set { isDialog = value; }
     }
 
+    //¼±ÅÃ¹Ú½º°¡ ¶°ÀÖ´ÂÁö
     [SerializeField]
     private bool isChoiceBoxUI;
     public bool IsChoiceBoxUI
@@ -250,25 +264,28 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
         set { isChoiceBoxUI = value; }
     }
 
+    //¼±ÅÃÁö¿¡¼­ ¼±ÅÃ°ªÀÌ ¹«¾ùÀÎÁö
     [SerializeField]
     private bool isChoice;
     public bool IsChoice
     {
         get { return isChoice; }
-        set { 
+        set {
             isChoice = value;
             OverallManager.Instance.UiManager.HandleIsTargetedChanged();
-            }
+        }
     }
 
+    //ÈÞ½ÄÇß´ÂÁö
     [SerializeField]
     private bool isRest;
     public bool IsRest
     {
         get { return isRest; }
-        set { isRest = value;}
+        set { isRest = value; }
     }
 
+    //¿£µù Å¸ÀÔ
     [SerializeField]
     private Ending_type ending_Type = Ending_type.None;
     public Ending_type Ending_Type
@@ -276,6 +293,89 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
         get { return ending_Type; }
         set { ending_Type = value; }
     }
+
+    //·¹º£Ä« ¹æ ÁøÀÔ ÁßÀÎÁö ¿©ºÎ
+    [SerializeField]
+    private bool isRebeccaRoomEnter;
+    public bool IsRebeccaRoomEnter
+    {
+        get { return isRebeccaRoomEnter; }
+        set { isRebeccaRoomEnter = value; }
+    }
+
+    //±×³¯ ¾ÆÄ§ µ¶¹é Çß´ÂÁö ¿©ºÎ
+    [SerializeField]
+    private bool isDM;
+    public bool IsDM
+    {
+        get { return isDM; }
+        set { isDM = value; }
+    }
+
+    //±×³¯ ¶óµð¿À ½è´ÂÁö ¿©ºÎ
+    [SerializeField]
+    private bool isDayRadio;
+    public bool IsDayRadio
+    {
+        get { return isDayRadio; }
+        set { isDayRadio = value; }
+    }
+
+
+    //±×³¯ PC ½è´ÂÁö ¿©ºÎ
+    [SerializeField]
+    private bool isDayPC;
+    public bool IsDayPC
+    {
+        get { return isDayPC; }
+        set { isDayPC = value; }
+    }
+
+    //PC °íÀå³µ´ÂÁö ¿©ºÎ
+    [SerializeField]
+    private bool isPCBrocken;
+    public bool IsPCBrocken
+    {
+        get { return isPCBrocken; }
+        set { isPCBrocken = value; }
+    }
+
+    //¿¬±¸¼Ò ÀÔ±¸ Å° °¡Á³´ÂÁö ¿©ºÎ
+    [SerializeField]
+    private bool isLabMainKeyGet;
+    public bool IsLabMainKeyGet
+    {
+        get{return isLabMainKeyGet;}
+        set { isLabMainKeyGet = value;}
+    }
+
+    //¹é½Å °¡Á³´ÂÁö ¿©ºÎ
+    [SerializeField]
+    private bool isVaccineGet;
+    public bool IsVaccineGet
+    {
+        get { return isVaccineGet; }
+        set { isVaccineGet = value; }
+    }
+
+    //·¹º£Ä« Ä¡À¯µÆ´ÂÁö ¿©ºÎ
+    [SerializeField]
+    private bool isRebeccaCured;
+    public bool IsRebeccaCured
+    {
+        get { return isRebeccaCured; }
+        set { isRebeccaCured = value; }
+    }
+
+    //Ç×»ýÁ¦ °®°í ÀÖ´ÂÁö ¿©ºÎ
+    [SerializeField]
+    private bool isGetAntibiotic;
+    public bool IsGetAntibiotic
+    {
+        get { return isGetAntibiotic; }
+        set { isGetAntibiotic = value; }
+    }
+
 
 
     // ============================================[¡è°ø¿ë º¯¼ö ±¸¿ª¡è]=================================================
@@ -300,10 +400,29 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
             OverallManager.Instance.GameDataManager.ResetHearts();
             OverallManager.Instance.GameDataManager.RecoverStaminaAfterSleep();
             OverallManager.Instance.GameDataManager.Contamination_Increases();
-
+            OverallManager.Instance.UiManager.ContainHide();
+            OverallManager.Instance.UiManager.ShowRebeccaUI(true);
             Day = (AccumulatedHours / 24) + 2;
             OverallManager.Instance.UiManager.DayChangeTextOn(true);
-        if (Ending_Type != Ending_type.None)
+            IsDayRadio = false;
+            IsDayPC = false;
+            IsDM = false;
+        if (Day == 7)
+        {
+            IsPCBrocken = true;
+        }
+        if(Day >= 15)
+        {
+            if (IsRebeccaCured)
+            {
+                OverallManager.Instance.GameDataManager.Ending(Ending_type.True);
+            }
+            else
+            {
+                OverallManager.Instance.GameDataManager.Ending(Ending_type.Normal);
+            }
+        }
+        if (Ending_Type == Ending_type.None)
         {
             OverallManager.Instance.PublicVariable.NextCoordinate = new Vector3(5.48f, -1.36f, 0); //ÇÃ·¹ÀÌ¾îÀÇ ´ÙÀ½ ¸Ê À§Ä¡ Àü´Þ
             Time.timeScale = 0.5f;
@@ -326,6 +445,7 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
             rebeccaStatus = RebeccaStatus.AlmostZombie;
         else
             rebeccaStatus = RebeccaStatus.Zombie;
+            
     }
 
     private void GameStateHandler()

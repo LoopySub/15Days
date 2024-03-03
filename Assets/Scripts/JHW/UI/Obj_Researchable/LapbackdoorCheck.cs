@@ -2,57 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Researchable : MonoBehaviour
+public class LapbackdoorCheck : Researchable
 {
-    public int click_Text = 0;
-    public void Update()
-    {
-        if (OverallManager.Instance.PlayerManager.SelectResearchable == this)
-        {
-            if (OverallManager.Instance.PublicVariable.IsDialog == true)
-            {
-                if (OverallManager.Instance.PublicVariable.IsChoiceBoxUI == true)
-                {
-                    //엔터키나 왼쪽클릭 감지
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        //마우스가 이미지 위에 있을 경우
-                        if (OverallManager.Instance.UiManager.IsMouseOverAnyImage())
-                        {
-                            OverallManager.Instance.UiManager.HideChoiceBox();
-                            Action();
-                        }
-                    }
-                    //키보드 방향키 입력 감지
-                    OverallManager.Instance.UiManager.HandleKeyboardInput();
-                }
-                else
-                {
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        //마우스가 이미지 위에 있을 경우
-                        if (OverallManager.Instance.UiManager.IsMouseOver(OverallManager.Instance.UiManager.zButtonBox))
-                        {
-                            Action();
-                        }
-                    }
-                }
-            }
-        }
-    }
 
-    public virtual void Click_Text_Reset()
-    {
-
-    }
-
-    public void resetSelectRch()
-    {
-        OverallManager.Instance.PlayerManager.SelectResearchable = null;
-    }
-
-
-    public virtual void Action()
+    public override void Action()
     {
         if (OverallManager.Instance.PublicVariable.IsChoiceBoxUI == false)
         {
@@ -60,18 +13,44 @@ public class Researchable : MonoBehaviour
             // click_Text 값에 따라 다른 동작 수행
             switch (click_Text)
             {
-
                 case 1:
-                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "", "", 2);
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "잠긴 문", "잠겨 있다.", 1);
+                    
                     break;
                 case 2:
-                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "..", 2);
+                    if (OverallManager.Instance.PublicVariable.IsLabMainKeyGet == true)
+                    {
+                        OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "카드키를 사용해서 들어갈까?.", 1);
+                        OverallManager.Instance.UiManager.ShowChoiceBox();
+                    }
+                    else
+                    {
+                        OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "들어가려면 뭔가 열쇠가 필요할 것 같네.", 1);
+                        click_Text = 3;
+                    }
                     break;
                 case 3:
+                    if (OverallManager.Instance.PublicVariable.IsChoice == true)
+                    {
+                        OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "잠긴 문", "문이 열립니다.", 1);
+                        click_Text = 4;
+                    }
+                    else
+                    {
+                        OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "..오늘은  그만 두자.", 1);
+                        click_Text = 3;
+                    }
                     break;
                 case 4:
+                    OverallManager.Instance.UiManager.HideDialog();
+                    resetSelectRch();
+                    click_Text = 0;
                     break;
                 case 5:
+                    OverallManager.Instance.UiManager.HideDialog();
+                    resetSelectRch();
+                    click_Text = 0;
+                    OverallManager.Instance.PlayerManager.transform.position = new Vector3(-5.89f, -2.67f, 0);
                     break;
                 case 6:
                     break;
@@ -147,5 +126,4 @@ public class Researchable : MonoBehaviour
             }
         }
     }
-
 }

@@ -210,7 +210,11 @@ public class GameDataManager : BaseMonoBehaviour    // 게임 데이터를 직접적으로 
     {
         if(OverallManager.Instance.PublicVariable.GameState != GameState.Cutscene)
         {
-        OverallManager.Instance.PublicVariable.Ending_Type = end;
+         OverallManager.Instance.UiManager.HideDialog();
+         OverallManager.Instance.PlayerManager.ResetRch();
+        OverallManager.Instance.UiManager.HideStateUI();
+            OverallManager.Instance.UiManager.ShowRebeccaUI(false);
+         OverallManager.Instance.PublicVariable.Ending_Type = end;
         OverallManager.Instance.PublicVariable.GameState = GameState.Cutscene;
         OverallManager.Instance.PublicVariable.NextCoordinate = new Vector3 (0,0, 0);
         OverallManager.Instance.SceneTransition.TransitToNextScene("Ending Scene");

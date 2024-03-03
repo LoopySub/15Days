@@ -11,7 +11,7 @@ using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
 
-//플레이어에게 인벤토리 시트 추가해야함!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! UISlot옮겨두기
+
 public class ItemSlot
 {
     public ItemData item;
@@ -22,12 +22,12 @@ public class Inventory : MonoBehaviour
     public ItemSlotUI[] uiSlot;
     public ItemSlot[] slots;
 
-    public GameObject InventoryWindow;
+    public GameObject InventoryWindow;  // 인벤토리창
     public Slider _hpBar;
     
 
     [Header("Selected Item")]
-    private ItemSlot selectedItem;
+    private ItemSlot selectedItem;   
     private int selectedItemIndex;
     public TextMeshProUGUI selectedItemName;
     public TextMeshProUGUI selectedItemDescription;
@@ -57,8 +57,8 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-        InventoryWindow.SetActive(false); // 처음에 꺼진상태
-        slots =new ItemSlot[uiSlot.Length];
+        InventoryWindow.SetActive(false);    // 처음에 꺼진상태
+        slots =new ItemSlot[uiSlot.Length];  // Uislot을 14개만듬
 
 
         for (int i = 0; i < uiSlot.Length; i++)
@@ -74,7 +74,7 @@ public class Inventory : MonoBehaviour
  
 
 
-    public void Toggle()
+    public void Toggle()   //인벤토리창
     {
         if (InventoryWindow.activeInHierarchy)
         {
@@ -96,7 +96,7 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(ItemData item)  //E키로 획득
     {
-        if (item.canStack)
+        if (item.canStack)   //Scriptable Object에서 아이템이 스택이 가능한 아이템이면 (현재 구급상자,Food만 스택가능)
         {
             ItemSlot slotToStackTo = GetItemStack(item);
             if(slotToStackTo != null)
@@ -107,7 +107,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        ItemSlot emptySlot = GetEmptySlot();
+        ItemSlot emptySlot = GetEmptySlot();  
         if(emptySlot != null)
         {
             emptySlot.item = item;
@@ -119,7 +119,7 @@ public class Inventory : MonoBehaviour
         Destroy(item); //꽉차면 없앰 꽉찼을때 팝업있으면 가능
     }
 
-    void UPdateUI()
+    void UPdateUI() // 아이템 슬롯 최신화 코드
     {
         for(int i = 0; i < slots.Length; i++)
         {
@@ -130,7 +130,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    ItemSlot GetItemStack(ItemData item)
+    ItemSlot GetItemStack(ItemData item) //쌓일수있는 아이템
     {
         for(int i = 0; i < slots.Length;i++)
         {
@@ -150,7 +150,7 @@ public class Inventory : MonoBehaviour
         return null;
     }
 
-    public void SelectItem(int index)
+    public void SelectItem(int index) //골라진 아이템이
     {
         if (slots[index].item == null)
             return;
@@ -158,8 +158,8 @@ public class Inventory : MonoBehaviour
         selectedItem = slots[index];
         selectedItemIndex = index;
 
-        selectedItemName.text = selectedItem.item.displayName;
-        selectedItemDescription.text = selectedItem.item.description;
+        selectedItemName.text = selectedItem.item.displayName;  // 골라진 아이템의 이름
+        selectedItemDescription.text = selectedItem.item.description; //골라진 아이템의 설명
 
         selectedItemStatName.text = string.Empty;
         selectedItemStatValue.text = string.Empty;
@@ -171,9 +171,9 @@ public class Inventory : MonoBehaviour
             selectedItemStatValue.text += selectedItem.item.consumables[i].value.ToString() +"\n";
         }
 
-        useButton.SetActive(selectedItem.item.type == ItemType.Consumable);
-        equipButton.SetActive(selectedItem.item.type == ItemType.Equipable && !uiSlot[index].equipped);
-        unEquipButton.SetActive(selectedItem.item.type == ItemType.Equipable && uiSlot[index].equipped);
+        useButton.SetActive(selectedItem.item.type == ItemType.Consumable);  // 골라진 아이템의 속성이 "Consumable"이면 사용하기 버튼노출
+        //equipButton.SetActive(selectedItem.item.type == ItemType.Equipable && !uiSlot[index].equipped); // 골라진 아이템의 속성이 "장비면"이면 사용하기 버튼노출
+        //unEquipButton.SetActive(selectedItem.item.type == ItemType.Equipable && uiSlot[index].equipped); // 골라진 아이템의 속성이 "장비면"이면 사용하기 버튼노출
 
     }
 
@@ -194,26 +194,26 @@ public class Inventory : MonoBehaviour
 
     //====================================== 버튼
 
-    public void OnUseButton()
+    public void OnUseButton()  //사용하기 버튼
     {
 
         
-        if(selectedItem.item.type == ItemType.Consumable)
+        if(selectedItem.item.type == ItemType.Consumable) // 만약 아이템 속성이 "Consumable"이면  >> 사용하기 버튼이 노출은 위에.
         {
             
             for (int i = 0; i < selectedItem.item.consumables.Length; i++) // 섭취 할떄
             {
-                switch(selectedItem.item.consumables[i].type)
+                switch(selectedItem.item.consumables[i].type) 
                 {
                     
-                    case ConsumableType.Hunger:
+                    case ConsumableType.Hunger: // 현재 Hunger=아빠 Health = 레베카가있음
 
                         _hpBar.value += selectedItem.item.consumables[i].value;
 
 
                         break;
                     //case ConsumableType.Health;
-                    //    아이의 hpslider.value;
+                    //    레베카의 hpslider.value;
                     //    break;
                 }
             }
@@ -221,22 +221,22 @@ public class Inventory : MonoBehaviour
         RemoveSelectedItem();
     }
 
-    public void OnEquipButton()
+    public void OnEquipButton() // 장비없어서 미작성
     {
 
     }
 
-    void UnEquip(int index)
+    void UnEquip(int index) // 장비없어서 미작성
     {
 
     }
 
-    public void OnUnEquipButton()
+    public void OnUnEquipButton() // 장비없어서 미작성
     {
 
     }
 
-    private void RemoveSelectedItem()
+    private void RemoveSelectedItem() //아이템 소모시 사라지는 코드
     {
         selectedItem.quantity--;
 

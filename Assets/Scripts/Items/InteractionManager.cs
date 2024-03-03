@@ -6,8 +6,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-//Layer Mask =  interactable 설정, PromptText에는 PromptText설정 ,거리설정 필요
-public interface IInteractable
+
+public interface IInteractable  //인터페이스
 {
     string GetInteractPrompt();
     void OnInteract();
@@ -26,7 +26,7 @@ public class InteractionManager : MonoBehaviour
     void OnCollisionEnter2D(Collision2D coll)
     {
         
-        if (coll.gameObject.layer == LayerMask.NameToLayer("interactable"))
+        if (coll.gameObject.layer == LayerMask.NameToLayer("interactable")) // 레이어가 "interactable"인 아이템과 충돌했을 경우
         {
             curInteractGameobject = coll.gameObject;
             curInteractable =curInteractGameobject.GetComponent<IInteractable>();
@@ -34,7 +34,7 @@ public class InteractionManager : MonoBehaviour
         }
         
     }
-    void OnCollisionExit2D(Collision2D coll)
+    void OnCollisionExit2D(Collision2D coll) //  레이어가 "interactable"인 아이템과 충돌했을 경우
     {
         if (coll.gameObject.layer == LayerMask.NameToLayer("interactable"))
         {
@@ -42,7 +42,7 @@ public class InteractionManager : MonoBehaviour
         }
     }
 
-    private void SetPromptText()
+    private void SetPromptText() // [e] 집어넣기 상호작용 표시 텍스트
     {
         promptText.gameObject.SetActive(true);
         promptText.text = string.Format("<b>[E]</b> {0}", curInteractable.GetInteractPrompt());
@@ -50,18 +50,9 @@ public class InteractionManager : MonoBehaviour
     }
 
 
-    //public void OnInteractInput(InputAction.CallbackContext callbackContext)
-    //{
-    //    if (callbackContext.phase == InputActionPhase.Started && curInteractable != null)
-    //    {
-    //        curInteractable.OnInteract();
-    //        curInteractGameobject = null;
-    //        curInteractable = null;
-    //        promptText.gameObject.SetActive(false);
-    //    }
-    //}
+  
 
-    public void OnInteractInput(InputValue value)
+    public void OnInteractInput(InputValue value)  // E키, 획득이  눌렸을때 
     {
         if (value.isPressed)
         {

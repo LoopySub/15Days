@@ -3,7 +3,18 @@ guid: da82ab333cecf3e48954cb9b2d910fd2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - InventoryWindow: {instanceID: 0}
+  - selectedItemName: {instanceID: 0}
+  - selectedItemDescription: {instanceID: 0}
+  - selectedItemStatName: {instanceID: 0}
+  - selectedItemStatValue: {instanceID: 0}
+  - useButton: {instanceID: 0}
+  - equipButton: {instanceID: 0}
+  - unEquipButton: {instanceID: 0}
+  - openInventory: {fileID: 8300000, guid: 0103bf27909c12d43a0a2701f4c71468, type: 3}
+  - eat: {fileID: 8300000, guid: 8dc57532623e965409cc3b7278cdb04f, type: 3}
+  - audioSource: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

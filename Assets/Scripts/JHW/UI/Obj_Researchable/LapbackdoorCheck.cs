@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class LapbackdoorCheck : Researchable
 {
-
+    public AudioClip opendoor;
+    public AudioSource audioSource;
     public override void Action()
     {
         if (OverallManager.Instance.PublicVariable.IsChoiceBoxUI == false)
@@ -32,6 +33,7 @@ public class LapbackdoorCheck : Researchable
                 case 3:
                     if (OverallManager.Instance.PublicVariable.IsChoice == true)
                     {
+                        audioSource.PlayOneShot(opendoor);
                         OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "잠긴 문", "문이 열립니다.", 1);
                         click_Text = 4;
                     }

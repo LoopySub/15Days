@@ -39,8 +39,10 @@ public class Inventory : MonoBehaviour
 
     private int curEquipIndex;
 
-    
-    
+
+    public AudioClip openInventory;
+    public AudioClip eat;
+    public AudioSource audioSource;
 
     [Header("Events")]
     public UnityEvent onOpenInventory;
@@ -77,12 +79,14 @@ public class Inventory : MonoBehaviour
     {
         if (InventoryWindow.activeInHierarchy)
         {
+            audioSource.PlayOneShot(openInventory);
             InventoryWindow.SetActive(false);
             onCloseInventory.Invoke();
             // 공격이 안나가게 해야함
         }
         else
         {
+            audioSource.PlayOneShot(openInventory);
             InventoryWindow.SetActive(true);
             onOpenInventory.Invoke();
         }
@@ -266,6 +270,7 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
+        audioSource.PlayOneShot(eat);
         RemoveSelectedItem();
     }
 

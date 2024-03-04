@@ -241,7 +241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 132948860}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: WeaponPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 160890038}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: BulletSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3240,7 +3240,7 @@ GameObject:
   - component: {fileID: 769231888}
   - component: {fileID: 769231887}
   - component: {fileID: 769231899}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5575,7 +5575,7 @@ GameObject:
   - component: {fileID: 1152636639}
   - component: {fileID: 1152636637}
   - component: {fileID: 1152636638}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: DustParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10751,7 +10751,7 @@ GameObject:
   - component: {fileID: 1302883228}
   - component: {fileID: 1302883227}
   - component: {fileID: 1302883226}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13059,7 +13059,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1714743888}
   - component: {fileID: 1714743889}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: WeaponSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

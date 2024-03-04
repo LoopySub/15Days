@@ -33,21 +33,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Game Scene/Game_Laborat1 Scene.unity
     guid: c1929412c50989b4d808bf2afe230074
   - enabled: 1
-    path: Assets/Scenes/livingroomScene.unity
-    guid: 8f21c5cbbf79c984abd29c70d45dd25c
+    path: Assets/Scenes/Game Scene/Game_Crossline_Scene.unity
+    guid: 89f928e6a361711498f82a5cacb30e2a
   - enabled: 1
-    path: Assets/Scenes/DaughterScene.unity
-    guid: aeb70cc138232f7459190c1e8307d3f6
+    path: Assets/Scenes/Game Scene/Game_Downhill_Scene.unity
+    guid: 174de491ecd61ae4a8694bd8e20da7c5
   - enabled: 1
-    path: Assets/Scenes/MapScene.unity
-    guid: 0158ff05d5127f24db1418c164e6a08e
+    path: Assets/Scenes/Game Scene/Game_EntranceLab_Scene.unity
+    guid: fb8adc3234cc8b54690b2942f0bef9b0
   - enabled: 1
-    path: Assets/Scenes/LaboratoryScene.unity
-    guid: 80a54e47ea3eb334c801ed9d11184576
-  - enabled: 1
-    path: Assets/Scenes/Laborat1Scene.unity
-    guid: 191176544bb56ed43927c7d216942d91
-  - enabled: 1
-    path: Assets/Scenes/ShopScene.unity
-    guid: b073f145ca67ecb409314705414765b6
+    path: Assets/Scenes/Game Scene/Game_EntShopScene.unity
+    guid: 24d7a1511eb74a542ab7f9849338f172
   m_configObjects: {}

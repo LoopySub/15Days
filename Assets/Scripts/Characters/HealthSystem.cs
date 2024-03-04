@@ -17,14 +17,14 @@ public class HealthSystem : MonoBehaviour
     public event Action OnDeath;
     public event Action OnInvincibilityEnd;
 
-    public float CurrentHealth { get; private set; }
+    public float CurrentHealth { get; set; }
 
     public float MaxHealth => _statsHandler.CurrentStats.maxHealth;
 
     private void Awake()
     {
         _statsHandler = GetComponent<CharacterStatsHandler>();
-        OverallManager.Instance.UiManager.HpText.text = "체력: " +  (CurrentHealth.ToString() + "/" + MaxHealth.ToString());
+        //OverallManager.Instance.UiManager.HpText.text = "체력: " +  (CurrentHealth.ToString() + "/" + MaxHealth.ToString());
     }
 
     private void Start()
@@ -46,7 +46,7 @@ public class HealthSystem : MonoBehaviour
 
     public bool ChangeHealth(float change)
     {
-        OverallManager.Instance.UiManager.HpText.text = "체력: " + (CurrentHealth.ToString() + "/" + MaxHealth.ToString());
+       
         if (change == 0 || _timeSinceLastChange < healthChangeDelay)
         {
             return false;
@@ -68,8 +68,14 @@ public class HealthSystem : MonoBehaviour
 
         if (CurrentHealth <= 0f)
         {
-            OverallManager.Instance.GameDataManager.Ending(Ending_type.GameOver);
-            //CallDeath();
+            if (this == OverallManager.Instance.PlayerManager)
+            {
+                OverallManager.Instance.GameDataManager.Ending(Ending_type.GameOver);
+            }
+            else
+            {
+                CallDeath();
+            }
         }
 
         return true;

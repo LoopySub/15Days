@@ -25,7 +25,7 @@ public class OutDoor : Researchable
                     OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "현관문", "밖을 탐사할까요?", 1);
                     break;
                 case 2:
-                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "현관문", "밖으로 나갑니다. 스태미나 50 사용 / 맵 이동시 마다 3시간 경과", 1);
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "현관문", "밖으로 나갑니다. 스태미나 50 사용 / 맵 이동시 마다 2시간 경과", 1);
                     OverallManager.Instance.UiManager.ShowChoiceBox();
                     break;
                 case 3:
@@ -38,7 +38,7 @@ public class OutDoor : Researchable
                             break;
 
                         }
-                        else if (OverallManager.Instance.PublicVariable.CurrentHour >= 21)
+                        else if (OverallManager.Instance.PublicVariable.CurrentHour >= 22)
                         {
                             OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "이 시간에 나가는 건 위험해.", 1);
                         }

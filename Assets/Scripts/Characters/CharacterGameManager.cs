@@ -25,6 +25,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static Public_Enum;
 
 public class CharacterGameManager : MonoBehaviour
 {
@@ -72,20 +73,29 @@ public class CharacterGameManager : MonoBehaviour
             //spawnPostions을 다 가져와서 저장
             spawnPostions.Add(spawnPositionsRoot.GetChild(i)); // GetChild : transform반환
         }
-
+        OverallManager.Instance.UiManager.HpText.text = "체력: " + (playerHealthSystem.CurrentHealth.ToString() + "/" + playerHealthSystem.MaxHealth.ToString());
     }
 
-
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(OverallManager.Instance.PublicVariable.PastDay != OverallManager.Instance.PublicVariable.Day)
+        {
+            playerHealthSystem.CurrentHealth = playerHealthSystem.MaxHealth;
+        }
+        OverallManager.Instance.PublicVariable.PastDay = OverallManager.Instance.PublicVariable.Day;
+        OverallManager.Instance.UiManager.HpText.text = "체력: " + (playerHealthSystem.CurrentHealth.ToString() + "/" + playerHealthSystem.MaxHealth.ToString());
+    }
 
 
 
     private void Start()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
         UpgradeStatInit();
         //StartCoroutine("StartNextWave"); //지금 동작하고 gameOver()에서 StopAllCoroutines 멈추게
         //1. 루틴을 제공해서 코루틴을 반환 : 스트링값으로는 잘 안멈춘다??
         //2. 메서드 네임을 제공하고 코루틴 반환 : 메서드네임이나 코루틴으로 정지
-        for (int i = 0; i <= 5; i++)
+        for (int i = Random.Range(4,8); i <= 5; i++)
         {
             int posIdx = Random.Range(0, spawnPostions.Count);
             int prefabIdx = Random.Range(0, enemyPrefebs.Count);
@@ -181,7 +191,8 @@ public class CharacterGameManager : MonoBehaviour
 
     private void GameOver()
     {
-        StopAllCoroutines(); // 동작하는 모든 코루틴을 멈춰라
+        OverallManager.Instance.GameDataManager.Ending(Ending_type.GameOver);
+        //StopAllCoroutines(); // 동작하는 모든 코루틴을 멈춰라
     }
 
     private void UpdateWaveUI()

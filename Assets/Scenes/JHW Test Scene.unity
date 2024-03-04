@@ -4794,7 +4794,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856881585}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -21, y: -69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9839,6 +9839,10 @@ MonoBehaviour:
   isVaccineGet: 0
   isRebeccaCured: 0
   isGetAntibiotic: 0
+  isDeto_A: 0
+  isDeto_B: 0
+  isDeto_C: 0
+  isLabkey_B: 0
 --- !u!114 &2018040159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9894,6 +9898,7 @@ MonoBehaviour:
   Rebecca_StateText: {fileID: 0}
   StaminaBar: {fileID: 0}
   HPbar: {fileID: 0}
+  HPtext: {fileID: 0}
   NightLight: {fileID: 0}
   NightLightImage: {fileID: 0}
   MassageText: {fileID: 1267821990}
@@ -9958,6 +9963,7 @@ MonoBehaviour:
   _GameDataManager: {fileID: 2018040167}
   _PlayerManager: {fileID: 0}
   _SceneTransition: {fileID: 0}
+  _Inventory: {fileID: 0}
 --- !u!4 &2018040166
 Transform:
   m_ObjectHideFlags: 0

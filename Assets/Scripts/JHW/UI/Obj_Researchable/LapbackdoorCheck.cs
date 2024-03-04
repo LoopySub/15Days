@@ -50,7 +50,7 @@ public class LapbackdoorCheck : Researchable
                     OverallManager.Instance.UiManager.HideDialog();
                     resetSelectRch();
                     click_Text = 0;
-                    OverallManager.Instance.PlayerManager.transform.position = new Vector3(-5.89f, -2.67f, 0);
+                    OverallManager.Instance.PlayerManager.transform.position = new Vector3(2.14f, -1.03f, 0);
                     break;
                 case 6:
                     break;

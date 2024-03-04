@@ -50,7 +50,7 @@ public class PlayerManager : MonoBehaviour
         if (OverallManager.Instance.PublicVariable.Am_I_outside == true)
         {
             transform.localScale = new Vector3(0.7f, 0.7f, 1.0f);
-            OverallManager.Instance.PublicVariable.CurrentHour += 3;
+            OverallManager.Instance.PublicVariable.CurrentHour += 2;
 
         }
         else

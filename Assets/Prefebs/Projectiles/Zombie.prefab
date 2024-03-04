@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 597d135c63aa44e4786920a7cbfd88f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followRange: 10
+  followRange: 4
   targetTag: Player
   characterRenderer: {fileID: 6157709809113929486}
 --- !u!114 &6687449369266255801

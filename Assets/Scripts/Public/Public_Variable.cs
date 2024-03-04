@@ -408,6 +408,7 @@ public class Public_Variable : BaseMonoBehaviour // 게임에서 공용으로 사용되는 �
         set { isLabkey_B = value;}
     }
 
+    [SerializeField]
     private bool isBattery;
     public bool IsBattery
     {
@@ -415,6 +416,13 @@ public class Public_Variable : BaseMonoBehaviour // 게임에서 공용으로 사용되는 �
         set { isBattery = value; }
     }
 
+    [SerializeField]
+    private int pastDay;
+    public int PastDay
+    {
+        get { return pastDay; }
+        set { pastDay = value; } 
+    }
 
 
     // ============================================[↑공용 변수 구역↑]=================================================

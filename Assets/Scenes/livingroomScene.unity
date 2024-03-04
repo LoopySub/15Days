@@ -7343,6 +7343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47608027e1e4b1349875e1b190837baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _impactParticleSystem: {fileID: 0}
 --- !u!1 &1709252322
 GameObject:
   m_ObjectHideFlags: 0
@@ -7605,6 +7606,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
+  waveText: {fileID: 0}
+  hpGaugeSlider: {fileID: 0}
+  gameOverUI: {fileID: 0}
+  currentWaveIndex: 0
+  spawnInterval: 0.5
+  enemyPrefebs: []
+  spawnPositionsRoot: {fileID: 0}
+  rewards: []
+  defaultStats:
+    statsChangeType: 0
+    maxHealth: 0
+    speed: 0
+    attackSO: {fileID: 0}
+  rangedStats:
+    statsChangeType: 0
+    maxHealth: 0
+    speed: 0
+    attackSO: {fileID: 0}
 --- !u!4 &1718510509
 Transform:
   m_ObjectHideFlags: 0

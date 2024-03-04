@@ -9062,7 +9062,7 @@ PrefabInstance:
     - target: {fileID: 2425305897280726089, guid: ca60a5bda7e765b498078bb96e24f710,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.78
+      value: -2.87
       objectReference: {fileID: 0}
     - target: {fileID: 2425305897280726089, guid: ca60a5bda7e765b498078bb96e24f710,
         type: 3}
@@ -9877,12 +9877,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1274070865}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab2b22b873875f04f94671c15d8c4576, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ebeb55177185164e820e76ea5723758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   NextMap: Game_Downhill_Scene
-  NextCoordinate: {x: -7.04, y: -2.46, z: 0}
-  In_Or_Out: 0
+  NextCoordinate: {x: -1.11, y: 3.94, z: 0}
 --- !u!1 &1274501964
 GameObject:
   m_ObjectHideFlags: 0
@@ -10887,7 +10886,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9127009471419887161, guid: ca60a5bda7e765b498078bb96e24f710,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1586737966}
+      addedObject: {fileID: 1586737967}
   m_SourcePrefab: {fileID: 100100000, guid: ca60a5bda7e765b498078bb96e24f710, type: 3}
 --- !u!1 &1586737965 stripped
 GameObject:
@@ -10895,7 +10894,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1586737964}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1586737966
+--- !u!114 &1586737967
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10904,12 +10903,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1586737965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab2b22b873875f04f94671c15d8c4576, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ebeb55177185164e820e76ea5723758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   NextMap: Game_Crossline_Scene
   NextCoordinate: {x: -0.99, y: 3.72, z: 0}
-  In_Or_Out: 0
 --- !u!1 &1596621740
 GameObject:
   m_ObjectHideFlags: 0
@@ -11533,12 +11531,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1743185000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab2b22b873875f04f94671c15d8c4576, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ebeb55177185164e820e76ea5723758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   NextMap: Game_Crossline_Scene
   NextCoordinate: {x: 7.91, y: 0.37, z: 0}
-  In_Or_Out: 0
 --- !u!1 &1749446021
 GameObject:
   m_ObjectHideFlags: 0
@@ -11771,7 +11768,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9127009471419887161, guid: ca60a5bda7e765b498078bb96e24f710,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1765464432}
+      addedObject: {fileID: 1765464433}
   m_SourcePrefab: {fileID: 100100000, guid: ca60a5bda7e765b498078bb96e24f710, type: 3}
 --- !u!1 &1765464431 stripped
 GameObject:
@@ -11779,7 +11776,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1765464430}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1765464432
+--- !u!114 &1765464433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11788,12 +11785,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1765464431}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab2b22b873875f04f94671c15d8c4576, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ebeb55177185164e820e76ea5723758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   NextMap: Game_Downhill_Scene
-  NextCoordinate: {x: -7.04, y: -2.46, z: 0}
-  In_Or_Out: 0
+  NextCoordinate: {x: -5.9, y: 3.94, z: 0}
 --- !u!1 &1793220154
 GameObject:
   m_ObjectHideFlags: 0

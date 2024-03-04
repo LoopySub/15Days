@@ -144,6 +144,10 @@ public class Inventory : MonoBehaviour
             {
                 OverallManager.Instance.PublicVariable.IsBattery = true;
             }
+            if (item.displayName == "백신 연구서")
+            {
+                OverallManager.Instance.PublicVariable.IsVaccineGet = true;
+            }
             UPdateUI();
             return;
         }
@@ -244,6 +248,49 @@ public class Inventory : MonoBehaviour
         UPdateUI();
     }
 
+    public void Mix()
+    {
+        foreach (ItemSlot item in slots)
+        {
+            if (item.item.displayName == "미완성 백신 A" && item.item != null)
+            {
+                item.quantity--;
+                if (item.quantity <= 0)
+                {
+                    item.item = null;
+                    ClearSelectedItemWindow();
+                }
+                break;
+            }
+        }
+        foreach (ItemSlot item in slots)
+        {
+            if (item.item.displayName == "미완성 백신 B" && item.item != null)
+            {
+                item.quantity--;
+                if (item.quantity <= 0)
+                {
+                    item.item = null;
+                    ClearSelectedItemWindow();
+                }
+                break;
+            }
+        }
+        foreach (ItemSlot item in slots)
+        {
+            if (item.item.displayName == "미완성 백신 C" && item.item != null)
+            {
+                item.quantity--;
+                if (item.quantity <= 0)
+                {
+                    item.item = null;
+                    ClearSelectedItemWindow();
+                }
+                break;
+            }
+        }
+        UPdateUI();
+    }
 
     public void OnUseButton()  //사용하기 버튼
     {

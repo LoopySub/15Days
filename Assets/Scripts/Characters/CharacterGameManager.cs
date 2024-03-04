@@ -68,6 +68,8 @@ public class CharacterGameManager : MonoBehaviour
         playerHealthSystem.OnHeal += UpdateHealthUI;
         playerHealthSystem.OnDeath += GameOver;
 
+        
+
         for (int i = 0; i < spawnPositionsRoot.childCount; i++)
         {
             //spawnPostions을 다 가져와서 저장
@@ -95,7 +97,15 @@ public class CharacterGameManager : MonoBehaviour
         //StartCoroutine("StartNextWave"); //지금 동작하고 gameOver()에서 StopAllCoroutines 멈추게
         //1. 루틴을 제공해서 코루틴을 반환 : 스트링값으로는 잘 안멈춘다??
         //2. 메서드 네임을 제공하고 코루틴 반환 : 메서드네임이나 코루틴으로 정지
-        for (int i = 0; i <= Random.Range(4,8); i++)
+
+        int sponMobCount = 6;
+        //밤이되면 좀비 더 많이 출현
+        if(OverallManager.Instance.PublicVariable.CurrentHour >= 18)
+        {
+            sponMobCount = 10;
+        }
+
+        for (int i = 0; i <= Random.Range(4, sponMobCount); i++)
         {
             int posIdx = Random.Range(0, spawnPostions.Count);
             int prefabIdx = Random.Range(0, enemyPrefebs.Count);

@@ -6,7 +6,15 @@ public class Morning_Monologue : Researchable
 {
     public override void Click_Text_Reset()
     {
-        if(OverallManager.Instance.PublicVariable.Day == 1)
+        if (OverallManager.Instance.PublicVariable.IsRebeccaCured == true)
+        {
+            OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "Á¸", "...", 1);
+            click_Text = 100;
+            return;
+        }
+
+
+            if (OverallManager.Instance.PublicVariable.Day == 1)
         {
 
         }

@@ -40,6 +40,7 @@ public class Public_Enum : BaseMonoBehaviour
 
     public enum RebeccaStatus
     {
+        Cured,
         Cold,         // 1~50: 감기 기운 상태
         Unstable,     // 51~70: 조금 불안정한 상태
         Violent,      // 71~80: 폭력적인 행동을 하는 상태. 30% 확률로 존을 공격함

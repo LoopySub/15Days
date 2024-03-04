@@ -38,17 +38,17 @@ public class PrologueController : MonoBehaviour
                 break;
             case 2:
                 Prologue_Text.text = null;
-                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "좀비 아포칼립스가 시작된 지 17일..", 3);
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "좀비 아포칼립스가 시작된 지 17일..", 1);
                 break;
             case 3:
                 Prologue_Text.text = null;
                 OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "슬슬 식량이 다 떨어져 간다. " +
-                    "이대로는 언제까지 버틸 수 있을지...", 3);
+                    "이대로는 언제까지 버틸 수 있을지...", 1);
                 break;
             case 4:
                 Prologue_Text.text = null;
                 OverallManager.Instance.UiManager.HideDialog();
-                Prologue_Text.DOText("지직..! " + "지지직..", 3).SetUpdate(true);
+                Prologue_Text.DOText("지직..! " + "지지직..", 1).SetUpdate(true);
                 break;
             case 5:
                 Prologue_Text.text = null;
@@ -57,32 +57,32 @@ public class PrologueController : MonoBehaviour
             case 6:
                 Prologue_Text.text = null;
                 OverallManager.Instance.UiManager.HideDialog();
-                Prologue_Text.DOText("XX 생존자 캠프에서 안내 드립니다..", 3).SetUpdate(true);
+                Prologue_Text.DOText("XX 생존자 캠프에서 안내 드립니다..", 1).SetUpdate(true);
                 
                 break;
             case 7:
                 Prologue_Text.text = null;
-                Prologue_Text.DOText("15일 뒤에 □□시에 구조대가 파견될 예정입니다.", 3).SetUpdate(true);
+                Prologue_Text.DOText("15일 뒤에 □□시에 구조대가 파견될 예정입니다.", 1).SetUpdate(true);
                 
                 break;
             case 8:
                 Prologue_Text.text = null;
-                Prologue_Text.DOText("그러므로 □□시의 생존자 여러분은 15일 뒤...", 3).SetUpdate(true);
+                Prologue_Text.DOText("그러므로 □□시의 생존자 여러분은 15일 뒤...", 1).SetUpdate(true);
                 
                 break;
             case 9:
                 Prologue_Text.text = null;
-                Prologue_Text.DOText("지직.. 지지직..!", 3).SetUpdate(true);
+                Prologue_Text.DOText("지직.. 지지직..!", 1).SetUpdate(true);
                
                 break;
             case 10:
                 Prologue_Text.text = null;
-                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Rebecca, "레베카", "달칵. ...", 2);
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Rebecca, "레베카", "달칵. ...", 1);
 
                 break;
             case 11:
                 Prologue_Text.text = null;
-                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "오 우리 딸, 돌아 왔구나! 들었니? 곧 구조대가 온다고..!", 3);
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "오 우리 딸, 돌아 왔구나! 들었니? 곧 구조대가 온다고..!", 1);
                 break;
             case 12:
                 Prologue_Text.text = null;
@@ -96,7 +96,7 @@ public class PrologueController : MonoBehaviour
                 break;
             case 14:
                 Prologue_Text.text = null;
-                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "레베카..? 너 그 이빨 자국은..", 3);
+                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "레베카..? 너 그 이빨 자국은..", 1);
                 break;
             case 15:
                 Prologue_Text.text = null;

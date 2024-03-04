@@ -324,7 +324,14 @@ public class UiManager : MonoBehaviour
     public void ContainRenewal()
     {
         string stateText = "";
-        if (OverallManager.Instance.PublicVariable.RebeccaStatus == RebeccaStatus.Cold)
+        if(OverallManager.Instance.PublicVariable.RebeccaStatus == RebeccaStatus.Cured)
+        {
+            stateText = "완치됨";
+            ContainText.text = "감염도: -";
+            Rebecca_StateText.text = "상태: " + stateText;
+            return;
+        }
+        else if (OverallManager.Instance.PublicVariable.RebeccaStatus == RebeccaStatus.Cold)
         {
             stateText = "감기 증세";
         }
@@ -351,6 +358,8 @@ public class UiManager : MonoBehaviour
         Rebecca_StateText.text = "상태: " + stateText;
 
         ContainText.text = "감염도: " + OverallManager.Instance.PublicVariable.Contamination.ToString() + "/100";
+
+
     }
 
 

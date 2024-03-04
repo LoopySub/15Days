@@ -64,7 +64,10 @@ public class GameDataManager : BaseMonoBehaviour    // 게임 데이터를 직접적으로 
     //취침시 오염도 증가
     public void Contamination_Increases()
     {
-        OverallManager.Instance.PublicVariable.Contamination += Random.Range(25, 36);
+        if (OverallManager.Instance.PublicVariable.IsRebeccaCured != true)
+        {
+            OverallManager.Instance.PublicVariable.Contamination += Random.Range(25, 36);
+        }
     }
 
     //선택지 1. 레베카 돌보기. 항생제 사용 유무 체크함. 3시간 소비. 스태미나 30 소비.
@@ -122,7 +125,7 @@ public class GameDataManager : BaseMonoBehaviour    // 게임 데이터를 직접적으로 
         }
     }
 
-    //선택지 4. 휴식하기. 1시간 소비. 스태미나 10 회복.
+    //선택지 4. 휴식하기. 2시간 소비. 스태미나 10 회복.
     public void Rest()
     {
         if (Time_And_Stamina_Check(1, 0))

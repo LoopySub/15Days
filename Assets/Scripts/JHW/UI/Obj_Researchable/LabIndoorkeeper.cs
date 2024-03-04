@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OutDoor : Researchable
+public class LabIndoorkeeper : Researchable
 {
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            OverallManager.Instance.PlayerManager.SelectResearchable = this;
-            Action();
-        }
-    }
-
+    public AudioClip opendoor;
+    public AudioSource audioSource;
     public override void Action()
     {
         if (OverallManager.Instance.PublicVariable.IsChoiceBoxUI == false)
@@ -22,56 +15,51 @@ public class OutDoor : Researchable
             switch (click_Text)
             {
                 case 1:
-                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "현관문", "밖을 탐사할까요?", 1);
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "도어락", "잠겨 있다.", 1);
+
                     break;
                 case 2:
-                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "현관문", "밖으로 나갑니다. 스태미나 50 사용 / 맵 이동시 마다 1시간 경과", 1);
-                    OverallManager.Instance.UiManager.ShowChoiceBox();
+                    if (OverallManager.Instance.PublicVariable.IsLabkey_B == true)
+                    {
+                        OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "내부 카드키를 사용해서 들어갈까?.", 1);
+                        OverallManager.Instance.UiManager.ShowChoiceBox();
+                    }
+                    else
+                    {
+                        OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "여기도 카드키가 있어야 들어갈 수 있는 건가.", 1);
+                        click_Text = 3;
+                    }
                     break;
                 case 3:
                     if (OverallManager.Instance.PublicVariable.IsChoice == true)
                     {
-                        if (OverallManager.Instance.PublicVariable.Stamina < 50)
-                        {
-                            OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "", "스태미나가 부족합니다.", 1);
-                            click_Text = 3;
-                            break;
-
-                        }
-                        else if (OverallManager.Instance.PublicVariable.CurrentHour >= 22)
-                        {
-                            OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "이 시간에 나가는 건 위험해.", 1);
-                        }
-                        else
-                        {
-                            OverallManager.Instance.UiManager.HideDialog();
-                            resetSelectRch();
-                            OverallManager.Instance.PublicVariable.Stamina -= 50;
-                            click_Text = 0;
-                            OverallManager.Instance.PlayerManager.transform.position = new Vector3(-8.44f, -2.46f, 0);
-                        }
+                        audioSource.PlayOneShot(opendoor);
+                        OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "도어락", "문이 열립니다.", 1);
+                        click_Text = 4;
                     }
                     else
                     {
-                        OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "그만 두자.", 1);
+                        OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "..오늘은 그만 두자.", 1);
+                        click_Text = 3;
                     }
                     break;
                 case 4:
                     OverallManager.Instance.UiManager.HideDialog();
-                    OverallManager.Instance.PlayerManager.transform.position = new Vector3(-6.52f, OverallManager.Instance.PlayerManager.transform.position.y, 0);
                     resetSelectRch();
                     click_Text = 0;
                     break;
                 case 5:
+                    OverallManager.Instance.UiManager.HideDialog();
+                    resetSelectRch();
+                    click_Text = 0;
+                    
+                    OverallManager.Instance.PlayerManager.transform.position = new Vector3(-2.78f, -5.51f, 0);
                     break;
                 case 6:
                     break;
                 case 7:
                     break;
                 case 8:
-                    OverallManager.Instance.UiManager.HideDialog();
-                    resetSelectRch();
-                    click_Text = 0;
                     break;
                 case 9:
                     break;

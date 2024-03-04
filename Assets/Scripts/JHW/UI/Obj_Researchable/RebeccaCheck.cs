@@ -16,6 +16,15 @@ public class RebeccaCheck : Researchable
             switch (click_Text)
             {
                 case 1:
+                    if (OverallManager.Instance.PublicVariable.IsRebeccaCured == true)
+                    {
+                        OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "레베카는 이미 완전히 치료되서 이 방에 없어. ", 1);
+
+                        OverallManager.Instance.UiManager.ShowRebeccaUI(true);
+                        click_Text = 23;
+                        break;
+                    }
+
                     OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "커튼", "일단은 레베카를 격리해 두었다.", 1);
                     break;
                 case 2:
@@ -28,6 +37,23 @@ public class RebeccaCheck : Researchable
                         OverallManager.Instance.UiManager.ContainRenewal();
                         OverallManager.Instance.UiManager.ShowRebeccaUI(true);
                         OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "커튼", "커튼을 들추고 안을 살펴본다..", 1);
+                        {
+                            if (OverallManager.Instance.PublicVariable.IsVaccineGet == true)
+                            {
+                                
+                                OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "레베카!! 아빠가 백신을 구해 왔어!!", 1);
+                                if (OverallManager.Instance.PublicVariable.RebeccaStatus == RebeccaStatus.Zombie)
+                                {
+                                    click_Text = 25;
+                                    break;
+                                }
+                                else
+                                {
+                                    click_Text = 16;
+                                    break;
+                                }
+                            }
+                        }
                         click_Text = 4;
                     }
                     else
@@ -378,7 +404,7 @@ public class RebeccaCheck : Researchable
                 case 15:
                     OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "", "레베카의 상태가 그럭저럭 호전됐다.", 1);
                     OverallManager.Instance.Inventory.useHangSengJe();
-                    OverallManager.Instance.PublicVariable.Contamination -= Random.Range(25, 36);
+                    OverallManager.Instance.PublicVariable.Contamination -= Random.Range(30, 40);
                     OverallManager.Instance.UiManager.ContainRenewal();
                     break;
                 case 16:
@@ -388,50 +414,61 @@ public class RebeccaCheck : Researchable
                     resetSelectRch();
                     click_Text = 0;
                     break;
-                /*
+               
                 case 17:
-                    Prologue_Text.DOText("", 3);
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Rebecca, "레베카", "...?! 그게.. 진짜야.. 아..빠...?!", 1);
                     break;
                 case 18:
-                    Prologue_Text.DOText("", 3);
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "(레베카를 백신 연구서의 힘으로 치료한다.)", 1);
                     break;
                 case 19:
-                    Prologue_Text.DOText("", 3);
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "(축하합니다! 레베카는 완치되었다!)", 1);
                     break;
                 case 20:
-                    Prologue_Text.DOText("", 3);
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Rebecca, "레베카", "아빠.. 나 이제 멀쩡해! 아무렇지도 않아!", 1);
                     break;
                 case 21:
-                    Prologue_Text.DOText("", 3);
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Rebecca, "레베카", "고마워요 아빠! 사랑해요!!", 1);
                     break;
                 case 22:
-                    Prologue_Text.DOText("", 3);
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "하하, 우리 딸이 기뻐하는 걸 보니 고생한 보람이 있구나..(코쓱)", 1);
                     break;
                 case 23:
-                    Prologue_Text.DOText("", 3);
+                    OverallManager.Instance.UiManager.HideDialog();
+                    OverallManager.Instance.PublicVariable.IsRebeccaCured = true;
+
+                    OverallManager.Instance.PublicVariable.RebeccaStatus = RebeccaStatus.Cured;
+                    OverallManager.Instance.PublicVariable.Contamination = 0;
+                    OverallManager.Instance.UiManager.ContainRenewal();
+                    resetSelectRch();
+                    click_Text = 0;
                     break;
                 case 24:
-                    Prologue_Text.DOText("", 3);
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "어디 놀러 나갔나 보네. 하여간 못말린다니까. (코쓱)", 1);
                     break;
                 case 25:
-                    Prologue_Text.DOText("", 3);
+                    OverallManager.Instance.UiManager.HideDialog();
+                    resetSelectRch();
+                    click_Text = 0;
                     break;
                 case 26:
-                    Prologue_Text.DOText("", 3);
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "레베카, 와서 이걸 좀 보렴, 아빠가 백신을..!", 1);
                     break;
                 case 27:
-                    Prologue_Text.DOText("", 3);
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Rebecca, "레베카", "그르르르르....", 1);
                     break;
                 case 28:
-                    Prologue_Text.DOText("", 3);
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Jone, "존", "레베..카..?", 1);
                     break;
                 case 29:
-                    Prologue_Text.DOText("", 3);
+                    OverallManager.Instance.UiManager.HideDialog();
+                    resetSelectRch();
+                    OverallManager.Instance.GameDataManager.Ending(Ending_type.Infection);
                     break;
                 case 30:
-                    Prologue_Text.DOText("", 3);
+          
                     break;
-                */
+            
                 // 추가적인 경우에 대한 처리도 이어서 작성
                 default:
                     // 기본적으로는 아무 동작도 하지 않음

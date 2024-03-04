@@ -163,6 +163,7 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
     public RebeccaStatus RebeccaStatus
     {
         get { return rebeccaStatus; }
+        set { rebeccaStatus = value; }
     }
 
     // 5. ¹Ù±ù Å½»ç ½Ã Ã¼·Â ¼öÄ¡
@@ -447,7 +448,14 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
             OverallManager.Instance.GameDataManager.ResetHearts();
             OverallManager.Instance.GameDataManager.RecoverStaminaAfterSleep();
             OverallManager.Instance.GameDataManager.Contamination_Increases();
+        if (RebeccaStatus == RebeccaStatus.Cured)
+        {
+            OverallManager.Instance.UiManager.ShowRebeccaUI(true);
+        }
+        else
+        {
             OverallManager.Instance.UiManager.ContainHide();
+        }
             OverallManager.Instance.UiManager.ShowRebeccaUI(true);
             Day = (AccumulatedHours / 24) + 2;
             OverallManager.Instance.UiManager.DayChangeTextOn(true);
@@ -480,19 +488,22 @@ public class Public_Variable : BaseMonoBehaviour // °ÔÀÓ¿¡¼­ °ø¿ëÀ¸·Î »ç¿ëµÇ´Â º
     // Contamination °ª¿¡ µû¶ó Rebecca »óÅÂ ¾÷µ¥ÀÌÆ®
     private void UpdateRebeccaStatus()
     {
-        if (contamination < 50)
-            rebeccaStatus = RebeccaStatus.Cold;
-        else if (contamination < 70)
-            rebeccaStatus = RebeccaStatus.Unstable;
-        else if (contamination < 80)
-            rebeccaStatus = RebeccaStatus.Violent;
-        else if (contamination < 90)
-            rebeccaStatus = RebeccaStatus.ZombieLike;
-        else if (contamination < 100)
-            rebeccaStatus = RebeccaStatus.AlmostZombie;
-        else
-            rebeccaStatus = RebeccaStatus.Zombie;
-            
+        if (RebeccaStatus != RebeccaStatus.Cured)
+        {
+
+            if (contamination < 50)
+                rebeccaStatus = RebeccaStatus.Cold;
+            else if (contamination < 70)
+                rebeccaStatus = RebeccaStatus.Unstable;
+            else if (contamination < 80)
+                rebeccaStatus = RebeccaStatus.Violent;
+            else if (contamination < 90)
+                rebeccaStatus = RebeccaStatus.ZombieLike;
+            else if (contamination < 100)
+                rebeccaStatus = RebeccaStatus.AlmostZombie;
+            else
+                rebeccaStatus = RebeccaStatus.Zombie;
+        }
     }
 
     private void GameStateHandler()

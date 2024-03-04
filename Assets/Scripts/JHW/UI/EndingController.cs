@@ -259,7 +259,7 @@ public class EndingController : MonoBehaviour
                 break;
             case 55:
                 OverallManager.Instance.UiManager.HideDialog();
-                Ending_Text.DOText("좀비 아포칼립스 세계에서, 아사는 흔한 사인이다.", 3);
+                Ending_Text.DOText("좀비 아포칼립스 세계에서, 아사는 흔한 사인이다.", 2);
                 break;
             case 56:
                 Ending_Text.text = null;
@@ -270,7 +270,7 @@ public class EndingController : MonoBehaviour
                 Application.Quit();
                 break;
             case 58:
-                Ending_Text.DOText("Day-15", 3);
+                Ending_Text.DOText("Day-15", 1.5f);
                 break;
             case 59:
                 Ending_Text.text = null;
@@ -278,7 +278,7 @@ public class EndingController : MonoBehaviour
                 break;
             case 60:
                 Ending_Text.text = null;
-                Ending_Text.DOText("군인들이 존의 집 현관문을 두드린다.", 3);
+                Ending_Text.DOText("군인들이 존의 집 현관문을 두드린다.", 1);
                 break;
             case 61:
                 Ending_Text.text = null;

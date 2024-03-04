@@ -354,7 +354,7 @@ public class RebeccaCheck : Researchable
                     else
                     {
                         OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "", "레베카의 감염 진행도가 심각해서 그냥 간호하는 것만으로는 효과가 없었다..", 1);
-                        OverallManager.Instance.PublicVariable.Contamination -= Random.Range(3,7);
+                        OverallManager.Instance.PublicVariable.Contamination -= Random.Range(4, 7);
                     }
                     break;
                 case 13:

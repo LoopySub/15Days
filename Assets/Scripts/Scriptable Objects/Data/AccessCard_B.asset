@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5add5d07f5030fe4f99364dc568f97eb, type: 3}
   m_Name: AccessCard_B
   m_EditorClassIdentifier: 
-  displayName: "\uC5F0\uAD6C\uC18C B \uCE74\uB4DC"
-  description: "\uC5F0\uAD6C\uC18C B\uC5D0 \uCD9C\uC785\uD560 \uC218 \uC788\uB294
-    \uCE74\uB4DC, \uAC00\uC9C0\uACE0\uC788\uB2E4\uBA74 \uC5F0\uAD6C\uC18CB\uC5D0
-    \uCD9C\uC785\uC774 \uAC00\uB2A5\uD558\uB2E4."
+  displayName: "\uC5F0\uAD6C\uC18C \uCD9C\uC785 \uCE74\uB4DC\uD0A4"
+  description: "\uC5F0\uAD6C\uC18C\uC5D0 \uCD9C\uC785\uD560 \uC218 \uC788\uB294 \uCE74\uB4DC,
+    \uAC00\uC9C0\uACE0\uC788\uB2E4\uBA74 \uC5F0\uAD6C\uC18CB\uC5D0 \uCD9C\uC785\uC774
+    \uAC00\uB2A5\uD558\uB2E4."
   type: 0
   icon: {fileID: 21300000, guid: aa7fd548a6f45d945b84ab8e59b87a0e, type: 3}
   canStack: 0

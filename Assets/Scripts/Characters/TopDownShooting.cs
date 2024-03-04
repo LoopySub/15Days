@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TopDownShooting : MonoBehaviour
 {
@@ -25,7 +26,13 @@ public class TopDownShooting : MonoBehaviour
         _projectileManager = ProjectileManager.instance;
         _controller.OnAttackEvent += OnShoot;
         _controller.OnLookEvent += OnAim;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        _projectileManager = ProjectileManager.instance;
+    }
+
 
     private void OnAim(Vector2 newAimDirection)
     {
@@ -62,10 +69,12 @@ public class TopDownShooting : MonoBehaviour
         //  Instantiate(testPrefab, projectileSpwanPosition.position, Quaternion.identity /*벡터의 (0.0.0)*/);
         // Instantiate의 오버로딩 : 매개변수에 따라 화살이 만들어지는 위치가 달라짐
         // 매개변수 첫번째 - 원본, 두번째 - 생성 위치 , 3번째 회전값
-
-        _projectileManager.ShootBullet(projectileSpawnPosition.position,
-          RotateVector2(_aimDirection, angle),
-          rangedAttackData);
+        if (OverallManager.Instance.PublicVariable.Am_I_outside == true)
+        {
+            _projectileManager.ShootBullet(projectileSpawnPosition.position,
+              RotateVector2(_aimDirection, angle),
+              rangedAttackData);
+        }
 
         // shootingClip있으면 오디오클립 실행시켜라
       //  if (shootingClip)

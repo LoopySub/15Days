@@ -36,8 +36,6 @@ public class CharacterGameManager : MonoBehaviour
     private HealthSystem playerHealthSystem;
 
     [SerializeField] private TextMeshProUGUI waveText; //using TMPro;
-    [SerializeField] private Slider hpGaugeSlider;  //using UnityEngine.UI;
-    [SerializeField] private GameObject gameOverUI; //using UnityEngine.UI;
 
 
     [SerializeField] private int currentWaveIndex = 0;
@@ -62,14 +60,12 @@ public class CharacterGameManager : MonoBehaviour
         instance = this;
         // FindGameObjectWithTag : 태그로 검색, 하이어라키에서 모두 검색하기 때문에 느려진다.
         // 매 프레임 실행하는 Update에서는 사용하지 않는다, 한번만 사용할때
-        Player = GameObject.FindGameObjectWithTag(playerTag).transform;
+        Player = OverallManager.Instance.PlayerManager.transform;
 
         playerHealthSystem = Player.GetComponent<HealthSystem>();
         playerHealthSystem.OnDamage += UpdateHealthUI;
         playerHealthSystem.OnHeal += UpdateHealthUI;
         playerHealthSystem.OnDeath += GameOver;
-
-        gameOverUI.SetActive(false);
 
         for (int i = 0; i < spawnPositionsRoot.childCount; i++)
         {
@@ -86,10 +82,25 @@ public class CharacterGameManager : MonoBehaviour
     private void Start()
     {
         UpgradeStatInit();
-        StartCoroutine("StartNextWave"); //지금 동작하고 gameOver()에서 StopAllCoroutines 멈추게
+        //StartCoroutine("StartNextWave"); //지금 동작하고 gameOver()에서 StopAllCoroutines 멈추게
         //1. 루틴을 제공해서 코루틴을 반환 : 스트링값으로는 잘 안멈춘다??
         //2. 메서드 네임을 제공하고 코루틴 반환 : 메서드네임이나 코루틴으로 정지
+        for (int i = 0; i <= 5; i++)
+        {
+            int posIdx = Random.Range(0, spawnPostions.Count);
+            int prefabIdx = Random.Range(0, enemyPrefebs.Count);
+            GameObject enemy = Instantiate(enemyPrefebs[prefabIdx], spawnPostions[posIdx].position, Quaternion.identity);
+            enemy.GetComponent<HealthSystem>().OnDeath += OnEnemyDeath;
+
+            //몬스터를 생성할 때 지워줘야
+            enemy.GetComponent<CharacterStatsHandler>().AddStatModifier(defaultStats);
+            enemy.GetComponent<CharacterStatsHandler>().AddStatModifier(rangedStats);
+
+            currentSpawnCount++;
+        }
     }
+
+    /*
 
     IEnumerator StartNextWave()
     {
@@ -149,7 +160,7 @@ public class CharacterGameManager : MonoBehaviour
             yield return null;
         }
     }
-
+    */
 
 
     private void OnEnemyDeath()
@@ -161,22 +172,20 @@ public class CharacterGameManager : MonoBehaviour
 
     private void UpdateHealthUI()
     {
+        OverallManager.Instance.UiManager.HpText.text = "체력: " + (playerHealthSystem.CurrentHealth.ToString() + "/" + playerHealthSystem.MaxHealth.ToString());
         // 퍼센트로 만들기 위해 --> 0~1 value
-        hpGaugeSlider.value = playerHealthSystem.CurrentHealth / playerHealthSystem.MaxHealth;
+        //hpGaugeSlider.value = playerHealthSystem.CurrentHealth / playerHealthSystem.MaxHealth;
     }
 
 
 
     private void GameOver()
     {
-        gameOverUI.SetActive(true);
         StopAllCoroutines(); // 동작하는 모든 코루틴을 멈춰라
     }
 
     private void UpdateWaveUI()
     {
-        // waveText.text = 
-        waveText.text = (currentWaveIndex + 1).ToString();
     }
 
     public void RestartGame()

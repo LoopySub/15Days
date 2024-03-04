@@ -377,6 +377,7 @@ public class RebeccaCheck : Researchable
                     break;
                 case 15:
                     OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "", "레베카의 상태가 그럭저럭 호전됐다.", 1);
+                    OverallManager.Instance.Inventory.useHangSengJe();
                     OverallManager.Instance.PublicVariable.Contamination -= Random.Range(25, 36);
                     OverallManager.Instance.UiManager.ContainRenewal();
                     break;

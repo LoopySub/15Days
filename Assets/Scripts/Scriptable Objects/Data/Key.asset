@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Key
   m_EditorClassIdentifier: 
   displayName: "\uC5F4\uC1E0"
-  description: "\uC5F0\uAD6C\uC18C\uB97C \uB4E4\uC5B4\uAC08 \uC218 \uC788\uB294 \uC5F4\uC1E0"
+  description: "\uC5B4\uB518\uAC00\uC5D0 \uB4E4\uC5B4\uAC08 \uC218 \uC788\uB294 \uC5F4\uC1E0"
   type: 0
   icon: {fileID: 21300000, guid: a321c7959eced0744a6ba85ab9588fe2, type: 3}
-  dropPrefab: {fileID: 0}
   canStack: 0
   maxStackAmount: 0
   consumables: []

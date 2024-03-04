@@ -24,6 +24,7 @@ public class HealthSystem : MonoBehaviour
     private void Awake()
     {
         _statsHandler = GetComponent<CharacterStatsHandler>();
+        OverallManager.Instance.UiManager.HpText.text = "체력: " +  (CurrentHealth.ToString() + "/" + MaxHealth.ToString());
     }
 
     private void Start()
@@ -45,6 +46,7 @@ public class HealthSystem : MonoBehaviour
 
     public bool ChangeHealth(float change)
     {
+        //OverallManager.Instance.UiManager.HpText.text = "체력: " + (CurrentHealth.ToString() + "/" + MaxHealth.ToString());
         if (change == 0 || _timeSinceLastChange < healthChangeDelay)
         {
             return false;

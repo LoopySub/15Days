@@ -86,6 +86,9 @@ public class OverallManager : BaseMonoBehaviour, IOverallManager //ÀüÃ¼ ÃÑ°ı ÅëÇ
     [SerializeField]
     private SceneTransition _SceneTransition;
 
+    [SerializeField]
+    private Inventory _Inventory;
+
     // ============================================[¡èÁ÷·ÄÈ­ ±¸¿ª¡è]=================================================
     // ==========================================[¡éµ¥ÀÌÅÍ ÂüÁ¶ ±¸¿ª¡é]==============================================
     public Public_Variable PublicVariable
@@ -116,6 +119,11 @@ public class OverallManager : BaseMonoBehaviour, IOverallManager //ÀüÃ¼ ÃÑ°ı ÅëÇ
     public SceneTransition SceneTransition
     {
         get { return _SceneTransition; }
+    }
+
+    public Inventory Inventory
+    {
+        get { return _Inventory; }
     }
 
 

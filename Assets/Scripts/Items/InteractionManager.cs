@@ -56,10 +56,13 @@ public class InteractionManager : MonoBehaviour
     {
         if (value.isPressed)
         {
-            curInteractable.OnInteract();
-            curInteractGameobject = null;
-            curInteractable = null;
-            promptText.gameObject.SetActive(false);
+            if (curInteractGameobject != null)
+                {
+                    curInteractable.OnInteract();
+                    curInteractGameobject = null;
+                    curInteractable = null;
+                    promptText.gameObject.SetActive(false);
+                }
         }
     }
 }

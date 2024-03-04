@@ -161,8 +161,9 @@ public class CharacterGameManager : MonoBehaviour
 
     private void UpdateHealthUI()
     {
+        OverallManager.Instance.UiManager.HpText.text = "체력: " + (playerHealthSystem.CurrentHealth.ToString() + "/" + playerHealthSystem.MaxHealth.ToString());
         // 퍼센트로 만들기 위해 --> 0~1 value
-        hpGaugeSlider.value = playerHealthSystem.CurrentHealth / playerHealthSystem.MaxHealth;
+        //hpGaugeSlider.value = playerHealthSystem.CurrentHealth / playerHealthSystem.MaxHealth;
     }
 
 

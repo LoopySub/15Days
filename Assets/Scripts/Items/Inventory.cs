@@ -23,7 +23,6 @@ public class Inventory : MonoBehaviour
     public ItemSlot[] slots;
 
     public GameObject InventoryWindow;  // 인벤토리창
-    public Slider _hpBar;
     
 
     [Header("Selected Item")]
@@ -98,6 +97,7 @@ public class Inventory : MonoBehaviour
     {
         if (item.canStack)   //Scriptable Object에서 아이템이 스택이 가능한 아이템이면 (현재 구급상자,Food만 스택가능)
         {
+
             ItemSlot slotToStackTo = GetItemStack(item);
             if(slotToStackTo != null)
             {
@@ -112,6 +112,34 @@ public class Inventory : MonoBehaviour
         {
             emptySlot.item = item;
             emptySlot.quantity = 1;
+            if (item.displayName == "항생제")
+            {
+                OverallManager.Instance.PublicVariable.IsGetAntibiotic = true;
+            }
+            if (item.displayName == "연구소 출입 카드키")
+            {
+                OverallManager.Instance.PublicVariable.IsLabMainKeyGet = true;
+            }
+            if (item.displayName == "미완성 백신 A")
+            {
+                OverallManager.Instance.PublicVariable.IsDetoA = true;
+            }
+            if (item.displayName == "미완성 백신 B")
+            {
+                OverallManager.Instance.PublicVariable.IsDetoB = true;
+            }
+            if (item.displayName == "미완성 백신 C")
+            {
+                OverallManager.Instance.PublicVariable.IsDetoC = true;
+            }
+            if (item.displayName == "연구소 내부 카드키")
+            {
+                OverallManager.Instance.PublicVariable.IsLabkey_B = true;
+            }
+            if (item.displayName == "배터리")
+            {
+                OverallManager.Instance.PublicVariable.IsBattery = true;
+            }
             UPdateUI();
             return;
         }
@@ -193,6 +221,25 @@ public class Inventory : MonoBehaviour
     }
 
     //====================================== 버튼
+    public void useHangSengJe()
+    {
+        foreach(ItemSlot item in slots)
+        {
+            if (item.item.displayName == "항생제" && item.item != null)
+            {
+                item.quantity--;
+                if (item.quantity <= 0)
+                {
+                    OverallManager.Instance.PublicVariable.IsGetAntibiotic = false;
+                    item.item = null;
+                    ClearSelectedItemWindow();
+                }
+                break;
+            }
+        }
+        UPdateUI();
+    }
+
 
     public void OnUseButton()  //사용하기 버튼
     {
@@ -208,8 +255,9 @@ public class Inventory : MonoBehaviour
                     
                     case ConsumableType.Hunger: // 현재 Hunger=아빠 Health = 레베카가있음
 
-                        _hpBar.value += selectedItem.item.consumables[i].value;
-
+                        //_hpBar.value += 
+                        OverallManager.Instance.PublicVariable.Fullness += selectedItem.item.consumables[i].value;
+                        OverallManager.Instance.UiManager.textRenewal();
 
                         break;
                     //case ConsumableType.Health;
@@ -236,7 +284,7 @@ public class Inventory : MonoBehaviour
 
     }
 
-    private void RemoveSelectedItem() //아이템 소모시 사라지는 코드
+    public void RemoveSelectedItem() //아이템 소모시 사라지는 코드
     {
         selectedItem.quantity--;
 
@@ -245,6 +293,10 @@ public class Inventory : MonoBehaviour
             if (uiSlot[selectedItemIndex].equipped)
             {
                 UnEquip(selectedItemIndex);
+            }
+            if(selectedItem.item.displayName == "항생제")
+            {
+                OverallManager.Instance.PublicVariable.IsGetAntibiotic = false;
             }
 
             selectedItem.item = null;

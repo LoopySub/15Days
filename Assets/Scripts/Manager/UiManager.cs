@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using static Public_Enum;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 
 
@@ -30,6 +31,9 @@ public class UiManager : MonoBehaviour
 
     [SerializeField] 
     private GameObject HPbar;
+
+    [SerializeField] 
+    private Text HPtext;
 
     [SerializeField]
     private GameObject NightLight;
@@ -261,6 +265,7 @@ public class UiManager : MonoBehaviour
         FullnessText.text = ("배부름: " + OverallManager.Instance.PublicVariable.Fullness.ToString() + "/100");
         TimeText.text = ("시간: " + OverallManager.Instance.PublicVariable.CurrentHour.ToString("00") + ":00");
         DayText.text = ("Day-" + OverallManager.Instance.PublicVariable.Day.ToString());
+        
     }
 
     public void ShowStaminaBar()
@@ -356,5 +361,8 @@ public class UiManager : MonoBehaviour
     public Image zButtonBox { get { return ZButtonBox; } }
 
     public Researchable morning_monologue {  get { return Morning_Monologue; } }
+
+    public Text HpText  { get{ return HPtext; } }
+
     // ==============================================[↑참조 구역↑]==================================================
 }

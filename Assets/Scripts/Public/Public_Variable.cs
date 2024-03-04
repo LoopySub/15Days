@@ -376,6 +376,45 @@ public class Public_Variable : BaseMonoBehaviour // 게임에서 공용으로 사용되는 �
         set { isGetAntibiotic = value; }
     }
 
+    [SerializeField]
+    private bool isDeto_A;
+    public bool IsDetoA
+    {
+        get { return isDeto_A;}
+        set { isDeto_A = value;}
+    }
+
+    [SerializeField]
+    private bool isDeto_B;
+    public bool IsDetoB
+    {
+        get { return isDeto_B; }
+        set { isDeto_B = value;}
+    }
+
+    [SerializeField]
+    private bool isDeto_C;
+    public bool IsDetoC
+    {
+        get { return isDeto_C; }
+        set { isDeto_C = value;}
+    }
+
+    [SerializeField]
+    private bool isLabkey_B;
+    public bool IsLabkey_B
+    {
+        get { return isLabkey_B; }
+        set { isLabkey_B = value;}
+    }
+
+    private bool isBattery;
+    public bool IsBattery
+    {
+        get { return isBattery; }
+        set { isBattery = value; }
+    }
+
 
 
     // ============================================[↑공용 변수 구역↑]=================================================

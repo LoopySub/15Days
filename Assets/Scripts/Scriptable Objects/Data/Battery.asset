@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Battery
   m_EditorClassIdentifier: 
   displayName: "\uBC30\uD130\uB9AC"
-  description: "\uB77C\uB514\uC624\uB97C \uCDA9\uC804\uD560 \uC218 \uC788\uB294 \uBC30\uD130\uB9AC\uC774\uB2E4."
+  description: "PC\uB97C \uC218\uB9AC\uD560 \uC218 \uC788\uB294 \uBC30\uD130\uB9AC\uC774\uB2E4."
   type: 0
   icon: {fileID: 21300000, guid: 63fcc3b3167d0d346929d7504ae46573, type: 3}
-  dropPrefab: {fileID: 0}
   canStack: 0
   maxStackAmount: 0
   consumables: []

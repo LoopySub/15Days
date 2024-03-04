@@ -9,7 +9,8 @@ public class TopDownContactEnemyController : TopDownEnemyController
     private bool _isCollidingWithTarget;
 
     [SerializeField] private SpriteRenderer characterRenderer;
-
+    public AudioClip zombie;
+    public AudioSource audioSource;
 
     private HealthSystem healthSystem;
     private HealthSystem _collidingTargetHealthSystem;
@@ -36,6 +37,7 @@ public class TopDownContactEnemyController : TopDownEnemyController
 
         if (_isCollidingWithTarget/*충돌하고 있는지*/)
         {
+            audioSource.PlayOneShot(zombie);
             ApplyHealthChange();
         }
 

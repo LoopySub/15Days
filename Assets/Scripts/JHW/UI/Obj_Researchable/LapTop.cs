@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LapTop : Researchable
 {
+
+    public AudioClip typing;
+    public AudioSource audioSource;
     public override void Click_Text_Reset()
     {
         if (OverallManager.Instance.PublicVariable.Day == 1)
@@ -107,7 +110,7 @@ public class LapTop : Researchable
                         }
                         else
                         {
-
+                            audioSource.PlayOneShot(typing);
                             OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "PC", "[생존자 캠프 커뮤니티에 오신 것을 환영합니다.]", 1);
                             Click_Text_Reset();
                         }

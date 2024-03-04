@@ -5519,6 +5519,9 @@ MonoBehaviour:
   useButton: {fileID: 2020346040}
   equipButton: {fileID: 623734630}
   unEquipButton: {fileID: 1611240869}
+  openInventory: {fileID: 0}
+  eat: {fileID: 0}
+  audioSource: {fileID: 0}
   onOpenInventory:
     m_PersistentCalls:
       m_Calls: []
@@ -11878,7 +11881,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 640, y: 360}
+  m_ReferenceResolution: {x: 1700, y: 480}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

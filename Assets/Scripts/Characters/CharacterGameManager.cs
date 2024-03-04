@@ -191,7 +191,7 @@ public class CharacterGameManager : MonoBehaviour
 
     private void GameOver()
     {
-        //OverallManager.Instance.GameDataManager.Ending(Ending_type.GameOver);
+        OverallManager.Instance.GameDataManager.Ending(Ending_type.GameOver);
         //StopAllCoroutines(); // 동작하는 모든 코루틴을 멈춰라
     }
 

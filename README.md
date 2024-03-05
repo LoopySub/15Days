@@ -99,7 +99,7 @@
 ---
 ## 스크립트 목록
 
-1. CharacterScript
+1. CharacterScript //캐릭터 공격 및 적과의 전투 관련 스크립트 일체
 ```
 //ScriptableObjects
 AttackSO.cs

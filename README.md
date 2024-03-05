@@ -145,17 +145,20 @@ PlayerManager
 TestManager
  게임 속도 증가 및 감소, 테스트 메세지 출력 등 테스트하는데 유용한 기능을 모아놓은 스크립트.
 ```
+```
 [공용 데이터]
 Public_Variable
  게임에서 공용으로 사용되는 데이터 및 해당 데이터 관련 이벤트, 콜백 메서드를 모아놓은 스크립트.
 Public_Enum
  게임에서 공용으로 사용되는 Enum 값을 모아놓은 스크립트.
 ```
+```
 [선택지 / 상호작용 및 대사 출력]
 Researchable
  선택지 및 상호작용하는 스크립트들의 뼈대가 되는 부모 스크립트.
 Obj_Researchable 폴더의 Researchable 자식 스크립트들
  직접적으로 선택지 및 상호작용하는 역할을 하는 각각의 오브젝트들에 부착되는 스크립트들.
+```
 ```
 [맵 관련]
 PotalInfo
@@ -164,6 +167,7 @@ SceneFader
  씬 이동 시 페이드 아웃 효과를 주는 메서드를 담아둔 스크립트
 SceneTransition
  실질적으로 씬 이동을 제어하는 스크립트.
+```
 ```
 [기타]
 Title_Ui_Controller

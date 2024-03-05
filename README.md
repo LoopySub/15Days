@@ -197,3 +197,15 @@ https://github.com/LoopySub/15Days/assets/153998744/2f7c1fcd-cf76-4dca-ae35-0ef9
 **[리소스 출처]**
 -5종 효과음 : https://pixabay.com/ko/music/
     
+-에셋
+Dotween (무료 에셋)
+https://assetstore.unity.com/packages/tools/animation/dotween-hotween-v2-27676
+
+-폰트
+neodgm네오둥근모 체
+Copyright © 2017-2022, Eunbin Jeong (Dalgona.) 
+<project-neodgm@dalgona.dev>
+with reserved font name "Neo둥근모" and "NeoDunggeunmo".
+
+-커튼 이미지
+https://www.pexels.com/ko-kr/photo/462197/

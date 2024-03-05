@@ -126,7 +126,11 @@ TopDownRangeEnemyContreoller.cs
 TopDownShooting.cs
 ```
 2. 스크립트
-```
+InteractionManager : 상호작용에 대한 스크립트
+ItemObject: 상호작용 텍스트에 뜨는 아이템 이름에 대한 스크립트 / ITEMData와연동
+Inventory :인벤토리 내 모든 기능 함수를 모아놓은 스크립트.
+ItemSlotUI : 인벤토리 내 슬롯칸 스크립트.
+ItemData : 아이템 타입,설명,능력치에 관한 스크립트. ScriptableObject와 연동
 
 ```
 
@@ -187,8 +191,8 @@ CameraController
 
 https://github.com/LoopySub/15Days/assets/153998744/2f7c1fcd-cf76-4dca-ae35-0ef9048b5685
 
-
-
-
 [발표 구글 슬라이드](https://docs.google.com/presentation/d/e/2PACX-1vQmuseV9kTzGkwgsivGAydbM1kgfFf7MGu_f-L25PPmHVdY6-LWTncYL4UxCS115Qfu1RHSjbE8xAN4/pub?start=true&loop=true&delayms=3000&slide=id.g2bf18da56ac_0_11810)
+
+[리소스 출처]
+5종 효과음 : https://pixabay.com/ko/music/
     

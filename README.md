@@ -67,7 +67,8 @@
 - 배경 BGM 구현 , 5종의 행동할때 행동오디오 출력 
 
 ### 9. 총 6종의 엔딩
-> 게임 오버 엔딩:존은 바깥을 싸돌아다니다가 좀비에게 습격당해 죽습니다.
+ **게임 오버 엔딩:**
+> 존은 바깥을 싸돌아다니다가 좀비에게 습격당해 죽습니다.
 > 바깥 탐사 중 HP가 0이 되면 보게되는 엔딩
 
 **늦은 밤 엔딩:** 
@@ -192,25 +193,38 @@ CameraController
 
 https://github.com/LoopySub/15Days/assets/153998744/2f7c1fcd-cf76-4dca-ae35-0ef9048b5685
 
-[발표 구글 슬라이드](https://docs.google.com/presentation/d/e/2PACX-1vQmuseV9kTzGkwgsivGAydbM1kgfFf7MGu_f-L25PPmHVdY6-LWTncYL4UxCS115Qfu1RHSjbE8xAN4/pub?start=true&loop=true&delayms=3000&slide=id.g2bf18da56ac_0_11810)
+[발표 구글 슬라이드 보기](https://docs.google.com/presentation/d/e/2PACX-1vQmuseV9kTzGkwgsivGAydbM1kgfFf7MGu_f-L25PPmHVdY6-LWTncYL4UxCS115Qfu1RHSjbE8xAN4/pub?start=true&loop=true&delayms=3000&slide=id.g2bf18da56ac_0_11810)
+
+---
+---
 
 **[리소스 출처]**
 
--5종 효과음 
+- 5종 효과음 
 https://pixabay.com/ko/music/
 
--아이템 아이콘
+- 아이템 아이콘
 https://www.flaticon.com/kr/
     
--에셋
+- 에셋
 Dotween (무료 에셋)
 https://assetstore.unity.com/packages/tools/animation/dotween-hotween-v2-27676
 
--폰트
+- 폰트
 neodgm네오둥근모 체
 Copyright © 2017-2022, Eunbin Jeong (Dalgona.) 
 <project-neodgm@dalgona.dev>
 with reserved font name "Neo둥근모" and "NeoDunggeunmo".
 
--커튼 이미지
+- 커튼 이미지
 https://www.pexels.com/ko-kr/photo/462197/
+
+- 플레이어 스프라이트(무료 유니티 에셋)
+  https://assetstore.unity.com/packages/2d/characters/2d-character-astronaut-182650
+- 좀비 스프라이트(무료 유니티 에셋)
+  https://assetstore.unity.com/packages/2d/characters/2d-fantasy-character-pack-demo-101030
+
+- 발표 슬라이드 템플릿1(무료템플릿)
+https://slidesgo.com/theme/zombie-pride-day-minitheme#search-%EC%A2%80%EB%B9%84&position-2&results-9&rs=search
+- 발표 슬라이드 템플릿2(무료템플릿)
+https://slidesgo.com/theme/zombies-minitheme#search-%EC%A2%80%EB%B9%84&position-5&results-9&rs=search  

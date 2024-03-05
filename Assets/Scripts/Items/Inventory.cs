@@ -33,11 +33,11 @@ public class Inventory : MonoBehaviour
     public TextMeshProUGUI selectedItemStatName;
     public TextMeshProUGUI selectedItemStatValue;
     public GameObject useButton;
-    public GameObject equipButton;
-    public GameObject unEquipButton;
+    public GameObject equipButton;  //장비넣으면 필요함
+    public GameObject unEquipButton;//장비넣으면 필요함
 
 
-    private int curEquipIndex;
+    //private int curEquipIndex;
 
 
     public AudioClip openInventory;
@@ -321,20 +321,20 @@ public class Inventory : MonoBehaviour
         RemoveSelectedItem();
     }
 
-    public void OnEquipButton() // 장비없어서 미작성
-    {
+    //public void OnEquipButton() // 장비없어서 미작성
+    //{
 
-    }
+    //}
 
-    void UnEquip(int index) // 장비없어서 미작성
-    {
+    //void UnEquip(int index) // 장비없어서 미작성
+    //{
 
-    }
+    //}
 
-    public void OnUnEquipButton() // 장비없어서 미작성
-    {
+    //public void OnUnEquipButton() // 장비없어서 미작성
+    //{
 
-    }
+    //}
 
     public void RemoveSelectedItem() //아이템 소모시 사라지는 코드
     {
@@ -342,10 +342,10 @@ public class Inventory : MonoBehaviour
 
         if (selectedItem.quantity <= 0)
         {
-            if (uiSlot[selectedItemIndex].equipped)
-            {
-                UnEquip(selectedItemIndex);
-            }
+            //if (uiSlot[selectedItemIndex].equipped)
+            //{
+            //    UnEquip(selectedItemIndex);
+            //}
             if(selectedItem.item.displayName == "항생제")
             {
                 OverallManager.Instance.PublicVariable.IsGetAntibiotic = false;
@@ -358,14 +358,14 @@ public class Inventory : MonoBehaviour
         UPdateUI();
     }
 
-    public void RemoveItem(ItemData item)
-    {
+    //public void RemoveItem(ItemData item)
+    //{
 
-    }
+    //}
 
-    public bool HasItems(ItemData item,int quantity)
-    {
-        return false;
-    }
+    //public bool HasItems(ItemData item,int quantity)
+    //{
+    //    return false;
+    //}
 
 }

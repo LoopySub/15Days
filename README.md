@@ -70,5 +70,13 @@
 **트루 엔딩:**
 > 존은 레베카의 바이러스를 백신으로 치료하는데 성공하고, 15일 동안 버티는 데에도 성공해 구조대에게 무사히 구조됩니다.
 
+---
+---
+### 시연영상
+
+
+https://github.com/LoopySub/15Days/assets/153998744/13dd5cdc-d31f-41ce-8f2a-4ea349ec01be
+
+
 [발표 구글 슬라이드](https://docs.google.com/presentation/d/e/2PACX-1vQmuseV9kTzGkwgsivGAydbM1kgfFf7MGu_f-L25PPmHVdY6-LWTncYL4UxCS115Qfu1RHSjbE8xAN4/pub?start=true&loop=true&delayms=3000&slide=id.g2bf18da56ac_0_11810)
     

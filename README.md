@@ -240,3 +240,51 @@ https://slidesgo.com/theme/zombie-pride-day-minitheme#search-%EC%A2%80%EB%B9%84&
 https://slidesgo.com/theme/zombies-minitheme#search-%EC%A2%80%EB%B9%84&position-5&results-9&rs=search  
 
 ---
+---
+> 토글 방식으로 감싸는 것도 좋을 것 같아요. 필요없으면 삭제하죠.
+<details>
+<summary>  [리소스 출처] </summary>
+<div markdown="1">
+
+- 5종 효과음 
+https://pixabay.com/ko/music/
+
+- 아이템 아이콘
+https://www.flaticon.com/kr/
+    
+- 에셋
+Dotween (무료 에셋)
+https://assetstore.unity.com/packages/tools/animation/dotween-hotween-v2-27676
+
+- 폰트
+neodgm네오둥근모 체
+Copyright © 2017-2022, Eunbin Jeong (Dalgona.) 
+<project-neodgm@dalgona.dev>
+with reserved font name "Neo둥근모" and "NeoDunggeunmo".
+
+- 커튼 이미지
+https://www.pexels.com/ko-kr/photo/462197/
+
+- 바닥타일 및 소품(무료 유니티 에셋)
+https://assetstore.unity.com/packages/2d/2d-basic-room-assets-234762
+
+- 보물상자(무료 유니티 에셋)
+https://assetstore.unity.com/packages/2d/environments/pixel-chests-pack-animated-263923
+
+- 오두막(무료 유니티 에셋)
+https://assetstore.unity.com/packages/2d/textures-materials/2d-tileset-platformer-254632
+
+- 플레이어 스프라이트(무료 유니티 에셋)
+https://assetstore.unity.com/packages/2d/characters/2d-character-astronaut-182650
+- 좀비 스프라이트(무료 유니티 에셋)
+  https://assetstore.unity.com/packages/2d/characters/2d-fantasy-character-pack-demo-101030
+
+- 발표 슬라이드 템플릿1(무료템플릿)
+https://slidesgo.com/theme/zombie-pride-day-minitheme#search-%EC%A2%80%EB%B9%84&position-2&results-9&rs=search
+- 발표 슬라이드 템플릿2(무료템플릿)
+https://slidesgo.com/theme/zombies-minitheme#search-%EC%A2%80%EB%B9%84&position-5&results-9&rs=search  
+
+</div>
+</details>
+
+---

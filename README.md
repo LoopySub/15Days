@@ -71,6 +71,44 @@
 > 존은 레베카의 바이러스를 백신으로 치료하는데 성공하고, 15일 동안 버티는 데에도 성공해 구조대에게 무사히 구조됩니다.
 
 ---
+## 스크립트 목록
+
+1. CharacterScript
+```
+//ScriptableObjects
+AttackSO.cs
+CharacterStatsHandler.cs
+RangedAttackData.cs
+
+CharacterGameManager.cs
+CharacterStats.cs
+DisappearOnDeath.cs
+DustParticleControl.cs
+HealthSystem.cs
+ObjectPool.cs
+PlayerInputController.cs
+ProjectileManager.cs
+RangedAttackController.cs
+TopDownAimRotation.cs
+TopDownAnimationController.cs
+TopDownAnimations.cs
+TopDownCharacterController.cs
+TopDownContactEnemyController.cs
+TopDownEnemyController.cs
+TopDownMovement.cs
+TopDownRangeEnemyContreoller.cs
+TopDownShooting.cs
+```
+2. 스크립트
+```
+
+```
+
+3. 스크립트 
+```
+
+```
+
 ---
 ### 시연영상
 

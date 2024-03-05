@@ -56,32 +56,34 @@ public class GameTip : Researchable
                     OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "책장", "배부름이 0이 되면 굶어 죽습니다.", 1);
                     break;
                 case 12:
-                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "책장", "트루 엔딩이 존재합니다. 도달할 수 있을 지는 모르겠지만.", 1);
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "책장", "트루 엔딩이 존재합니다. 도달할 수 있을 지는 모르겠지만. ", 1);
                     break;
                 case 13:
                     OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "책장", "그리고 저는 지금 밤을 새서 이걸 쓰고 있습니다. 완전 노가다입니다.", 1);
                     break;
                 case 14:
-                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "책장", "저는 퀄리티 좋고 재밌는 게임을 다같이 으쌰으쌰해서 만들고 싶었는데, 너무 아쉽네요.", 1);
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "책장", "일단 테스트는 다 끝냈으니 노력만 있다면 트루 엔딩도 가능할 겁니다.", 1);
+                    //OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "책장", "저는 퀄리티 좋고 재밌는 게임을 다같이 으쌰으쌰해서 만들고 싶었는데, 너무 아쉽네요.", 1);
                     break;
                 case 15:
-                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "책장", "... ... 다음을 기약합시다...", 1);
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "책장", "맵 곳곳에 숨겨진 카드키를 찾아 보세요.", 1);
                     break;
                 case 16:
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "책장", "일찍, 푹 자면 다음날 스테미나를 더 많이 회복합니다.", 1);
+                    break;
+                case 17:
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "책장", "음.. 게임 팁은 여기까지입니다.", 1);
+                    break;
+                case 18:
+                    OverallManager.Instance.UiManager.ShowDialog(Public_Enum.Icon_type.Null, "책장", "읽어주셔서 감사합니다. 그럼, 다음에 또.", 1);
+                    break;
+                case 19:
                     OverallManager.Instance.UiManager.HideDialog();
                     resetSelectRch();
                     click_Text = 0;
                     break;
-                /*
-                case 17:
-                    Prologue_Text.DOText("", 3);
-                    break;
-                case 18:
-                    Prologue_Text.DOText("", 3);
-                    break;
-                case 19:
-                    Prologue_Text.DOText("", 3);
-                    break;
+
+                    /*
                 case 20:
                     Prologue_Text.DOText("", 3);
                     break;

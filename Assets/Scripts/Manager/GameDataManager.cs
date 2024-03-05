@@ -49,13 +49,13 @@ public class GameDataManager : BaseMonoBehaviour    // 게임 데이터를 직접적으로 
         }
     }
 
-    // 공격 받을 시 하트 감소
+    // 공격 받을 시 하트 감소 // 플레이어 체력을 사용하므로 하트는 더미 데이터
     public void DecreaseHeartsOnAttack()
     {
         OverallManager.Instance.PublicVariable.Hearts -= -1;
     }
 
-    //취침시 하트 재충전
+    //취침시 하트 재충전 // 플레이어 체력을 사용하므로 하트는 더미 데이터
     public void ResetHearts()
     {
         OverallManager.Instance.PublicVariable.Hearts = OverallManager.Instance.PublicVariable.MaxHearts;
@@ -70,80 +70,10 @@ public class GameDataManager : BaseMonoBehaviour    // 게임 데이터를 직접적으로 
         }
     }
 
-    //선택지 1. 레베카 돌보기. 항생제 사용 유무 체크함. 3시간 소비. 스태미나 30 소비.
-    public void Care_Rebecca(bool antibiotic_use)
-    {
-        if (Time_And_Stamina_Check(3,30))
-        {
-            {
-                if (antibiotic_use == true)
-                {
-                    OverallManager.Instance.PublicVariable.Contamination -= Random.Range(25, 31);
-                }
-                else
-                {
-                    if (OverallManager.Instance.PublicVariable.Contamination <= 81)
-                    {
-                        OverallManager.Instance.PublicVariable.Contamination -= Random.Range(10, 21);
-                    }
-                    else
-                    {
 
-                    }
-                }
-                Time_And_Stamina_Increase(3, 30);
-            }
-        }
-    }
 
-    //선택지 2. 정보 탐색. 3시간 소비. 스태미나 20 소비.
-    public void Gather_Info(bool laptop_use)
-    {
-        if (Time_And_Stamina_Check(3, 20))
-        {
-            {
-                if (laptop_use == true)
-                {
-                }
-                else
-                {
-                }
-                Time_And_Stamina_Increase(3, 20);
-            }
-        }
-    }
 
-    //선택지 3. 바깥 탐사하기. 최소 1시간 소비. 스태미나 50 소비.
-    public void Exploring_Outside()
-    {
-        if (Time_And_Stamina_Check(1, 50))
-        {
-            {
-                OverallManager.Instance.PublicVariable.Am_I_outside = true;
-                Time_And_Stamina_Increase(1, 50);
-            }
-        }
-    }
-
-    //선택지 4. 휴식하기. 2시간 소비. 스태미나 10 회복.
-    public void Rest()
-    {
-        if (Time_And_Stamina_Check(1, 0))
-        {
-            {
-                if (OverallManager.Instance.PublicVariable.Fullness >= 40)
-                {
-                    Time_And_Stamina_Increase(1, -10);
-                }
-                else
-                {
-                    Time_And_Stamina_Increase(1, 10);
-                }
-            }
-        }
-    }
-
-    //선택지 5. 운동하기. 5시간 소비. 스태미나 40 소비. 최대 하트 1 증가.
+    //선택지 5. 운동하기. 5시간 소비. 스태미나 40 소비. 최대 하트 1 증가. // 더미 데이터
     public void Exercise()
     {
         if (Time_And_Stamina_Check(5, 40))
@@ -156,51 +86,8 @@ public class GameDataManager : BaseMonoBehaviour    // 게임 데이터를 직접적으로 
         }
     }
 
-    //레베카 상태 확인
-  public void Check_Rebecca_status()
-    {
-        RebeccaStatus rebeccaStatus = OverallManager.Instance.PublicVariable.RebeccaStatus;
 
-        if (rebeccaStatus == RebeccaStatus.Cold)
-        {
-            // Cold 상태에 대한 처리
-        }
-        else if (rebeccaStatus == RebeccaStatus.Unstable)
-        {
-            // Unstable 상태에 대한 처리
-            if (Random.Range(0f, 100f) < 5f)
-            {
-                Attacked_From_Rebecca();
-            }
-        }
-        else if (rebeccaStatus == RebeccaStatus.Violent)
-        {
-            // Violent 상태에 대한 처리
-            if (Random.Range(0f, 100f) < 25f)
-            {
-                Attacked_From_Rebecca();
-            }
-        }
-        else if (rebeccaStatus == RebeccaStatus.ZombieLike)
-        {
-            // ZombieLike 상태에 대한 처리
-            if (Random.Range(0f, 100f) < 50f)
-            {
-                Attacked_From_Rebecca();
-            }
-        }
-        else if (rebeccaStatus == RebeccaStatus.AlmostZombie)
-        {
-            // AlmostZombie 상태에 대한 처리
-                Attacked_From_Rebecca();
-        }
-        else if (rebeccaStatus == RebeccaStatus.Zombie)
-        {
-            Ending(Ending_type.Infection);
-        }
-    }
-
-    private void Attacked_From_Rebecca()
+    private void Attacked_From_Rebecca() //간호하는 중 레베카에게 공격 당할 시 // 더미 데이타
     {
         OverallManager.Instance.PublicVariable.Stamina -= 10;
         if (OverallManager.Instance.PublicVariable.Stamina < 0)
@@ -274,11 +161,6 @@ public class GameDataManager : BaseMonoBehaviour    // 게임 데이터를 직접적으로 
         OverallManager.Instance.PublicVariable.Stamina -= stamina;
     }
 
-    //집에 돌아오는 메서드
-    public void Comeback_Home()
-    {
-        OverallManager.Instance.PublicVariable.Am_I_outside = false;
-    }
 
 
     //

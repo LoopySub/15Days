@@ -126,6 +126,7 @@ TopDownRangeEnemyContreoller.cs
 TopDownShooting.cs
 ```
 2. 스크립트
+ ```
 InteractionManager : 상호작용에 대한 스크립트
 ItemObject: 상호작용 텍스트에 뜨는 아이템 이름에 대한 스크립트 / ITEMData와연동
 Inventory :인벤토리 내 모든 기능 함수를 모아놓은 스크립트.

@@ -194,6 +194,6 @@ https://github.com/LoopySub/15Days/assets/153998744/2f7c1fcd-cf76-4dca-ae35-0ef9
 
 [발표 구글 슬라이드](https://docs.google.com/presentation/d/e/2PACX-1vQmuseV9kTzGkwgsivGAydbM1kgfFf7MGu_f-L25PPmHVdY6-LWTncYL4UxCS115Qfu1RHSjbE8xAN4/pub?start=true&loop=true&delayms=3000&slide=id.g2bf18da56ac_0_11810)
 
-##[리소스 출처]
-#5종 효과음 : https://pixabay.com/ko/music/
+###[리소스 출처]
+-5종 효과음 : https://pixabay.com/ko/music/
     

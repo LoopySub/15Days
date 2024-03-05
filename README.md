@@ -222,10 +222,10 @@ https://www.pexels.com/ko-kr/photo/462197/
 - 바닥타일 및 소품(무료 유니티 에셋)
 https://assetstore.unity.com/packages/2d/2d-basic-room-assets-234762
 
--보물상자(무료 유니티 에셋)
+- 보물상자(무료 유니티 에셋)
 https://assetstore.unity.com/packages/2d/environments/pixel-chests-pack-animated-263923
 
--오두막(무료 유니티 에셋)
+- 오두막(무료 유니티 에셋)
 https://assetstore.unity.com/packages/2d/textures-materials/2d-tileset-platformer-254632
 
 - 플레이어 스프라이트(무료 유니티 에셋)
@@ -238,3 +238,4 @@ https://slidesgo.com/theme/zombie-pride-day-minitheme#search-%EC%A2%80%EB%B9%84&
 - 발표 슬라이드 템플릿2(무료템플릿)
 https://slidesgo.com/theme/zombies-minitheme#search-%EC%A2%80%EB%B9%84&position-5&results-9&rs=search  
 
+---

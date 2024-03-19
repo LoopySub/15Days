@@ -18,7 +18,7 @@
  - 프로젝트 이름: 15 Days
  - 프로젝트 작업 기간: 2024.02.26 ~ 2024.03.05 
  - 개발엔진 및 언어: Unity & C#
- - 멤버: 송문섭, 정현우, 조기조, 이은실
+ - 멤버: 송문섭, 정현우, 이은실 <!-- 이름 비공개해주세요. -->
 
 ## 구현 기능 정리:
 ### 1. 주인공 캐릭터의 이동 및 기본 동작  
@@ -94,38 +94,38 @@
 - 송문섭-아이템 및 인벤토리 및 아이템 상호작용 / 팀장
 - 정현우-UI / 상태 관리 및 선택지 및 상호작용 / 시나리오 / 맵(씬)간 이동 / <br/> 
 대화창 구현 및 대화 스크립트 작성 / 전반전인 게임 데이터 관리 및 로직 설계 / 기획 및 QA / 부팀장
-- 조기조-캐릭터 조작 (이동 및 공격) / 애니메이션 및 이펙트 ,  적(좀비) 공격 / 이동 / 애니메이션 및 이펙트
-- 이은실-맵 제작 및 맵 타일셋 배치 <br/> 
+- 이은실-맵 제작 및 맵 타일셋 배치 <br/>
+- <!-- 이름 비공개. 역학 분담 삭제해도 됩니다. -->팀원 1-캐릭터 조작 (이동 및 공격) / 애니메이션 및 이펙트 ,  적(좀비) 공격 / 이동 / 애니메이션 및 이펙트
 
 
 ---
 ## 스크립트 목록
 
-1. CharacterScript //캐릭터 공격 및 적과의 전투 관련 스크립트 일체
-```
+1. CharacterScript : 캐릭터 공격 및 적과의 전투 관련 스크립트 일체
+```cs
 //ScriptableObjects
-AttackSO.cs
-CharacterStatsHandler.cs
-RangedAttackData.cs
+AttackSO.cs :일반 공격 데이터
+CharacterStatsHandler.cs : stats 관리
+RangedAttackData.cs  : 원거리 공격 데이터 + 일반 공격 데이터 상속
 
-CharacterGameManager.cs
-CharacterStats.cs
-DisappearOnDeath.cs
-DustParticleControl.cs
-HealthSystem.cs
-ObjectPool.cs
-PlayerInputController.cs
-ProjectileManager.cs
-RangedAttackController.cs
-TopDownAimRotation.cs
-TopDownAnimationController.cs
-TopDownAnimations.cs
-TopDownCharacterController.cs
-TopDownContactEnemyController.cs
-TopDownEnemyController.cs
-TopDownMovement.cs
-TopDownRangeEnemyContreoller.cs
-TopDownShooting.cs
+CharacterGameManager.cs :케릭터관리,몬스터 스폰
+CharacterStats.cs :케릭터 스탯 설정 ---> CharacterStatsHandler ---> 플레이어에 스크립트 연결
+DisappearOnDeath.cs :죽으면 벡터 제로, 투명도를 30%, 2초후 삭제
+DustParticleControl.cs :걸을 때 에니메이션 이벤트에 연결하기, 발바닥에 먼지 파티클 효과
+HealthSystem.cs :데미지 받을때 오디오클립 재생, 힐 받으면 체력 증가, 데미지 받으면 체력 감소,체력 0이면 OnDeath
+ObjectPool.cs :구조체 Pool의 필드를 가지는 Dictionary<string, Queue<GameObject>>를 계속 생성시키기
+PlayerInputController.cs : PlayerInput(키보드와 마우스 등의 입력) ---> PlayerInputController 
+마우스와 키보드 입력 받는 스크립트 : 이동, 보는 방향, 발사
+ProjectileManager.cs :발사체 사용 준비, 발사체 파티클이펙트
+RangedAttackController.cs :원거리 공격시 발사체의 충돌과 삭제,데미지로 체력 깎기,발사체의 색, 파티클 fx 통제
+TopDownAimRotation.cs :마우스 방향으로 케릭터와 무기의 방향 전환
+TopDownAnimationController.cs :애니메이션 설정 : 걷기,공격,피격 시 에니메이터의 값 조정
+TopDownAnimations.cs :TopDownAnimationController 에서 상속받아서 사용
+TopDownCharacterController.cs :델리게이트로 이동, 보는 방향, 공격 연결
+TopDownContactEnemyController.cs :근접 몬스터 공격 판단, 공격받으면 추격거리를 100으로 확장, 공격할 때 넉백 적용
+TopDownEnemyController.cs :거리와 방향 게산
+TopDownMovement.cs :플레이어 이동, 넉백  ---> PlayerInputController 
+TopDownShooting.cs :발사체 발사, 발사시 오디오클립 재생
 ```
 2. 스크립트
  ```
@@ -194,9 +194,9 @@ CameraController
 
 https://github.com/LoopySub/15Days/assets/153998744/2f7c1fcd-cf76-4dca-ae35-0ef9048b5685
 
-[발표 구글 슬라이드 보기](https://docs.google.com/presentation/d/e/2PACX-1vQmuseV9kTzGkwgsivGAydbM1kgfFf7MGu_f-L25PPmHVdY6-LWTncYL4UxCS115Qfu1RHSjbE8xAN4/pub?start=true&loop=true&delayms=3000&slide=id.g2bf18da56ac_0_11810)
 
----
+
+
 ---
 
 **[리소스 출처]**
@@ -240,51 +240,9 @@ https://slidesgo.com/theme/zombie-pride-day-minitheme#search-%EC%A2%80%EB%B9%84&
 https://slidesgo.com/theme/zombies-minitheme#search-%EC%A2%80%EB%B9%84&position-5&results-9&rs=search  
 
 ---
----
-> 토글 방식으로 감싸는 것도 좋을 것 같아요. 필요없으면 삭제하죠.
-<details>
-<summary>  [리소스 출처] </summary>
-<div markdown="1">
 
-- 5종 효과음 
-https://pixabay.com/ko/music/
 
-- 아이템 아이콘
-https://www.flaticon.com/kr/
-    
-- 에셋
-Dotween (무료 에셋)
-https://assetstore.unity.com/packages/tools/animation/dotween-hotween-v2-27676
 
-- 폰트
-neodgm네오둥근모 체
-Copyright © 2017-2022, Eunbin Jeong (Dalgona.) 
-<project-neodgm@dalgona.dev>
-with reserved font name "Neo둥근모" and "NeoDunggeunmo".
 
-- 커튼 이미지
-https://www.pexels.com/ko-kr/photo/462197/
 
-- 바닥타일 및 소품(무료 유니티 에셋)
-https://assetstore.unity.com/packages/2d/2d-basic-room-assets-234762
 
-- 보물상자(무료 유니티 에셋)
-https://assetstore.unity.com/packages/2d/environments/pixel-chests-pack-animated-263923
-
-- 오두막(무료 유니티 에셋)
-https://assetstore.unity.com/packages/2d/textures-materials/2d-tileset-platformer-254632
-
-- 플레이어 스프라이트(무료 유니티 에셋)
-https://assetstore.unity.com/packages/2d/characters/2d-character-astronaut-182650
-- 좀비 스프라이트(무료 유니티 에셋)
-  https://assetstore.unity.com/packages/2d/characters/2d-fantasy-character-pack-demo-101030
-
-- 발표 슬라이드 템플릿1(무료템플릿)
-https://slidesgo.com/theme/zombie-pride-day-minitheme#search-%EC%A2%80%EB%B9%84&position-2&results-9&rs=search
-- 발표 슬라이드 템플릿2(무료템플릿)
-https://slidesgo.com/theme/zombies-minitheme#search-%EC%A2%80%EB%B9%84&position-5&results-9&rs=search  
-
-</div>
-</details>
-
----
